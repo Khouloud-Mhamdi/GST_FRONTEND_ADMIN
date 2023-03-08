@@ -10,6 +10,11 @@ import { ProfilComponent } from './components/profil/profil.component';
 import { TableComponent } from './components/table/table.component';
 import { FormAjoutComponent } from './components/form-ajout/form-ajout.component';
 import { DashbordComponent } from './components/dashbord/dashbord.component';
+import { ListeModerateursComponent } from './components/liste-moderateurs/liste-moderateurs.component';
+import { ListeGestionnairesComponent } from './components/liste-gestionnaires/liste-gestionnaires.component';
+import { AjoutUtilisateurComponent } from './components/ajout-utilisateur/ajout-utilisateur.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,11 +26,17 @@ import { DashbordComponent } from './components/dashbord/dashbord.component';
     ProfilComponent,
     TableComponent,
     FormAjoutComponent,
-    DashbordComponent
+    DashbordComponent,
+    ListeModerateursComponent,
+    ListeGestionnairesComponent,
+    AjoutUtilisateurComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

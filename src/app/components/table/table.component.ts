@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
   selector: 'app-table',
@@ -7,9 +11,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  constructor() { }
+  public adherents :any;
+
+
+
+  constructor( private UserService :  UtilisateurService , private route :Router) { }
 
   ngOnInit(): void {
+
+    this.UserService.ListeDesUtilisateurs('adhérent').subscribe((data)=>{
+      this.adherents = data;
+
+    })
+
+
+
+  }
+  deleteUser(id:any){
+    this.UserService.SupprimerUtilisateur(id).subscribe((data)=>{
+      console.log(id);
+
+      window.alert("Utilisateur Supprimé ");
+    })
   }
 
 }
