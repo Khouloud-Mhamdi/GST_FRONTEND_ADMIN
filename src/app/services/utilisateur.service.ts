@@ -12,7 +12,11 @@ export class UtilisateurService {
   ListeDesUtilisateurs(role : any) {
     return this.httpClient.get(this.UserURL+"/ListeDesUtilisateurs/"+ role);
   }
-  SupprimerUtilisateur(id : any ){
-    return this.httpClient.delete(this.UserURL+ "/Supprimer/" +id);
+  RechercherUtilisateur(query: any) {
+    return this.httpClient.get(this.UserURL+"/RechercherUtilisateur/"+ query);
   }
+  SupprimerUtilisateur(id : any ){
+    return this.httpClient.delete (this.UserURL+ "/Supprimer/" +id);
+  }
+
 }

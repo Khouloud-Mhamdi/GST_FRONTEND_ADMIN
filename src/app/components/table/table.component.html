@@ -19,10 +19,11 @@
       <button type="button" class="btn btn-primary">Ajouter </button>
       <p class="mg-b-25 mg-lg-b-50">Searching, ordering and paging goodness will be immediately added to the table, as shown in this example.</p>
 
-      <div class="input-group" style="width: 80%;margin-bottom: 3%;">
-        <input type="search" class="form-control rounded" placeholder="Id,nom,prénom" aria-label="Search" aria-describedby="search-addon" />
-        <button type="button" class="btn btn-outline-primary">Chercher</button>
-      </div>
+      
+      <form style="width: 70%;margin-bottom: 3%;">
+        <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher un utilisateur"  (input)="onInputChange()">
+        <button type="submit" (click)="search(query)">Rechercher</button>
+      </form>
       <div class="table-wrapper">
 
         <table id="datatable1" class="table display responsive nowrap">
@@ -36,7 +37,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let a of adherents ">
+            <tr *ngFor=" let a of adherents.slice(conteur,visibleItems); let i = index ">
               <td>{{a.id}}</td>
               <td>{{a.nom}}</td>
               <td>{{a.prenom}}</td>
@@ -46,10 +47,30 @@
 
             </tr>
 
+            <tr *ngIf="adherents.length > 2 ">
+              <td *ngIf="conteur > 1 ">
+                <button class="btn btn-primary" (click)="VoirPrecedent()"> Précédent</button>
+              </td>
+               <td></td>
+               <td></td>
+               <td></td>
+
+               <td colspan="2" >
+                <button (click)="VoirSuivant()" class="btn btn-primary"> Suivant</button>
 
 
+              </td>
+
+            </tr>
+
+<!--<div style="display: flex; justify-content: space-between;">
+          <button *ngIf="conteur > 1 "  (click)="VoirPrecedent()" >Précédent</button>
+          <button *ngIf="adherents.length > 2" (click)="VoirPrecedent()">Suivant</button>
+        </div>
+ -->
           </tbody>
         </table>
+
       </div><!-- table-wrapper -->
 
 
