@@ -1,0 +1,48 @@
+form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  margin-bottom: 3%;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+  margin-left: 10px;
+  padding: 8px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0062cc;
+}
+
+.next-button {
+  background-color: #007bff; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  padding: 12px 24px; /* Espacement intérieur */
+  border: none; /* Pas de bordure */
+  border-radius: 4px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de souris */
+  float: right; /* Alignement à droite */
+  margin-top: 10px; /* Espacement entre le bouton et la liste */
+}
+
+.next-button:hover {
+  background-color: #0062cc; /* Couleur de fond au survol */
+}
+
+
+

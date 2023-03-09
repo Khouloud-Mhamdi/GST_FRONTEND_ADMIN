@@ -17,7 +17,7 @@ export class TableComponent implements OnInit {
   visibleItems = 2;
   conteur=0;
   query !:any;
- 
+
 
   constructor( private UserService :  UtilisateurService , private route :Router) { }
 
@@ -41,7 +41,7 @@ export class TableComponent implements OnInit {
   VoirSuivant() {
     this.visibleItems += 2;
     this.conteur +=2;
-    
+
 
 
   }
@@ -55,17 +55,23 @@ export class TableComponent implements OnInit {
     this.UserService.SupprimerUtilisateur(id).subscribe((data)=>{
       console.log(id);
 
-      this['toastr'].success('message');
-     
+      this.UserService.ListeDesUtilisateurs('adhérent').subscribe((data)=>{
+        this.adherents = data;
+        this.adherentsInitiaux=data;
+        this.adherents.slice(this.conteur , this.visibleItems);
+
+      })
+
+
     })
   }
    search(query: any){
     console.log(this.query);
-    this.UserService.RechercherUtilisateur(this.query).subscribe((data)=>{
+    this.UserService.RechercherUtilisateur('adhérent',this.query).subscribe((data)=>{
       this.adherents = data;
 
       this.adherents.slice(this.conteur , this.visibleItems);
-      
+
 
     })
   }

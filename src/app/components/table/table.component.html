@@ -19,10 +19,10 @@
       <button type="button" class="btn btn-primary">Ajouter </button>
       <p class="mg-b-25 mg-lg-b-50">Searching, ordering and paging goodness will be immediately added to the table, as shown in this example.</p>
 
-      
+
       <form style="width: 70%;margin-bottom: 3%;">
-        <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher un utilisateur"  (input)="onInputChange()">
-        <button type="submit" (click)="search(query)">Rechercher</button>
+        <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom ou prénom ou email "  (input)="onInputChange()">
+        <button  type="submit" (click)="search(query)">Rechercher</button>
       </form>
       <div class="table-wrapper">
 
@@ -47,19 +47,21 @@
 
             </tr>
 
-            <tr *ngIf="adherents.length > 2 ">
-              <td *ngIf="conteur > 1 ">
-                <button class="btn btn-primary" (click)="VoirPrecedent()"> Précédent</button>
+
+            <tr>
+              <td *ngIf="conteur > 1 "  >
+                <button  class="next-button" (click)="VoirPrecedent()"> Précédent</button>
               </td>
                <td></td>
                <td></td>
                <td></td>
 
-               <td colspan="2" >
-                <button (click)="VoirSuivant()" class="btn btn-primary"> Suivant</button>
+               <td  colspan="2" *ngIf="adherents.length > 2 && conteur  < adherents.length-2 " >
+                <button (click)="VoirSuivant()" class="next-button"> Suivant</button></td>
+               
 
 
-              </td>
+
 
             </tr>
 
