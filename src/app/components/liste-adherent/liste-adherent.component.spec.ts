@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableComponent } from './table.component';
+import { ListeAdherentComponent } from './liste-adherent.component';
 
-describe('TableComponent', () => {
-  let component: TableComponent;
-  let fixture: ComponentFixture<TableComponent>;
+describe('ListeAdherentComponent', () => {
+  let component: ListeAdherentComponent;
+  let fixture: ComponentFixture<ListeAdherentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableComponent ]
+      declarations: [ ListeAdherentComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TableComponent);
+    fixture = TestBed.createComponent(ListeAdherentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

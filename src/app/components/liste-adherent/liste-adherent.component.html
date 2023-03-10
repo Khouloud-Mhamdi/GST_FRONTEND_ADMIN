@@ -1,18 +1,41 @@
  <!-- ########## START: MAIN PANEL ########## -->
+ <!-- Alerte de confirmation -->
+ <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-danger confirmation-dialog" role="alert" *ngIf="showConfirmationDialog">
+        <h4 class="alert-heading">Confirmation de suppression</h4>
+        <p>Voulez-vous vraiment supprimer cet utilisateur ?</p>
+        <hr>
+        <div class="button-container">
+          <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialog()">Annuler</button>
+          <button class="btn btn-danger confirm-button" (click)="deleteUser()">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- Alerte de confirmation -->
  <div class="br-mainpanel">
   <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
 
-      <a class="breadcrumb-item" href="#">Gestion des adhérents</a>
+      <span class="breadcrumb-item" >Gestion des adhérents</span>
       <span class="breadcrumb-item active">Liste des adhérents</span>
     </nav>
   </div><!-- br-pageheader -->
   <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
     <h4 class="tx-gray-800 mg-b-5">Liste des adhérents</h4>
 
-    <p class="mg-b-0">DataTables is a plug-in for the jQuery Javascript library.</p>
+
   </div>
 
+  <div class="alert alert-success" role="alert"  *ngIf="supprimer" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong class="d-block d-sm-inline-block-force">Utilisateur suppimé avec succés!</strong>
+  </div><!-- alert -->
   <div class="br-pagebody">
     <div class="br-section-wrapper">
       <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Basic Responsive DataTable</h6>
@@ -43,35 +66,30 @@
               <td>{{a.prenom}}</td>
               <td>{{a.email}}</td>
 
-              <td  ><button type="button"  (click)="deleteUser(a.id)" class="btn btn-danger">Supprimer</button></td>
+              <td  ><button type="button"  (click)="openConfirmationDialog(a.id)" class="btn btn-danger">Supprimer</button></td>
 
             </tr>
 
 
             <tr>
-              <td *ngIf="conteur > 1 "  >
-                <button  class="next-button" (click)="VoirPrecedent()"> Précédent</button>
+              <td  >
+                <button  *ngIf="conteur > 1 " class="next-button" (click)="VoirPrecedent()"> Précédent</button>
               </td>
                <td></td>
                <td></td>
                <td></td>
 
-               <td  colspan="2" *ngIf="adherents.length > 2 && conteur  < adherents.length-2 " >
-                <button (click)="VoirSuivant()" class="next-button"> Suivant</button></td>
-               
+               <td  colspan="2" >
+                <button  *ngIf="adherents.length > 2 && conteur  < adherents.length-2 " (click)="VoirSuivant()" class="next-button"> Suivant</button></td>
+
 
 
 
 
             </tr>
-
-<!--<div style="display: flex; justify-content: space-between;">
-          <button *ngIf="conteur > 1 "  (click)="VoirPrecedent()" >Précédent</button>
-          <button *ngIf="adherents.length > 2" (click)="VoirPrecedent()">Suivant</button>
-        </div>
- -->
           </tbody>
         </table>
+
 
       </div><!-- table-wrapper -->
 

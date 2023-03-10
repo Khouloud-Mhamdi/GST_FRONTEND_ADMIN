@@ -1,28 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
-@Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
-})
-export class TableComponent implements OnInit {
-  [x: string]: any;
 
+@Component({
+  selector: 'app-liste-adherent',
+  templateUrl: './liste-adherent.component.html',
+  styleUrls: ['./liste-adherent.component.css']
+})
+export class ListeAdherentComponent implements OnInit {
+  [x: string]: any;
   public adherents :any;
   public adherentsInitiaux :any;
   visibleItems = 2;
   conteur=0;
   query !:any;
-
-
-  constructor( private UserService :  UtilisateurService , private route :Router) { }
+  supprimer=false;
+  showConfirmationDialog = false;
+  userID :any;
+  constructor( private UserService :  UtilisateurService) { }
 
   ngOnInit(): void {
-
     this.UserService.ListeDesUtilisateurs('adhérent').subscribe((data)=>{
       this.adherents = data;
       this.adherentsInitiaux=data;
@@ -50,10 +48,29 @@ export class TableComponent implements OnInit {
     this.conteur -=2;
   }
 
+  openConfirmationDialog(id : any) {
+    this.userID = id;
+    this.showConfirmationDialog = true;
+  }
+  closeConfirmationDialog() {
+    this.showConfirmationDialog = false;
+  }
 
-  deleteUser(id:any){
-    this.UserService.SupprimerUtilisateur(id).subscribe((data)=>{
-      console.log(id);
+
+
+
+
+
+  deleteUser(){
+
+    this.showConfirmationDialog = true;
+
+    this.UserService.SupprimerUtilisateur(this.userID).subscribe((data)=>{
+      this.supprimer=true;
+      setTimeout(() => {
+        this.supprimer = false;
+      }, 3000); // 3000 ms = 3 secondes
+
 
       this.UserService.ListeDesUtilisateurs('adhérent').subscribe((data)=>{
         this.adherents = data;
@@ -61,10 +78,12 @@ export class TableComponent implements OnInit {
         this.adherents.slice(this.conteur , this.visibleItems);
 
       })
-
+      this.closeConfirmationDialog();
 
     })
   }
+
+
    search(query: any){
     console.log(this.query);
     this.UserService.RechercherUtilisateur('adhérent',this.query).subscribe((data)=>{
@@ -75,5 +94,7 @@ export class TableComponent implements OnInit {
 
     })
   }
+
+
 
 }
