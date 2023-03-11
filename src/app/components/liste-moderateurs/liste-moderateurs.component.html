@@ -1,0 +1,123 @@
+ <!-- ########## START: MAIN PANEL ########## -->
+ <!-- Alerte de confirmation -->
+ <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-danger confirmation-dialog" role="alert" *ngIf="showConfirmationDialog">
+        <h4 class="alert-heading">Confirmation de suppression</h4>
+        <p>Voulez-vous vraiment supprimer cet utilisateur ?</p>
+        <hr>
+        <div class="button-container">
+          <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialog()">Annuler</button>
+          <button class="btn btn-danger confirm-button" (click)="deleteUser()">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- Alerte de confirmation -->
+ <div class="br-mainpanel">
+  <div class="br-pageheader pd-y-15 pd-l-20">
+    <nav class="breadcrumb pd-0 mg-0 tx-12">
+
+      <span class="breadcrumb-item" >Gestion des rôles</span>
+      <span class="breadcrumb-item active">Liste des modérateurs </span>
+    </nav>
+  </div><!-- br-pageheader -->
+  <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+    <h4 class="tx-gray-800 mg-b-5">Liste des modérateurs</h4>
+
+
+  </div>
+
+  <div class="alert alert-success" role="alert"  *ngIf="supprimer" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong class="d-block d-sm-inline-block-force">Utilisateur suppimé avec succés!</strong>
+  </div><!-- alert -->
+  <div class="br-pagebody">
+    <div class="br-section-wrapper">
+     
+      <button type="button" class="button-86">Ajouter utilisateur </button>
+      <p class="mg-b-25 mg-lg-b-50"></p>
+      
+
+
+      <form style="width: 70%;margin-bottom: 3%;">
+        <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom ou prénom ou email "  (input)="onInputChange()">
+        <button  type="submit" (click)="search(query)">Rechercher</button>
+      </form>
+      <div class="table-wrapper">
+
+        <table id="datatable1" class="table display responsive nowrap">
+          <thead>
+            <tr>
+              <th class="wd-15p">Id</th>
+              <th class="wd-15p">Nom</th>
+              <th class="wd-15p">Prénom</th>
+              <th class="wd-20p">E-mail</th>
+              <th class="wd-15p">Téléphone</th>
+              <th class="wd-15p">Adresse</th>
+              <th class="wd-15p">Discipline</th>
+              <th class="wd-15p">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor=" let  a of moderateurs.slice(conteur,visibleItems); let i = index ">
+              <td>{{a.id}}</td>
+              <td>{{a.nom}}</td>
+              <td>{{a.prenom}}</td>
+              <td>{{a.email}}</td>
+              <td>{{a.telephone}}</td>
+              <td>{{a.adresse}}</td>
+              <td>{{a.discipline}}</td>
+              <td  ><button type="button"  (click)="openConfirmationDialog(a.id)" class="btn btn-danger">Supprimer</button></td>
+
+            </tr>
+
+
+            <tr>
+              <td  >
+                <button  *ngIf="conteur > 1 " class="next-button" (click)="VoirPrecedent()"> Précédent</button>
+              </td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td  colspan="2" >
+                <button  *ngIf="moderateurs.length > 2 && conteur  < moderateurs.length-2 " (click)="VoirSuivant()" class="next-button"> Suivant</button></td>
+
+
+
+
+
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div><!-- table-wrapper -->
+
+
+
+
+
+
+    </div><!-- br-section-wrapper -->
+  </div><!-- br-pagebody -->
+  <footer class="br-footer">
+    <div class="footer-left">
+      <div class="mg-b-2">Copyright &copy; 2017. Bracket. All Rights Reserved.</div>
+      <div>Attentively and carefully made by ThemePixels.</div>
+    </div>
+    <div class="footer-right d-flex align-items-center">
+      <span class="tx-uppercase mg-r-10">Share:</span>
+      <a target="_blank" class="pd-x-5" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//themepixels.me/bracket/intro"><i class="fa fa-facebook tx-20"></i></a>
+      <a target="_blank" class="pd-x-5" href="https://twitter.com/home?status=Bracket,%20your%20best%20choice%20for%20premium%20quality%20admin%20template%20from%20Bootstrap.%20Get%20it%20now%20at%20http%3A//themepixels.me/bracket/intro"><i class="fa fa-twitter tx-20"></i></a>
+    </div>
+  </footer>
+</div><!-- br-mainpanel -->
+<!-- ########## END: MAIN PANEL ########## -->

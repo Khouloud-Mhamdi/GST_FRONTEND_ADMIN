@@ -54,10 +54,6 @@ export class ListeGestionnairesComponent implements OnInit {
   }
 
 
-
-
-
-
   deleteUser(){
 
     this.showConfirmationDialog = true;

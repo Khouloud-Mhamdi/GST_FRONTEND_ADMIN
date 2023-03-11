@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AdherentService } from './adherent.service';
+import { DisciplineService } from './discipline.service';
 
-describe('AdherentService', () => {
-  let service: AdherentService;
+describe('DisciplineService', () => {
+  let service: DisciplineService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AdherentService);
+    service = TestBed.inject(DisciplineService);
   });
 
   it('should be created', () => {
