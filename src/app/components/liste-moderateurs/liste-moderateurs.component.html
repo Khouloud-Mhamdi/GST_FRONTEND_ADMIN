@@ -38,10 +38,10 @@
   </div><!-- alert -->
   <div class="br-pagebody">
     <div class="br-section-wrapper">
-     
+
       <button type="button" class="button-86">Ajouter utilisateur </button>
       <p class="mg-b-25 mg-lg-b-50"></p>
-      
+
 
 
       <form style="width: 70%;margin-bottom: 3%;">
@@ -71,7 +71,7 @@
               <td>{{a.email}}</td>
               <td>{{a.telephone}}</td>
               <td>{{a.adresse}}</td>
-              <td>{{a.discipline}}</td>
+              <td>{{a.discipline.discipline}}</td>
               <td  ><button type="button"  (click)="openConfirmationDialog(a.id)" class="btn btn-danger">Supprimer</button></td>
 
             </tr>

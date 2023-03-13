@@ -20,7 +20,7 @@ export class ListeModerateursComponent implements OnInit {
   constructor( private UserService :  UtilisateurService) { }
 
   ngOnInit(): void {
-    this.UserService.ListeDesUtilisateurs('modérateur').subscribe((data)=>{
+    this.UserService.ListeAvecDisciplines('modérateur').subscribe((data)=>{
       this.moderateurs = data;
       this.modérateursInitiaux=data;
       this.moderateurs.slice(this.conteur , this.visibleItems);

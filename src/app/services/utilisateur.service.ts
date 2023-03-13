@@ -18,5 +18,8 @@ export class UtilisateurService {
   SupprimerUtilisateur(id : any ){
     return this.httpClient.delete (this.UserURL+ "/Supprimer/" +id);
   }
+  ListeAvecDisciplines(role : any) {
+    return this.httpClient.get(this.UserURL+"/ListeAvecDisciplines/"+ role);
+  }
 
 }
