@@ -59,7 +59,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor=" let a of adherents.slice(conteur,visibleItems); let i = index ">
+            <tr *ngFor="let a of displayedUsers">
               <td>{{a.id}}</td>
               <td>{{a.nom}}</td>
               <td>{{a.prenom}}</td>
@@ -68,7 +68,18 @@
               <td  ><button type="button"  (click)="openConfirmationDialog(a.id)" class="btn btn-danger">Supprimer</button></td>
 
             </tr>
-<tr>
+            <div class="pagination">
+              <button class="prev" [disabled]="currentPage == 1" (click)="prevPage()">Précédent</button>
+            
+              <ng-container *ngFor="let page of pages">
+                <button class="page" [class.active]="currentPage === page" (click)="goToPage(page)">{{ page }}</button>
+              </ng-container>
+            
+              <button class="next" [disabled]="currentPage == totalPages" (click)="nextPage()">Suivant</button>
+            </div>
+            <!--
+             <tr>
+
               <td  >
                 <button  *ngIf="conteur > 1 " class="next-button" (click)="VoirPrecedent()"> Précédent</button>
               </td>
@@ -84,6 +95,7 @@
 
 
             </tr>
+          -->
           </tbody>
         </table>
 
