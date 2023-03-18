@@ -38,13 +38,14 @@
   </div><!-- alert -->
   <div class="br-pagebody">
     <div class="br-section-wrapper">
-      
+
 
 
       <form style="width: 70%;margin-bottom: 3%;">
         <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom ou prénom ou email "  (input)="onInputChange()">
         <button  type="submit" (click)="search(query)">Rechercher</button>
       </form>
+      <p *ngIf="nb_resultats !== null"> {{nb_resultats}} résultats trouvés sur {{nb_adherents}}</p>
       <div class="table-wrapper">
 
         <table id="datatable1" class="table display responsive nowrap">
@@ -67,9 +68,7 @@
               <td  ><button type="button"  (click)="openConfirmationDialog(a.id)" class="btn btn-danger">Supprimer</button></td>
 
             </tr>
-
-
-            <tr>
+<tr>
               <td  >
                 <button  *ngIf="conteur > 1 " class="next-button" (click)="VoirPrecedent()"> Précédent</button>
               </td>

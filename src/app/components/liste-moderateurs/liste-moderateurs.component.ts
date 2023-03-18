@@ -16,12 +16,15 @@ export class ListeModerateursComponent implements OnInit {
   supprimer=false;
   showConfirmationDialog = false;
   userID :any;
+  nb_resultats: number | null = null;
+  nb_moderateurs: number | null = null;
 
   constructor( private UserService :  UtilisateurService) { }
 
   ngOnInit(): void {
     this.UserService.ListeAvecDisciplines('modérateur').subscribe((data)=>{
       this.moderateurs = data;
+      this.nb_moderateurs= this.moderateurs.length;
       this.modérateursInitiaux=data;
       this.moderateurs.slice(this.conteur , this.visibleItems);
 
@@ -31,6 +34,7 @@ export class ListeModerateursComponent implements OnInit {
     if (this.query === '') {
       this.moderateurs = this.modérateursInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
       this.moderateurs.slice(this.conteur , this.visibleItems);
+      this.nb_resultats=null;
     }
   }
 
@@ -86,7 +90,7 @@ export class ListeModerateursComponent implements OnInit {
     console.log(this.query);
     this.UserService.RechercherUtilisateur('modérateur',this.query).subscribe((data)=>{
       this.moderateurs = data;
-
+      this.nb_resultats= this.moderateurs.length;
       this.modérateursInitiaux.slice(this.conteur , this.visibleItems);
 
 

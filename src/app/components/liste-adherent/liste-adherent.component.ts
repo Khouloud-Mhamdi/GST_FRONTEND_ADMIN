@@ -18,11 +18,14 @@ export class ListeAdherentComponent implements OnInit {
   supprimer=false;
   showConfirmationDialog = false;
   userID :any;
+  nb_resultats: number | null = null;
+  nb_adherents: number | null = null;
   constructor( private UserService :  UtilisateurService) { }
 
   ngOnInit(): void {
     this.UserService.ListeDesUtilisateurs('adhérent').subscribe((data)=>{
       this.adherents = data;
+      this.nb_adherents = this.adherents.length;
       this.adherentsInitiaux=data;
       this.adherents.slice(this.conteur , this.visibleItems);
 
@@ -33,15 +36,13 @@ export class ListeAdherentComponent implements OnInit {
     if (this.query === '') {
       this.adherents = this.adherentsInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
       this.adherents.slice(this.conteur , this.visibleItems);
+      this.nb_resultats=null;
     }
   }
 
   VoirSuivant() {
     this.visibleItems += 2;
     this.conteur +=2;
-
-
-
   }
   VoirPrecedent() {
     this.visibleItems -= 2;
@@ -55,10 +56,6 @@ export class ListeAdherentComponent implements OnInit {
   closeConfirmationDialog() {
     this.showConfirmationDialog = false;
   }
-
-
-
-
 
 
   deleteUser(){
@@ -88,6 +85,7 @@ export class ListeAdherentComponent implements OnInit {
     console.log(this.query);
     this.UserService.RechercherUtilisateur('adhérent',this.query).subscribe((data)=>{
       this.adherents = data;
+      this.nb_resultats = this.adherents.length;
 
       this.adherents.slice(this.conteur , this.visibleItems);
 

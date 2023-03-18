@@ -15,12 +15,15 @@ export class ListeGestionnairesComponent implements OnInit {
   supprimer=false;
   showConfirmationDialog = false;
   userID :any;
+  nb_resultats: number | null = null;
+  nb_gestionnaires: number | null = null;
 
   constructor( private UserService :  UtilisateurService) { }
 
   ngOnInit(): void {
     this.UserService.ListeDesUtilisateurs('gestionnaire').subscribe((data)=>{
       this.gestionnaires = data;
+      this.nb_gestionnaires= this.gestionnaires.length;
       this.GestionnairesInitiaux=data;
       this.gestionnaires.slice(this.conteur , this.visibleItems);
 
@@ -30,6 +33,7 @@ export class ListeGestionnairesComponent implements OnInit {
     if (this.query === '') {
       this.gestionnaires = this.GestionnairesInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
       this.gestionnaires.slice(this.conteur , this.visibleItems);
+      this.nb_resultats=null;
     }
   }
 
@@ -81,7 +85,7 @@ export class ListeGestionnairesComponent implements OnInit {
     console.log(this.query);
     this.UserService.RechercherUtilisateur('gestionnaire',this.query).subscribe((data)=>{
       this.gestionnaires = data;
-
+      this.nb_resultats= this.gestionnaires.length;
       this.GestionnairesInitiaux.slice(this.conteur , this.visibleItems);
 
 

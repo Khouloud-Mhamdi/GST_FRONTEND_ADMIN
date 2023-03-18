@@ -46,6 +46,7 @@
         <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom ou prénom ou email "  (input)="onInputChange()">
         <button  type="submit" (click)="search(query)">Rechercher</button>
       </form>
+      <p *ngIf="nb_resultats !== null"> {{nb_resultats}} résultats trouvés sur {{nb_gestionnaires}}</p>
       <div class="table-wrapper">
 
         <table id="datatable1" class="table display responsive nowrap">
