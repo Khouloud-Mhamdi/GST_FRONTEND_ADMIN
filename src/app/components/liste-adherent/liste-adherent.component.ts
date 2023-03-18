@@ -9,7 +9,7 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
   styleUrls: ['./liste-adherent.component.css']
 })
 export class ListeAdherentComponent implements OnInit {
-  [x: string]: any;
+  
   public adherents :any;
   public adherentsInitiaux :any;
   
@@ -29,19 +29,26 @@ export class ListeAdherentComponent implements OnInit {
   constructor( private UserService :  UtilisateurService) { }
 
   ngOnInit(): void {
+    this.ListeDesUtilisateurs();
+  }
+
+  ListeDesUtilisateurs () : void {
     this.UserService.ListeDesUtilisateurs('adhérent').subscribe((data)=>{
       this.adherents = data;
       this.nb_adherents = this.adherents.length;
       this.adherentsInitiaux=data;
-
-      this.totalPages = Math.ceil(this.adherents.length / this.itemsPerPage);
-      this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
-      this.displayedUsers = this.getUsersForPage(this.currentPage);
-    
-
+      this.Pagination();
+   
     })
   }
-  getUsersForPage(page: number): any[] {
+
+   Pagination () : void {
+    this.totalPages = Math.ceil(this.adherents.length / this.itemsPerPage);
+    this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
+    this.displayedUsers = this.getUsersForPage(this.currentPage);
+   }
+
+    getUsersForPage(page: number): any[] {
     // Calcul des utilisateurs à afficher pour la page donnée.
     const startIndex = (page - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
@@ -74,10 +81,9 @@ export class ListeAdherentComponent implements OnInit {
   onInputChange(): void {
     if (this.query === '') {
       this.adherents = this.adherentsInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
-      this.totalPages = Math.ceil(this.adherents.length / this.itemsPerPage);
-      this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
-      this.displayedUsers = this.getUsersForPage(this.currentPage);
-      this.nb_resultats=null;
+      
+       
+      this.Pagination();
     }
   }
 
@@ -102,15 +108,8 @@ export class ListeAdherentComponent implements OnInit {
         this.supprimer = false;
       }, 3000); // 3000 ms = 3 secondes
 
+      this.ListeDesUtilisateurs();
 
-      this.UserService.ListeDesUtilisateurs('adhérent').subscribe((data)=>{
-        this.adherents = data;
-        this.adherentsInitiaux=data;
-        this.totalPages = Math.ceil(this.adherents.length / this.itemsPerPage);
-        this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
-        this.displayedUsers = this.getUsersForPage(this.currentPage);
-
-      })
       this.closeConfirmationDialog();
 
     })
@@ -122,13 +121,8 @@ export class ListeAdherentComponent implements OnInit {
     this.UserService.RechercherUtilisateur('adhérent',this.query).subscribe((data)=>{
       this.adherents = data;
       this.nb_resultats = this.adherents.length;
-      
-      this.totalPages = Math.ceil(this.adherents.length / this.itemsPerPage);
-      this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
-      this.displayedUsers = this.getUsersForPage(this.currentPage);
 
-     
-
+      this.Pagination();
 
     })
   }
