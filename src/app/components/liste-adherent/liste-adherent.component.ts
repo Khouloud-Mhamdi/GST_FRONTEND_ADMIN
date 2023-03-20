@@ -21,7 +21,7 @@ export class ListeAdherentComponent implements OnInit {
   constructor( private UserService :  UtilisateurService) { }
 
   ngOnInit(): void {
-    this.UserService.ListeDesUtilisateurs('adhérent').subscribe((data)=>{
+    this.UserService.ListeDesUtilisateurs('ROLE_USER').subscribe((data)=>{
       this.adherents = data;
       this.adherentsInitiaux=data;
       this.adherents.slice(this.conteur , this.visibleItems);

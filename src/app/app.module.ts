@@ -13,9 +13,10 @@ import { DashbordComponent } from './components/dashbord/dashbord.component';
 import { ListeModerateursComponent } from './components/liste-moderateurs/liste-moderateurs.component';
 import { ListeGestionnairesComponent } from './components/liste-gestionnaires/liste-gestionnaires.component';
 import { AjoutUtilisateurComponent } from './components/ajout-utilisateur/ajout-utilisateur.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListeAdherentComponent } from './components/liste-adherent/liste-adherent.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -31,14 +32,16 @@ import { ListeAdherentComponent } from './components/liste-adherent/liste-adhere
     ListeModerateursComponent,
     ListeGestionnairesComponent,
     AjoutUtilisateurComponent,
-    ListeAdherentComponent
+    ListeAdherentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-
+    ReactiveFormsModule,
+   
 
 
   ],
