@@ -9,40 +9,74 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
 export class ListeGestionnairesComponent implements OnInit {
   public gestionnaires :any;
   public GestionnairesInitiaux :any;
-  visibleItems = 2;
-  conteur=0;
+  
   query :any;
   supprimer=false;
   showConfirmationDialog = false;
   userID :any;
+  nb_resultats: number | null = null;
+  nb_gestionnaires: number | null = null;
+  itemsPerPage: number = 2; // Nombre d'utilisateurs à afficher par page.
+  totalPages: number = 1; // Nombre total de pages.
+  currentPage: number = 1; // Page actuelle.
+  pages: number[] = []; // Tableau des numéros de page.
+  displayedUsers: any;
 
   constructor( private UserService :  UtilisateurService) { }
 
   ngOnInit(): void {
+    this.ListeDesUtilisateurs();
+  }
+  ListeDesUtilisateurs () : void {
     this.UserService.ListeDesUtilisateurs('gestionnaire').subscribe((data)=>{
       this.gestionnaires = data;
+      this.nb_gestionnaires = this.gestionnaires.length;
       this.GestionnairesInitiaux=data;
-      this.gestionnaires.slice(this.conteur , this.visibleItems);
-
+      this.Pagination();
+   
     })
+  }
+
+   Pagination () : void {
+    this.totalPages = Math.ceil(this.gestionnaires.length / this.itemsPerPage);
+    this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
+    this.displayedUsers = this.getUsersForPage(this.currentPage);
+   }
+   getUsersForPage(page: number): any[] {
+    // Calcul des utilisateurs à afficher pour la page donnée.
+    const startIndex = (page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.gestionnaires.slice(startIndex, endIndex);
+  }
+
+  goToPage(page: number): void {
+    // Changement de la page actuelle.
+    this.currentPage = page;
+    this.displayedUsers = this.getUsersForPage(page);
+  }
+
+  nextPage(): void {
+    // Passage à la page suivante.
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.displayedUsers = this.getUsersForPage(this.currentPage);
+    }
+  }
+
+  prevPage(): void {
+    // Passage à la page précédente.
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.displayedUsers = this.getUsersForPage(this.currentPage);
+    }
   }
   onInputChange(): void {
     if (this.query === '') {
       this.gestionnaires = this.GestionnairesInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
-      this.gestionnaires.slice(this.conteur , this.visibleItems);
+      this.Pagination();
+
+      this.nb_resultats=null;
     }
-  }
-
-  VoirSuivant() {
-    this.visibleItems += 2;
-    this.conteur +=2;
-
-
-
-  }
-  VoirPrecedent() {
-    this.visibleItems -= 2;
-    this.conteur -=2;
   }
 
   openConfirmationDialog(id : any) {
@@ -63,14 +97,7 @@ export class ListeGestionnairesComponent implements OnInit {
       setTimeout(() => {
         this.supprimer = false;
       }, 3000); // 3000 ms = 3 secondes
-
-
-      this.UserService.ListeDesUtilisateurs('gestionnaire').subscribe((data)=>{
-        this.gestionnaires = data;
-        this.GestionnairesInitiaux=data;
-        this.gestionnaires.slice(this.conteur , this.visibleItems);
-
-      })
+      this.ListeDesUtilisateurs();
       this.closeConfirmationDialog();
 
     })
@@ -81,8 +108,9 @@ export class ListeGestionnairesComponent implements OnInit {
     console.log(this.query);
     this.UserService.RechercherUtilisateur('gestionnaire',this.query).subscribe((data)=>{
       this.gestionnaires = data;
+      this.nb_resultats= this.gestionnaires.length;
+      this.Pagination();
 
-      this.GestionnairesInitiaux.slice(this.conteur , this.visibleItems);
 
 
     })
