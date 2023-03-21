@@ -39,13 +39,14 @@
   </div><!-- alert -->
   <div class="br-pagebody">
     <div class="br-section-wrapper">
-      
+
 
 
       <form style="width: 70%;margin-bottom: 3%;">
         <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom ou prénom ou email "  (input)="onInputChange()">
         <button  type="submit" (click)="search(query)">Rechercher</button>
       </form>
+      <p *ngIf="nb_resultats !== null"> {{nb_resultats}} résultats trouvés sur {{nb_adherents}}</p>
       <div class="table-wrapper">
 
         <table id="datatable1" class="table display responsive nowrap">
@@ -59,7 +60,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor=" let a of adherents.slice(conteur,visibleItems); let i = index ">
+            <tr *ngFor="let a of displayedUsers">
               <td>{{a.id}}</td>
               <td>{{a.nom}}</td>
               <td>{{a.prenom}}</td>
@@ -68,24 +69,16 @@
               <td  ><button type="button"  (click)="openConfirmationDialog(a.id)" class="btn btn-danger">Supprimer</button></td>
 
             </tr>
-
-
-            <tr>
-              <td  >
-                <button  *ngIf="conteur > 1 " class="next-button" (click)="VoirPrecedent()"> Précédent</button>
-              </td>
-               <td></td>
-               <td></td>
-               <td></td>
-
-               <td  colspan="2" >
-                <button  *ngIf="adherents.length > 2 && conteur  < adherents.length-2 " (click)="VoirSuivant()" class="next-button"> Suivant</button></td>
-
-
-
-
-
-            </tr>
+            <div class="pagination">
+              <button class="prev" [disabled]="currentPage == 1" (click)="prevPage()">Précédent</button>
+            
+              <ng-container *ngFor="let page of pages">
+                <button class="page" [class.active]="currentPage === page" (click)="goToPage(page)">{{ page }}</button>
+              </ng-container>
+            
+              <button class="next" [disabled]="currentPage == totalPages" (click)="nextPage()">Suivant</button>
+            </div>
+           
           </tbody>
         </table>
 
@@ -99,16 +92,6 @@
 
     </div><!-- br-section-wrapper -->
   </div><!-- br-pagebody -->
-  <footer class="br-footer">
-    <div class="footer-left">
-      <div class="mg-b-2">Copyright &copy; 2017. Bracket. All Rights Reserved.</div>
-      <div>Attentively and carefully made by ThemePixels.</div>
-    </div>
-    <div class="footer-right d-flex align-items-center">
-      <span class="tx-uppercase mg-r-10">Share:</span>
-      <a target="_blank" class="pd-x-5" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//themepixels.me/bracket/intro"><i class="fa fa-facebook tx-20"></i></a>
-      <a target="_blank" class="pd-x-5" href="https://twitter.com/home?status=Bracket,%20your%20best%20choice%20for%20premium%20quality%20admin%20template%20from%20Bootstrap.%20Get%20it%20now%20at%20http%3A//themepixels.me/bracket/intro"><i class="fa fa-twitter tx-20"></i></a>
-    </div>
-  </footer>
+ 
 </div><!-- br-mainpanel -->
 <!-- ########## END: MAIN PANEL ########## -->

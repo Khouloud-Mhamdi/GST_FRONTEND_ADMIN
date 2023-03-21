@@ -86,3 +86,45 @@ button[type="submit"]:hover {
   padding: 10px 20px;
   cursor: pointer;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.page, .prev, .next {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.page.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.prev, .next {
+  background-color: #007bff;
+  color: #fff;
+}
+.pagination .prev[disabled],
+.pagination .next[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.pagination .page {
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination .page.active {
+  background-color: #007bff;
+  color: #fff;
+}
