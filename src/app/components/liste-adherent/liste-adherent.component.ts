@@ -33,7 +33,7 @@ export class ListeAdherentComponent implements OnInit {
   }
 
   ListeDesUtilisateurs () : void {
-    this.UserService.ListeDesUtilisateurs('adhérent').subscribe((data)=>{
+    this.UserService.ListeDesUtilisateurs('ROLE_USER').subscribe((data)=>{
       this.adherents = data;
       this.nb_adherents = this.adherents.length;
       this.adherentsInitiaux=data;
@@ -118,7 +118,7 @@ export class ListeAdherentComponent implements OnInit {
 
    search(query: any){
     console.log(this.query);
-    this.UserService.RechercherUtilisateur('adhérent',this.query).subscribe((data)=>{
+    this.UserService.RechercherUtilisateur('ROLE_USER',this.query).subscribe((data)=>{
       this.adherents = data;
       this.nb_resultats = this.adherents.length;
 
