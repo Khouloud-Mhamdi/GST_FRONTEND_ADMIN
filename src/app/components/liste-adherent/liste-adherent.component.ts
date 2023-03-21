@@ -72,7 +72,7 @@ export class ListeAdherentComponent implements OnInit {
       }, 3000); // 3000 ms = 3 secondes
 
 
-      this.UserService.ListeDesUtilisateurs('adhérent').subscribe((data)=>{
+      this.UserService.ListeDesUtilisateurs('ROLE_USER').subscribe((data)=>{
         this.adherents = data;
         this.adherentsInitiaux=data;
         this.adherents.slice(this.conteur , this.visibleItems);
@@ -86,7 +86,7 @@ export class ListeAdherentComponent implements OnInit {
 
    search(query: any){
     console.log(this.query);
-    this.UserService.RechercherUtilisateur('adhérent',this.query).subscribe((data)=>{
+    this.UserService.RechercherUtilisateur('ROLE_USER',this.query).subscribe((data)=>{
       this.adherents = data;
 
       this.adherents.slice(this.conteur , this.visibleItems);

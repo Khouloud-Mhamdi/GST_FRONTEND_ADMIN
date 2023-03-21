@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AjoutUtilisateurComponent } from './components/ajout-utilisateur/ajout-utilisateur.component';
 import { DashbordComponent } from './components/dashbord/dashbord.component';
 
 import { HomeComponent } from './components/home/home.component';
@@ -21,7 +22,7 @@ const routes: Routes = [
   {path : "Dashboard" , component:DashbordComponent},
   {path : "Profil" , component:ProfilComponent},
   {path:"login"  , component : LoginComponent },
- 
+  {path:"addUser"  , component : AjoutUtilisateurComponent},
 ];
 
 @NgModule({
