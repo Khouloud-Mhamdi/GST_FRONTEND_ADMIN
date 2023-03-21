@@ -30,7 +30,7 @@ export class ListeModerateursComponent implements OnInit {
     
   }
   ListeDesUtilisateurs () : void {
-    this.UserService.ListeDesUtilisateurs('modérateur').subscribe((data)=>{
+    this.UserService.ListeDesUtilisateurs('ROLE_MODERATEUR').subscribe((data)=>{
       this.moderateurs = data;
       this.nb_moderateurs = this.moderateurs.length;
       this.modérateursInitiaux=data;
@@ -108,7 +108,7 @@ export class ListeModerateursComponent implements OnInit {
 
    search(query: any){
     console.log(this.query);
-    this.UserService.RechercherUtilisateur('modérateur',this.query).subscribe((data)=>{
+    this.UserService.RechercherUtilisateur('ROLE_MODERATEUR',this.query).subscribe((data)=>{
       this.moderateurs = data;
       this.nb_resultats= this.moderateurs.length;
       this.Pagination();

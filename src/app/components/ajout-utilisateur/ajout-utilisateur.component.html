@@ -1,75 +1,129 @@
-<!--<h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-t-80 mg-b-10 text-center" style="font-size: 28px;">Ajouter  utilisateur</h6>
-<p class="mg-b-30 tx-gray-600 text-center">A form that is inside the card.</p>
 
-<div class="d-flex align-items-center justify-content-center bg-gray-300 ht-500 pd-x-20 pd-xs-x-0 ">
-  <div class="card wd-350 shadow-base">
-    <div class="card-body pd-x-20 pd-xs-40">
-      <h5 class="tx-xs-24 tx-normal tx-gray-900 mg-b-15">Utilisateur</h5>
-      <p class="mg-b-30 tx-14">Un email sera envoyé à l'utilisateur contenant son nouveau mot de passe</p>
-      <div class="form-group">
-        <input class="form-control" type="text" name="email" placeholder="Nom ">
+    
+    <div class="br-mainpanel">
+      <div class="br-pageheader pd-y-15 pd-l-20">
+        <nav class="breadcrumb pd-0 mg-0 tx-12">
+          <a class="breadcrumb-item" href="#">Gestion de roles </a>
+          <span class="breadcrumb-item active">Ajouter utilisateur </span>
+        </nav>
+      </div><!-- br-pageheader -->
+      <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+        <h4 class="tx-gray-800 mg-b-5">Ajouter un nouveau utilisateur </h4>
       </div>
-      <div class="form-group">
-        <input class="form-control" type="text" name="email" placeholder="Prenom  ">
-      </div>
-      <div class="form-group">
-        <input class="form-control" type="text" name="email" placeholder="Email ">
-      </div>
-      <div class="form-group">
-        <input class="form-control" type="text" name="email" placeholder="Adresse ">
-      </div>
-      <div class="form-group">
-        <input class="form-control" type="text" name="email" placeholder="Telephone ">
-      </div>
-     
-      <button class="btn btn-info btn-block">Ajouter</button>
-    </div>
-  </div>
-</div>-->
 
-<h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-t-80 mg-b-10 text-center"  style="font-size: 28px;">Form In Modal</h6>
-<p class="mg-b-30 tx-gray-600">A form that is inside the modal box.</p>
+      <div class="br-pagebody">
+        <div class="br-section-wrapper">
+          <h6 class="tx-gray-800  tx-bold tx-14 mg-b-10"> Formulaire d'ajout : </h6>
+          <div class="form-layout form-layout-1">
 
-<div class="pd-y-50 bg-gray-700 mg-t-20">
-  <div class="modal d-block pos-static">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content bd-0 rounded-0 wd-xs-350 wd-xl-auto mg-xl-x-25">
-        <div class="modal-body pd-0">
-          <div class="row flex-row-reverse no-gutters">
-            <div class="col-xl-6">
-              <div class="pd-30">
-               
-                <div class="pd-xs-x-30 pd-y-10">
-                  <h5 class="tx-xs-28 tx-inverse mg-b-5">Welcome back!</h5>
-                  <p>Sign in to your account to continue</p>
-                  <br>
-                  <div class="form-group">
-                    <input type="email" name="email" class="form-control pd-y-12" placeholder="Enter your email">
-                  </div><!-- form-group -->
-                  <div class="form-group mg-b-20">
-                    <input type="email" name="password" class="form-control pd-y-12" placeholder="Enter your password">
-                    <a href="#" class="tx-12 d-block mg-t-10">Forgot password?</a>
-                  </div><!-- form-group -->
-
-                  <button class="btn btn-primary pd-y-12 btn-block">Sign In</button>
-
-                  <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? <a href="#">Sign Up</a></div>
+            <!--debut de formulare -->
+           <form [formGroup]="addUserForm" >
+            <div class="row mg-b-25">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label">Nom : <span class="tx-danger">*</span></label>
+                  <input class="form-control" type="text" name="firstname"  placeholder="Entrez un nom " formControlName="firstName" >
                 </div>
-              </div><!-- pd-20 -->
-            </div><!-- col-6 -->
-            <div class="col-xl-6 bg-primary">
-              <div class="pd-40">
-                <h4 class="tx-white mg-b-20"><span>[</span> bracket + <span>]</span></h4>
-                <p class="tx-white op-7 mg-b-60"></p>
-                <p class="tx-white tx-13">
-                  <span class="tx-uppercase tx-medium d-block mg-b-15">Our Address:</span>
-                  <span class="op-7">Ayala Center, Cebu Business Park, Cebu City, Cebu, Philippines 6000</span>
-                </p>
+              </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label">Prenom : <span class="tx-danger">*</span></label>
+                  <input class="form-control" type="text" name="lastname"  placeholder="Entrez un prenom " formControlName="lastName">
+                </div>
+              </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label">Email : <span class="tx-danger">*</span></label>
+                  <input class="form-control" type="text" name="email"  placeholder="Entrez un E-mail " formControlName="email">
+                </div>
+              </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group mg-b-10-force">
+                  <label class="form-control-label">Adresse :  <span class="tx-danger">*</span></label>
+                  <input class="form-control" type="text" name="address" placeholder="Entrez une adresse " formControlName="adresse">
+                </div>
+              </div><!-- col-8 -->
+              <div class="col-lg-4">
+                <div class="form-group mg-b-10-force">
+                  <label class="form-control-label"> Telephone :   <span class="tx-danger">*</span></label>
+                  <input class="form-control" type="text" name="address"  placeholder="Entrez un numéro de telephone  " formControlName="telephone">
+                </div>
               </div>
-            </div><!-- col-6 -->
-          </div><!-- row -->
-        </div><!-- modal-body -->
-      </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-  </div><!-- modal -->
-</div><!-- pd-y-50 -->
+              <div class="col-lg-4">
+                <div class="form-group mg-b-10-force">
+                  <label class="form-control-label"> Role  <span class="tx-danger">*</span></label>
+                  <select class="form-control select2" data-placeholder="Choisir role ">
+                    <option label="choisir role"></option>
+                    <option value="moderateur">Moderateur</option>
+                    <option value="gestionnaire">Gestionnaire</option>
+                  </select>
+                </div>
+              </div>
+              <!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group mg-b-10-force">
+                  <label class="form-control-label">Discipline : <span class="tx-danger">*</span></label>
+                  <select class="form-control select2" data-placeholder="Choisir discipline ">
+                    <option label="choisir discipline "></option>
+                    <option value="tennis">Tennis</option>
+                  </select>
+                </div>
+              </div>
+            </div><!-- row -->
+
+            <div class="form-layout-footer">
+              <button class="btn btn-info">Ajouter</button>
+            </div>
+           </form>
+          </div>
+
+        </div>
+     
+    </div>
+   
+
+    <div id="modaldemo" class="modal fade effect-scale">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content bd-0 rounded-0">
+          <div class="modal-body pd-0">
+            <div class="row flex-row-reverse no-gutters">
+              <div class="col-lg-6">
+                <div class="pd-30">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <div class="pd-xs-x-30 pd-y-10">
+                    <h5 class="tx-xs-28 tx-inverse mg-b-5">Welcome back!</h5>
+                    <p>Sign in to your account to continue</p>
+                    <br>
+                    <div class="form-group">
+                      <input type="email" name="email" class="form-control pd-y-12" placeholder="Enter your email">
+                    </div><!-- form-group -->
+                    <div class="form-group mg-b-20">
+                      <input type="email" name="password" class="form-control pd-y-12" placeholder="Enter your password">
+                      <a href="#" class="tx-12 d-block mg-t-10">Forgot password?</a>
+                    </div><!-- form-group -->
+
+                    <button class="btn btn-primary pd-y-12 btn-block">Sign In</button>
+
+                    <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? <a href="#">Sign Up</a></div>
+                  </div>
+                </div><!-- pd-20 -->
+              </div><!-- col-6 -->
+              <div class="col-lg-6 bg-primary">
+                <div class="pd-40">
+                  <h4 class="tx-white mg-b-20"><span>[</span> bracket + <span>]</span></h4>
+                  <p class="tx-white op-7 mg-b-60">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                  <p class="tx-white tx-13">
+                    <span class="tx-uppercase tx-medium d-block mg-b-15">Our Address:</span>
+                    <span class="op-7">Ayala Center, Cebu Business Park, Cebu City, Cebu, Philippines 6000</span>
+                  </p>
+                </div>
+              </div><!-- col-6 -->
+            </div><!-- row -->
+          </div><!-- modal-body -->
+        </div><!-- modal-content -->
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->
+
+   

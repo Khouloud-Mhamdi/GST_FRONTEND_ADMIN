@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-ajout-utilisateur',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AjoutUtilisateurComponent implements OnInit {
 
-  constructor() { }
 
+
+  addUserForm !: FormGroup ;
+  constructor() { }
+   
   ngOnInit(): void {
   }
 
