@@ -9,6 +9,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   userURL: string = "http://localhost:8080/api/auth";
+  URL : string ="http://localhost:8080/utilisateurs/"
 
   login(user : any ) {
     return this.http.post<{accessToken:any}>(this.userURL + "/login", user);
@@ -21,8 +22,14 @@ export class AuthService {
     const url = `${this.userURL}/UpdateCurrentUser`;
     return this.http.put<any>(url, user);
   }
- 
- 
+
+  forgetPassword (email :any) :Observable<boolean>{
+    return this.http.get<boolean> (this.URL +"forgot-password/" +email);
+  }
+  resetPassword (token :any,password:any) :Observable<boolean>{
+    return this.http.get<boolean> (this.URL +"resetPassword/"+ token + "/" +password);
+  }
+
   getCurrentUserById(id:number){
     return this.http.get(`${this.userURL}/${id}`)
   }

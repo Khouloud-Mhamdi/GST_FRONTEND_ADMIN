@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DashbordComponent } from './components/dashbord/dashbord.component';
+import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 
 import { HomeComponent } from './components/home/home.component';
 import { ListeAdherentComponent } from './components/liste-adherent/liste-adherent.component';
@@ -9,6 +10,7 @@ import { ListeGestionnairesComponent } from './components/liste-gestionnaires/li
 import { ListeModerateursComponent } from './components/liste-moderateurs/liste-moderateurs.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -21,7 +23,9 @@ const routes: Routes = [
   {path : "Dashboard" , component:DashbordComponent},
   {path : "Profil" , component:ProfilComponent},
   {path:"login"  , component : LoginComponent },
- 
+  {path:"MotDePasseOublie"  , component : ForgetPasswordComponent },
+  {path:"resetPassword"  , component : ResetPasswordComponent }
+
 ];
 
 @NgModule({

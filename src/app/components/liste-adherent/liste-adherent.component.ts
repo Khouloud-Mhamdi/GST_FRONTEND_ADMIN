@@ -25,6 +25,7 @@ export class ListeAdherentComponent implements OnInit {
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
   displayedUsers: any;
+  hide=false;
 
   constructor( private UserService :  UtilisateurService) { }
 
@@ -46,6 +47,14 @@ export class ListeAdherentComponent implements OnInit {
     this.totalPages = Math.ceil(this.adherents.length / this.itemsPerPage);
     this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
     this.displayedUsers = this.getUsersForPage(this.currentPage);
+  
+    // Ajouter la vérification pour afficher les résultats de la recherche
+    if (this.query) {
+      this.currentPage = 1;
+      this.displayedUsers = this.adherents.slice(0, this.itemsPerPage);
+      this.totalPages = Math.ceil(this.adherents.length / this.itemsPerPage);
+      this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
+    }
    }
 
     getUsersForPage(page: number): any[] {
@@ -82,7 +91,7 @@ export class ListeAdherentComponent implements OnInit {
     if (this.query === '') {
       this.adherents = this.adherentsInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
 
-
+       this.nb_resultats=null;
       this.Pagination();
     }
   }
@@ -121,10 +130,11 @@ export class ListeAdherentComponent implements OnInit {
     this.UserService.RechercherUtilisateur('ROLE_USER',this.query).subscribe((data)=>{
       this.adherents = data;
       this.nb_resultats = this.adherents.length;
+       this.Pagination();
 
-      this.Pagination();
+     
 
-    })
+    });
   }
 
 

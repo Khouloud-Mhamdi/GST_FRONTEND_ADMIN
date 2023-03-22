@@ -43,6 +43,13 @@ export class ListeModerateursComponent implements OnInit {
     this.totalPages = Math.ceil(this.moderateurs.length / this.itemsPerPage);
     this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
     this.displayedUsers = this.getUsersForPage(this.currentPage);
+    // Ajouter la vérification pour afficher les résultats de la recherche
+    if (this.query) {
+      this.currentPage = 1;
+      this.displayedUsers = this.moderateurs.slice(0, this.itemsPerPage);
+      this.totalPages = Math.ceil(this.moderateurs.length / this.itemsPerPage);
+      this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
+    }
    }
    getUsersForPage(page: number): any[] {
     // Calcul des utilisateurs à afficher pour la page donnée.
@@ -111,10 +118,10 @@ export class ListeModerateursComponent implements OnInit {
     this.UserService.RechercherUtilisateur('modérateur',this.query).subscribe((data)=>{
       this.moderateurs = data;
       this.nb_resultats= this.moderateurs.length;
-      this.Pagination();
+      
 
 
-    })
+    });this.Pagination();
   }
 
 }
