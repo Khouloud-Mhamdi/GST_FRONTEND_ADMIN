@@ -9,10 +9,10 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
   styleUrls: ['./liste-adherent.component.css']
 })
 export class ListeAdherentComponent implements OnInit {
-  
+
   public adherents :any;
   public adherentsInitiaux :any;
-  
+
   query !:any;
   supprimer=false;
   showConfirmationDialog = false;
@@ -24,7 +24,7 @@ export class ListeAdherentComponent implements OnInit {
   totalPages: number = 1; // Nombre total de pages.
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
-  displayedUsers: any; 
+  displayedUsers: any;
 
   constructor( private UserService :  UtilisateurService) { }
 
@@ -33,12 +33,12 @@ export class ListeAdherentComponent implements OnInit {
   }
 
   ListeDesUtilisateurs () : void {
-    this.UserService.ListeDesUtilisateurs('adhérent').subscribe((data)=>{
+    this.UserService.ListeDesUtilisateurs('ROLE_USER').subscribe((data)=>{
       this.adherents = data;
       this.nb_adherents = this.adherents.length;
       this.adherentsInitiaux=data;
       this.Pagination();
-   
+
     })
   }
 
@@ -81,13 +81,13 @@ export class ListeAdherentComponent implements OnInit {
   onInputChange(): void {
     if (this.query === '') {
       this.adherents = this.adherentsInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
-      
-       
+
+
       this.Pagination();
     }
   }
 
-  
+
 
   openConfirmationDialog(id : any) {
     this.userID = id;
@@ -118,7 +118,7 @@ export class ListeAdherentComponent implements OnInit {
 
    search(query: any){
     console.log(this.query);
-    this.UserService.RechercherUtilisateur('adhérent',this.query).subscribe((data)=>{
+    this.UserService.RechercherUtilisateur('ROLE_USER',this.query).subscribe((data)=>{
       this.adherents = data;
       this.nb_resultats = this.adherents.length;
 

@@ -16,6 +16,8 @@ import { AjoutUtilisateurComponent } from './components/ajout-utilisateur/ajout-
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListeAdherentComponent } from './components/liste-adherent/liste-adherent.component';
+import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { ListeAdherentComponent } from './components/liste-adherent/liste-adhere
     ListeModerateursComponent,
     ListeGestionnairesComponent,
     AjoutUtilisateurComponent,
-    ListeAdherentComponent
+    ListeAdherentComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
