@@ -68,7 +68,7 @@
       </div><!-- dropdown -->
       <div class="dropdown">
         <a  class="nav-link nav-link-profile" data-toggle="dropdown">
-          <span class="logged-name hidden-md-down">Katherine</span>
+          <span class="logged-name hidden-md-down">{{currentUser.lastName}} {{currentUser.firstName}}</span>
           <img src="assets/img/user.png" class="wd-32 rounded-circle" alt="">
           <span class="square-10 bg-success"></span>
         </a>
@@ -76,7 +76,7 @@
           <ul class="list-unstyled user-profile-nav">
             <li><a routerLink="Profil"><i class="icon ion-ios-person"></i> Profil</a></li>
 
-            <li><a href="#"><i class="icon ion-power"></i> Déconnecter</a></li>
+            <li><a href="#" (click)="deconnect()"><i class="icon ion-power"></i> Déconnecter</a></li>
           </ul>
         </div><!-- dropdown-menu -->
       </div><!-- dropdown -->

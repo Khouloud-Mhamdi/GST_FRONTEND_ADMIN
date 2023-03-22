@@ -13,11 +13,12 @@ import { DashbordComponent } from './components/dashbord/dashbord.component';
 import { ListeModerateursComponent } from './components/liste-moderateurs/liste-moderateurs.component';
 import { ListeGestionnairesComponent } from './components/liste-gestionnaires/liste-gestionnaires.component';
 import { AjoutUtilisateurComponent } from './components/ajout-utilisateur/ajout-utilisateur.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListeAdherentComponent } from './components/liste-adherent/liste-adherent.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -35,13 +36,15 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     AjoutUtilisateurComponent,
     ListeAdherentComponent,
     ForgetPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
 
 
 
