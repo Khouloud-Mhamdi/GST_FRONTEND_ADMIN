@@ -9,11 +9,15 @@ export class DisciplineService {
 
   constructor(private httpClient: HttpClient) { }
 
-  ListeDesDisciplines() {
+  /*ListeDesDisciplines() {
   return this.httpClient.get(this.DisciplineURL+"/Consulter/");
 }
   DisciplineById( id : any) {
   return this.httpClient.get(this.DisciplineURL+"/Rechercher/" +id);
-}
+}*/
+  ListerDisciplines(){
+    return this.httpClient.get(this.DisciplineURL + "/Consulter"); 
+  }
+     
 }
 

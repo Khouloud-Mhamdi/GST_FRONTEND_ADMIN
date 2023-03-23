@@ -21,9 +21,11 @@ export class AuthService {
     const url = `${this.userURL}/UpdateCurrentUser`;
     return this.http.put<any>(url, user);
   }
- 
- 
   getCurrentUserById(id:number){
     return this.http.get(`${this.userURL}/${id}`)
+  }
+  // ajouter un moderateur ou gestionnaire : 
+  addNewUser(user : any ) : Observable<any> {
+    return this.http.post(this.userURL + "/addUser" , user); 
   }
 }
