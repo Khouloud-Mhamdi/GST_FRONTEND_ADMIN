@@ -26,6 +26,12 @@ export class ProfilComponent implements OnInit {
     
   }
    EditCurrentUser(){
+    if(!this.ValidateInputs())
+    {this.erreur=true;
+      setTimeout(() => {
+        this.erreur = false;
+      }, 3000);}
+    else{
     this.showConfirmationDialog = true;
       this.authService.updateUser(this.user).subscribe(
         (data) => {console.log('here updated user : ' , data);
@@ -42,13 +48,22 @@ export class ProfilComponent implements OnInit {
               }, 3000); // 3000 ms = 3 secondes
         
       }
-      )
+      )}
      
       this.currentUser.firstName = this.user.nom ; 
       this.currentUser.lastName = this.user.prenom ; 
       this.currentUser.email = this.user.email ; 
       this.token.saveUser(this.currentUser); 
       this.closeConfirmationDialog(); 
+   }
+   ValidateInputs () :boolean
+   { const regex =/^[a-zA-Z]{3,}$/ ;
+  
+  
+  
+  return regex.test(this.user.nom) && regex.test(this.user.prenom);
+   
+    
    }
    closeConfirmationDialog(){
     this.showConfirmationDialog = false;
