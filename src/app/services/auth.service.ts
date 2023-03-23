@@ -22,7 +22,6 @@ export class AuthService {
     const url = `${this.userURL}/UpdateCurrentUser`;
     return this.http.put<any>(url, user);
   }
-<<<<<<< HEAD
 
   forgetPassword (email :any) :Observable<boolean>{
     return this.http.get<boolean> (this.URL +"forgot-password/" +email);
@@ -31,8 +30,6 @@ export class AuthService {
     return this.http.get<boolean> (this.URL +"resetPassword/"+ token + "/" +password);
   }
 
-=======
->>>>>>> mayssa
   getCurrentUserById(id:number){
     return this.http.get(`${this.userURL}/${id}`)
   }
