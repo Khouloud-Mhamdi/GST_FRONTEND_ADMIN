@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AjoutUtilisateurComponent } from './components/ajout-utilisateur/ajout-utilisateur.component';
 import { DashbordComponent } from './components/dashbord/dashbord.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 
@@ -24,8 +25,9 @@ const routes: Routes = [
   {path : "Profil" , component:ProfilComponent},
   {path:"login"  , component : LoginComponent },
   {path:"MotDePasseOublie"  , component : ForgetPasswordComponent },
-  {path:"resetPassword"  , component : ResetPasswordComponent }
+  {path:"resetPassword"  , component : ResetPasswordComponent } , 
 
+  {path:"addUser"  , component : AjoutUtilisateurComponent},
 ];
 
 @NgModule({
