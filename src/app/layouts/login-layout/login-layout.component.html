@@ -1,8 +1,11 @@
+
+
+
 <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
      
     <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white rounded shadow-base">
          <!--alert de succée -->
-      <div class="alert alert-success" role="alert" >
+      <div class="alert alert-success" role="alert"  *ngIf="connect" >
         <strong class="d-block d-sm-inline-block-force">Vous etes connecté ! </strong>
       </div>
        <!--alert alert d'erreur -->

@@ -1,0 +1,105 @@
+ <!-- ########## START: MAIN PANEL ########## -->
+ <!-- Alerte de confirmation -->
+ <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-danger confirmation-dialog" role="alert" *ngIf="showConfirmationDialog">
+          <h4 class="alert-heading">Confirmation de suppression</h4>
+          <p>Voulez-vous vraiment supprimer cet utilisateur ?</p>
+          <hr>
+          <div class="button-container">
+            <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialog()">Annuler</button>
+            <button class="btn btn-danger confirm-button" (click)="deleteUser()">Supprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   <!-- Alerte de confirmation -->
+   <div class="br-mainpanel">
+    <div class="br-pageheader pd-y-15 pd-l-20">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+  
+        <span class="breadcrumb-item" >Gestion des rôles</span>
+        <span class="breadcrumb-item active">Liste des modérateurs </span>
+      </nav>
+    </div><!-- br-pageheader -->
+    <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+      <h4 class="tx-gray-800 mg-b-5">Liste des modérateurs</h4>
+  
+  
+    </div>
+  
+    <div class="alert alert-success" role="alert"  *ngIf="supprimer" >
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong class="d-block d-sm-inline-block-force">Utilisateur suppimé avec succés!</strong>
+    </div><!-- alert -->
+    <div class="br-pagebody">
+      <div class="br-section-wrapper">
+  
+        <button type="button" class="button-86" routerLink="/admin/addUser/">Ajouter utilisateur </button>
+        <p class="mg-b-25 mg-lg-b-50"></p>
+  
+  
+  
+        <form style="width: 70%;margin-bottom: 3%;">
+          <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom ou prénom ou email "  (input)="onInputChange()">
+          <button  type="submit" (click)="search(query)">Rechercher</button>
+        </form>
+        <p *ngIf="nb_resultats !== null"> {{nb_resultats}} résultats trouvés sur  {{nb_moderateurs}} </p>
+        <div class="table-wrapper">
+  
+          <table id="datatable1" class="table display responsive nowrap">
+            <thead>
+              <tr>
+                <th class="wd-15p">Id</th>
+                <th class="wd-15p">Nom</th>
+                <th class="wd-15p">Prénom</th>
+                <th class="wd-20p">E-mail</th>
+                <th class="wd-15p">Téléphone</th>
+                <th class="wd-15p">Adresse</th>
+                <th class="wd-15p">Discipline</th>
+                <th class="wd-15p">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let a of displayedUsers">
+                <td>{{a.id}}</td>
+                <td>{{a.nom}}</td>
+                <td>{{a.prenom}}</td>
+                <td>{{a.email}}</td>
+                <td>{{a.telephone}}</td>
+                <td>{{a.adresse}}</td>
+                <td>{{a.discipline.discipline}}</td>
+                <td  ><button type="button"  (click)="openConfirmationDialog(a.id)" class="btn btn-danger">Supprimer</button></td>
+  
+              </tr>
+  
+              <div class="pagination">
+                <button class="prev" [disabled]="currentPage == 1" (click)="prevPage()">Précédent</button>
+              
+                <ng-container *ngFor="let page of pages">
+                  <button class="page" [class.active]="currentPage === page" (click)="goToPage(page)">{{ page }}</button>
+                </ng-container>
+              
+                <button class="next" [disabled]="currentPage == totalPages" (click)="nextPage()">Suivant</button>
+              </div>
+            </tbody>
+          </table>
+  
+  
+        </div><!-- table-wrapper -->
+  
+  
+  
+  
+  
+  
+      </div><!-- br-section-wrapper -->
+    </div><!-- br-pagebody -->
+   
+  </div><!-- br-mainpanel -->
+  <!-- ########## END: MAIN PANEL ########## -->
+  

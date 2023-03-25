@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListeAdherentComponent } from './components/liste-adherent/liste-adherent.component';
 import { LoginComponent } from './components/login/login.component';
+import { LayoutsModule } from './layouts/layouts.module';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-   
+    LayoutsModule
 
 
   ],
