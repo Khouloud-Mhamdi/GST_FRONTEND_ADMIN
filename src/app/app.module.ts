@@ -19,6 +19,7 @@ import { ListeAdherentComponent } from './components/liste-adherent/liste-adhere
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { LoginComponent } from './components/login/login.component';
+import { LayoutsModule } from './layouts/layouts.module';
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
+    LayoutsModule
 
 
   ],
