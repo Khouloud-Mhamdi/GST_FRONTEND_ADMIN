@@ -18,14 +18,14 @@ const routes: Routes = [
   {path:""  , component : LoginComponent },
   {path:"dashboard"  , component : DashbordComponent },
   {path:"home"  , component : AppComponent},
-  {path : "ListeAdhérents" , component:ListeAdherentComponent},
+  {path : "login/home/ListeAdhérents" , component:ListeAdherentComponent},
   {path : "ListeModérateurs" , component:ListeModerateursComponent},
   {path : "ListeGestionnaires" , component:ListeGestionnairesComponent},
   {path : "Dashboard" , component:DashbordComponent},
   {path : "Profil" , component:ProfilComponent},
   {path:"login"  , component : LoginComponent },
   {path:"MotDePasseOublie"  , component : ForgetPasswordComponent },
-  {path:"resetPassword"  , component : ResetPasswordComponent } , 
+  {path:"resetPassword"  , component : ResetPasswordComponent } ,
 
   {path:"addUser"  , component : AjoutUtilisateurComponent},
 ];

@@ -22,3 +22,6 @@
 #profil-admin span {
   font-weight: bold;
 }
+.invalid {
+  border: 1px solid red;
+}
