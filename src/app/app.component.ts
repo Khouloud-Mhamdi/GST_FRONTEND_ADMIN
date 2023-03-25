@@ -10,10 +10,13 @@ import { TokenStorageService } from './services/token-storage.service';
 export class AppComponent implements OnInit {
   title = 'My App';
   currentUser: any;
-  login = false ; 
+  login = false ;
   constructor( ) {}
 
   ngOnInit() {
-    
+
+
+    console.log(this.login);
+
   }
 }

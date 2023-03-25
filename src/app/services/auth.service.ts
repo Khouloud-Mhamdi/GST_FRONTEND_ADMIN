@@ -33,8 +33,11 @@ export class AuthService {
   getCurrentUserById(id:number){
     return this.http.get(`${this.userURL}/${id}`)
   }
-  // ajouter un moderateur ou gestionnaire : 
+  // ajouter un moderateur ou gestionnaire :
   addNewUser(user : any ) : Observable<any> {
-    return this.http.post(this.userURL + "/addUser" , user); 
+    return this.http.post(this.userURL + "/addUser" , user);
+  }
+  ExistEmail (email :any) :Observable<boolean>{
+    return this.http.get<boolean> (this.userURL +"/ExistEmail/" +email);
   }
 }

@@ -16,7 +16,8 @@ import { LoginLayoutComponent } from './layouts/login-layout/login-layout.compon
 
 
 const routes: Routes = [
-  {path:'' , component: LoginLayoutComponent}, 
+
+  {path:'' , component: LoginLayoutComponent},
   {path:'admin' , component:AdminLayoutComponent ,children:[
     {path:'dashboard' , loadChildren:()=>import('./views/dashboard/dashboard.module').then(m=>m.DashboardModule)},
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
     {path:'gestionnaires' , loadChildren:()=>import('./views/liste-gestionnaires/liste-gestionnaires.module').then(m=>m.ListeGestionnairesModule)},
     {path:'moderateurs' , loadChildren:()=>import('./views/liste-moderateurs/liste-moderateurs.module').then(m=>m.ListeModerateursModule)},
   ]}
+
 ];
 
 @NgModule({
