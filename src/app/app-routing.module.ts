@@ -13,18 +13,19 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { AuthGuard } from './services/auth.guard';
 
 
 const routes: Routes = [
 
   {path:'' , component: LoginLayoutComponent},
-  {path:'admin' , component:AdminLayoutComponent ,children:[
+  {path:'admin' , component:AdminLayoutComponent  ,children:[
     {path:'dashboard' , loadChildren:()=>import('./views/dashboard/dashboard.module').then(m=>m.DashboardModule)},
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-    {path:'addUser' , loadChildren:()=>import('./views/add-user/add-user.module').then(m=>m.AddUserModule)},
+    {path:'addUser'  ,loadChildren:()=>import('./views/add-user/add-user.module').then(m=>m.AddUserModule)},
     {path:'profil' , loadChildren:()=>import('./views/profil/profil.module').then(m=>m.ProfilModule)},
-    {path:'adherents' , loadChildren:()=>import('./views/liste-adherents/liste-adherents.module').then(m=>m.ListeAdherentsModule)},
-    {path:'gestionnaires' , loadChildren:()=>import('./views/liste-gestionnaires/liste-gestionnaires.module').then(m=>m.ListeGestionnairesModule)},
+    {path:'adherents' , canActivate: [AuthGuard],loadChildren:()=>import('./views/liste-adherents/liste-adherents.module').then(m=>m.ListeAdherentsModule)},
+    {path:'gestionnaires' , canActivate: [AuthGuard],loadChildren:()=>import('./views/liste-gestionnaires/liste-gestionnaires.module').then(m=>m.ListeGestionnairesModule)},
     {path:'moderateurs' , loadChildren:()=>import('./views/liste-moderateurs/liste-moderateurs.module').then(m=>m.ListeModerateursModule)},
   ]}
 

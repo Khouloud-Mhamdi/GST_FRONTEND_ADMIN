@@ -68,7 +68,7 @@
         <span class="menu-item-label">Ajouter utilisateur </span>
       </div><!-- menu-item -->
     </a><!-- br-menu-link -->
-    
+
     <a routerLink="/admin/adherents" class="br-menu-link">
         <div class="br-menu-item">
           <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
@@ -99,13 +99,13 @@
 <!-- ########## START: HEAD PANEL ########## -->
 <div class="br-header">
     <div class="br-header-left">
-      <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href="#"><i class="icon ion-navicon-round"></i></a></div>
-      <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" href="#"><i class="icon ion-navicon-round"></i></a></div>
-  
+      <div class="navicon-left hidden-md-down"><a id="btnLeftMenu"  href="#"><i class="icon ion-navicon-round"></i></a></div>
+      <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" (click)="toggleSidebar($event)" href="#"><i class="icon ion-navicon-round"></i></a></div>
+
     </div><!-- br-header-left -->
     <div class="br-header-right">
       <nav class="nav">
-  
+
         <div class="dropdown">
           <a href="#" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
             <i class="icon ion-ios-bell-outline tx-24"></i>
@@ -118,7 +118,7 @@
               <label class="tx-12 tx-info tx-uppercase tx-semibold tx-spacing-2 mg-b-0">Notifications</label>
               <a href="#" class="tx-11">Mark All as Read</a>
             </div><!-- d-flex -->
-  
+
             <div class="media-list">
               <!-- loop starts here -->
               <a href="#" class="media-list-link read">
@@ -173,7 +173,7 @@
           <div class="dropdown-menu dropdown-menu-header wd-200">
             <ul class="list-unstyled user-profile-nav">
               <li><a routerLink="/admin/profil"><i class="icon ion-ios-person"></i> Profil</a></li>
-  
+
               <li><a  (click)="deconnect()"><i class="icon ion-power"></i> Déconnecter</a></li>
             </ul>
           </div><!-- dropdown-menu -->
@@ -190,7 +190,7 @@
     </div><!-- br-header-right -->
   </div><!-- br-header -->
   <!-- ########## END: HEAD PANEL ########## -->
-  
+
    <!-- ########## START: RIGHT PANEL ########## -->
    <div class="br-sideright">
     <ul class="nav nav-tabs sidebar-tabs" role="tablist">
@@ -207,7 +207,7 @@
         <a class="nav-link" data-toggle="tab" role="tab" href="#settings"><i class="icon ion-ios-gear-outline tx-24"></i></a>
       </li>
     </ul><!-- sidebar-tabs -->
-  
+
     <!-- Tab panes -->
     <div class="tab-content">
       <div class="tab-pane pos-absolute a-0 mg-t-60 overflow-y-auto active" id="contacts" role="tabpanel">
@@ -301,8 +301,8 @@
             </div><!-- d-flex -->
           </a><!-- contact-list-link -->
         </div><!-- contact-list -->
-  
-  
+
+
         <label class="sidebar-label pd-x-25 mg-t-25">Offline Contacts</label>
         <div class="contact-list pd-x-10">
           <a href="#" class="contact-list-link">
@@ -390,10 +390,10 @@
             </div><!-- d-flex -->
           </a><!-- contact-list-link -->
         </div><!-- contact-list -->
-  
+
       </div><!-- #contacts -->
-  
-  
+
+
       <div class="tab-pane pos-absolute a-0 mg-t-60 overflow-y-auto" id="attachments" role="tabpanel">
         <label class="sidebar-label pd-x-25 mg-t-25">Recent Attachments</label>
         <div class="media-file-list">
@@ -504,11 +504,11 @@
           <h2 id="brTime" class="tx-white tx-lato mg-b-5"></h2>
           <h6 id="brDate" class="tx-white tx-light op-3"></h6>
         </div>
-  
+
         <label class="sidebar-label pd-x-25 mg-t-25">Events Calendar</label>
         <div class="datepicker sidebar-datepicker"></div>
-  
-  
+
+
         <label class="sidebar-label pd-x-25 mg-t-25">Event Today</label>
         <div class="pd-x-25">
           <div class="list-group sidebar-event-list mg-b-20">
@@ -527,15 +527,15 @@
               <a href="#" class="more"><i class="icon ion-android-more-vertical tx-18"></i></a>
             </div><!-- list-group-item -->
           </div><!-- list-group -->
-  
+
           <a href="#" class="btn btn-block btn-outline-secondary tx-uppercase tx-11 tx-spacing-2">+ Add Event</a>
           <br>
         </div>
-  
+
       </div>
       <div class="tab-pane pos-absolute a-0 mg-t-60 overflow-y-auto" id="settings" role="tabpanel">
         <label class="sidebar-label pd-x-25 mg-t-25">Quick Settings</label>
-  
+
         <div class="pd-y-20 pd-x-25 tx-white">
           <h6 class="tx-13 tx-normal">Sound Notification</h6>
           <p class="op-5 tx-13">Play an alert sound everytime there is a new notification.</p>
@@ -543,7 +543,7 @@
             <input type="checkbox" name="checkbox" class="switch-button" checked>
           </div>
         </div>
-  
+
         <div class="pd-y-20 pd-x-25 tx-white">
           <h6 class="tx-13 tx-normal">2 Steps Verification</h6>
           <p class="op-5 tx-13">Sign in using a two step verification by sending a verification code to your phone.</p>
@@ -551,7 +551,7 @@
             <input type="checkbox" name="checkbox2" class="switch-button">
           </div>
         </div>
-  
+
         <div class="pd-y-20 pd-x-25 tx-white">
           <h6 class="tx-13 tx-normal">Location Services</h6>
           <p class="op-5 tx-13">Allowing us to access your location</p>
@@ -559,7 +559,7 @@
             <input type="checkbox" name="checkbox3" class="switch-button">
           </div>
         </div>
-  
+
         <div class="pd-y-20 pd-x-25 tx-white">
           <h6 class="tx-13 tx-normal">Newsletter Subscription</h6>
           <p class="op-5 tx-13">Enables you to send us news and updates send straight to your email.</p>
@@ -567,23 +567,23 @@
             <input type="checkbox" name="checkbox4" class="switch-button" checked>
           </div>
         </div>
-  
+
         <div class="pd-y-20 pd-x-25 tx-white">
           <h6 class="tx-13 tx-normal">Your email</h6>
           <div class="pos-relative">
             <input type="email" name="email" class="form-control form-control-inverse transition pd-y-10" value="janedoe@domain.com">
           </div>
         </div>
-  
+
         <div class="pd-y-20 pd-x-25">
           <h6 class="tx-13 tx-normal tx-white mg-b-20">More Settings</h6>
           <a href="#" class="btn btn-block btn-outline-secondary tx-uppercase tx-11 tx-spacing-2">Account Settings</a>
           <a href="#" class="btn btn-block btn-outline-secondary tx-uppercase tx-11 tx-spacing-2">Privacy Settings</a>
         </div>
-  
+
       </div>
     </div><!-- tab-content -->
-  
+
   </div>
   <!--header ends -->
   <router-outlet></router-outlet>

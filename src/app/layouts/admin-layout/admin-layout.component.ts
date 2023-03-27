@@ -10,14 +10,25 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 export class AdminLayoutComponent implements OnInit {
 
   constructor(private token : TokenStorageService , private router : Router) { }
-  currentUser : any ; 
- 
+  currentUser : any ;
+
   ngOnInit(): void {
-    this.currentUser = this.token.getUser(); 
+    this.currentUser = this.token.getUser();
   }
   deconnect(){
-    this.token.signOut(); 
-    
+    this.token.signOut();
+
    }
+   toggleSidebar(event: { preventDefault: () => void; }) {
+    event.preventDefault(); // empêcher le comportement de navigation par défaut
+    // Code pour ouvrir/fermer la barre latérale
+  }
  
+
+
+
+
+
+
+
 }
