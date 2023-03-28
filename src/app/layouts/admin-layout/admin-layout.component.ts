@@ -17,13 +17,14 @@ export class AdminLayoutComponent implements OnInit {
   }
   deconnect(){
     this.token.signOut();
+    this.router.navigate(['']);
 
    }
    toggleSidebar(event: { preventDefault: () => void; }) {
     event.preventDefault(); // empêcher le comportement de navigation par défaut
     // Code pour ouvrir/fermer la barre latérale
   }
- 
+
 
 
 

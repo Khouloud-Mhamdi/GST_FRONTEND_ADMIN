@@ -1,0 +1,29 @@
+
+
+@media (min-width: 768px) {
+  .navbar .navbar-nav {
+    display: none;
+  }
+}
+
+
+nav.sidebar ul.list-unstyled {
+  padding: 2px; /* Add some padding to the list items */
+}
+
+nav.sidebar ul.list-unstyled li {
+  margin-bottom: 10px; /* Add some margin between the list items */
+}
+
+nav.sidebar ul.list-unstyled li a {
+  display: block; /* Display the links as block elements */
+  color: #fff; /* Set the color of the links */
+  text-decoration: none; /* Remove the underline from the links */
+  padding: 4px; /* Add some padding to the links */
+  transition: all 0.2s ease; /* Add a transition effect to the links */
+}
+
+nav.sidebar ul.list-unstyled li a:hover {
+  background-color: #fff; /* Change the background color of the link on hover */
+  color: #343a40; /* Change the color of the link on hover */
+}
