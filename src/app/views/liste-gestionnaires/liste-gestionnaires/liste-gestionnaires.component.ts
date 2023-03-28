@@ -27,7 +27,7 @@ export class ListeGestionnairesComponent implements OnInit {
     this.ListeDesUtilisateurs();
   }
   ListeDesUtilisateurs () : void {
-    this.UserService.ListeDesUtilisateurs('ROLE_GESTIONNAIRE').subscribe((data)=>{
+    this.UserService.ListeDesUtilisateurs('GESTIONNAIRE').subscribe((data)=>{
       this.gestionnaires = data;
       this.nb_gestionnaires = this.gestionnaires.length;
       this.GestionnairesInitiaux=data;
@@ -105,7 +105,7 @@ export class ListeGestionnairesComponent implements OnInit {
 
    search(query: any){
     console.log(this.query);
-    this.UserService.RechercherUtilisateur('ROLE_GESTIONNAIRE',this.query).subscribe((data)=>{
+    this.UserService.RechercherUtilisateur('GESTIONNAIRE',this.query).subscribe((data)=>{
       this.gestionnaires = data;
       this.nb_resultats= this.gestionnaires.length;
       this.Pagination();

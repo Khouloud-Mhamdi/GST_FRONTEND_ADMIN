@@ -39,7 +39,6 @@ const routes: Routes = [
 
     {path:'dashboard' , loadChildren:()=>import('./views/dashboard/dashboard.module').then(m=>m.DashboardModule)},
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-
     {path:'profil' , loadChildren:()=>import('./views/profil/profil.module').then(m=>m.ProfilModule)},
     {path:'addUser' ,  loadChildren:()=>import('./views/add-user/add-user.module').then(m=>m.AddUserModule)},
     {path:'profil' , loadChildren:()=>import('./views/profil/profil.module').then(m=>m.ProfilModule)},
