@@ -1,23 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { AjoutUtilisateurComponent } from './components/ajout-utilisateur/ajout-utilisateur.component';
-import { DashbordComponent } from './components/dashbord/dashbord.component';
-import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 
-import { HomeComponent } from './components/home/home.component';
-import { ListeAdherentComponent } from './components/liste-adherent/liste-adherent.component';
-import { ListeGestionnairesComponent } from './components/liste-gestionnaires/liste-gestionnaires.component';
-import { ListeModerateursComponent } from './components/liste-moderateurs/liste-moderateurs.component';
-import { LoginComponent } from './components/login/login.component';
-import { ProfilComponent } from './components/profil/profil.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { GestionnaireLayoutComponent } from './layouts/gestionnaire-layout/gestionnaire-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { AdminGuardGuard } from './services/admin-guard.guard';
 
 
-import { AuthGuard } from './services/auth.guard';
+
 import { GestionnaireGuardGuard } from './services/gestionnaire-guard.guard';
 
 
