@@ -45,7 +45,7 @@ export class LoginLayoutComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.role = this.tokenStorage.getUser().role;
-        this.router.navigate(["/admin"]);
+        this.router.navigate(["/moderateur"]);
       },
       (err) => {
         console.log("here error after login", err);

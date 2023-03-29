@@ -1,0 +1,215 @@
+
+
+<div class="br-mainpanel">
+    <div class="br-pageheader pd-y-15 pd-l-20">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+        <a class="breadcrumb-item" href="#">Gestion de roles </a>
+        <span class="breadcrumb-item active">Ajouter utilisateur </span>
+      </nav>
+    </div><!-- br-pageheader -->
+    <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+      <h4 class="tx-gray-800 mg-b-5">Ajouter un nouveau utilisateur </h4>
+    </div>
+   <!--alerte de confirmation -->
+ <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-info confirmation-dialog" role="alert" *ngIf="showConfirmationDialog">
+        <h4 class="alert-heading">Confirmation</h4>
+        <p>Un mot de passe sera envoyé à l'utilisateur par mail </p>
+        <hr>
+        <div class="button-container">
+          <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialog()">Annuler</button>
+          <button class="btn btn-primary confirm-button" (click)="addUser()">ajouter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--alert de succée -->
+<div class="alert alert-success" role="alert"  *ngIf="ajout" >
+  <strong class="d-block d-sm-inline-block-force"> un nouveau utilisateur est ajouté avec succés </strong>
+</div>
+ <!--alert alert d'erreur -->
+
+ <div class="alert alert-danger" role="alert"  *ngIf="valid&&!erreur" >
+  <strong class="d-block d-sm-inline-block-force"> Veuillez vérifier vos champs !  </strong>
+</div>
+<div class="alert alert-danger" role="alert"  *ngIf="erreur" >
+  <strong class="d-block d-sm-inline-block-force"> Cette adresse mail existe déjà</strong>
+</div>
+    <div class="br-pagebody">
+      <div class="br-section-wrapper">
+        <h6 class="tx-gray-800  tx-bold tx-14 mg-b-10"> Formulaire d'ajout : </h6>
+        <div class="form-layout form-layout-1">
+
+          <!--debut de formulare -->
+
+         <form [formGroup]="addUserForm" >
+          <div class="row mg-b-25">
+            <!--nom-->
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="form-control-label">Nom : <span class="tx-danger">*</span></label>
+                <input class="form-control" type="text" name="nom"  placeholder="Entrez un nom "id="nom" formControlName="nom" >
+                <div *ngIf="addUserForm.controls['nom'].invalid && (
+              addUserForm.controls['nom'].touched || addUserForm.controls['nom'].dirty
+            )">
+                 <div *ngIf ="addUserForm.controls['nom'].errors?.['required']" class="red"> Ce champ est obligatoire  </div>
+                 <div  *ngIf ="addUserForm.controls['nom'].errors?.['minlength']" class="red"> Au mois 3 caractéres  </div>
+
+            </div>
+              </div>
+
+            </div>
+
+            <!--prénom-->
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="form-control-label">Prénom : <span class="tx-danger">*</span></label>
+                <input class="form-control" type="text" name="prénom"  placeholder="Entrez un prenom " id="prénom" formControlName="prénom">
+                <div *ngIf="addUserForm.controls['prénom'].invalid && (
+                  addUserForm.controls['prénom'].touched || addUserForm.controls['prénom'].dirty
+                )">
+                     <div *ngIf ="addUserForm.controls['prénom'].errors?.['required']" class="red"> Ce champ est obligatoire  </div>
+                     <div  *ngIf ="addUserForm.controls['prénom'].errors?.['minlength']" class="red"> Au moins 3 caractére  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- email -->
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="form-control-label">Email : <span class="tx-danger">*</span></label>
+                <input class="form-control" type="text" name="email"  placeholder="Entrez un E-mail " id="email" formControlName="email">
+                <div *ngIf="addUserForm.controls['email'].invalid && (
+                  addUserForm.controls['email'].touched || addUserForm.controls['email'].dirty
+                )">
+                     <div *ngIf ="addUserForm.controls['email'].errors?.['required']" class="red">  Ce champ est obligatoire </div>
+                     <div *ngIf ="addUserForm.controls['email'].errors?.['email']" class="red"> Email est incorrecte </div>
+
+                </div>
+              </div>
+            </div>
+            <!-- adresse -->
+            <div class="col-lg-4">
+              <div class="form-group mg-b-10-force">
+                <label class="form-control-label">Adresse :  <span class="tx-danger">*</span></label>
+                <input class="form-control" type="text" name="address" placeholder="Entrez une adresse " formControlName="adresse">
+                <div *ngIf="addUserForm.controls['adresse'].invalid && (
+                  addUserForm.controls['adresse'].touched || addUserForm.controls['adresse'].dirty
+                )">
+                     <div *ngIf ="addUserForm.controls['adresse'].errors?.['required']" class="red"> Ce champ est obligatoire  </div>
+                     <div  *ngIf ="addUserForm.controls['adresse'].errors?.['minlength']" class="red"> Au mois 3 caractéres  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Telephone -->
+            <div class="col-lg-4">
+              <div class="form-group mg-b-10-force">
+                <label class="form-control-label"> Télephone : </label>
+                <input class="form-control" type="text" name="address" id="telephone" placeholder="Entrez un numéro de telephone  " formControlName="téléphone">
+              </div>
+            </div>
+            <!-- role -->
+          
+            <!-- discipline_id -->
+            <div class="col-lg-4" >
+              <div class="form-group mg-b-10-force">
+                <label for="c" class="form-control-label">Discipline : <span class="tx-danger">*</span></label>
+                <select  class="form-control"  formControlName="id_discipline" id="c" >
+                  <option label="Choisir une discipline "></option>
+                  <option  *ngFor="let c of clubs " value="{{c?.id}}">{{c?.discipline}}</option>
+                </select>
+              </div>
+            </div>
+            Date de naissance : <input type="date" formControlName="Date_De_Naissance">
+          </div><!-- row -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Launch demo modal
+          </button>
+          <div class="form-layout-footer">
+            <button class="btn btn-info" (click)="test()">Ajouter</button>
+          </div>
+         </form>
+        </div>
+
+      </div>
+
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div id="modaldemo" class="modal fade effect-scale">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content bd-0 rounded-0">
+        <div class="modal-body pd-0">
+          <div class="row flex-row-reverse no-gutters">
+            <div class="col-lg-6">
+              <div class="pd-30">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="pd-xs-x-30 pd-y-10">
+                  <h5 class="tx-xs-28 tx-inverse mg-b-5">Welcome back!</h5>
+                  <p>Sign in to your account to continue</p>
+                  <br>
+                  <div class="form-group">
+                    <input type="email" name="email" class="form-control pd-y-12" placeholder="Enter your email">
+                  </div><!-- form-group -->
+                  <div class="form-group mg-b-20">
+                    <input type="email" name="password" class="form-control pd-y-12" placeholder="Enter your password">
+                    <a href="#" class="tx-12 d-block mg-t-10">Forgot password?</a>
+                  </div><!-- form-group -->
+
+                  <button class="btn btn-primary pd-y-12 btn-block">Sign In</button>
+
+                  <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? <a href="#">Sign Up</a></div>
+                </div>
+              </div><!-- pd-20 -->
+            </div><!-- col-6 -->
+            <div class="col-lg-6 bg-primary">
+              <div class="pd-40">
+                <h4 class="tx-white mg-b-20"><span>[</span> bracket + <span>]</span></h4>
+                <p class="tx-white op-7 mg-b-60">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                <p class="tx-white tx-13">
+                  <span class="tx-uppercase tx-medium d-block mg-b-15">Our Address:</span>
+                  <span class="op-7">Ayala Center, Cebu Business Park, Cebu City, Cebu, Philippines 6000</span>
+                </p>
+              </div>
+            </div><!-- col-6 -->
+          </div><!-- row -->
+        </div><!-- modal-body -->
+      </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+  </div><!-- modal -->
+

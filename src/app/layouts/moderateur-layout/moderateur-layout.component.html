@@ -6,7 +6,7 @@
     <a routerLink="Dashboard" class="br-menu-link active">
       <div class="br-menu-item">
         <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
-        <span class="menu-item-label">Dashboard</span>
+        <span class="menu-item-label">Espace moderateur </span>
       </div><!-- menu-item -->
     </a><!-- br-menu-link -->
     <ul class="br-menu-sub nav flex-column">
@@ -18,75 +18,26 @@
       <li class="nav-item"><a href="chart-sparkline.html" class="nav-link">Sparkline</a></li>
       <li class="nav-item"><a href="chart-peity.html" class="nav-link">Peity</a></li>
     </ul>
-    <a href="#" class="br-menu-link">
-      <div class="br-menu-item">
-        <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
-        <span class="menu-item-label">Charts</span>
-        <i class="menu-item-arrow fa fa-angle-down"></i>
-      </div><!-- menu-item -->
-    </a><!-- br-menu-link -->
-    <a  class="br-menu-link">
-      <div class="br-menu-item">
-        <i  class="menu-item-icon icon ion-ios-briefcase-outline tx-22"  ></i>
-        <span class="menu-item-label" routerLink="/admin/addUser">Gestion des roles </span>
-        <i class="menu-item-arrow fa fa-angle-down"></i>
-      </div><!-- menu-item -->
-    </a><!-- br-menu-link -->
-    <ul class="br-menu-sub nav flex-column">
-      <li class="nav-item"><a routerLink="/admin/addUser" class="nav-link">Ajouter un utilisateur</a></li>
-      <li class="nav-item"><a routerLink="/admin/dashboard" class="nav-link">Liste des gestionnaires</a></li>
-      <li class="nav-item"><a routerLink="" class="nav-link">Liste des modérateurs </a></li>
+   
+   
 
-    </ul>
-    <a href="#" class="br-menu-link">
-      <div class="br-menu-item">
-        <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-20"></i>
-        <span class="menu-item-label">Gestion des adhérents</span>
-        <i class="menu-item-arrow fa fa-angle-down"></i>
-      </div><!-- menu-item -->
-    </a><!-- br-menu-link -->
-    <ul class="br-menu-sub nav flex-column">
-      <li class="nav-item"><a routerLink="ListeAdhérents" class="nav-link">Liste des adhérents</a></li>
+   
 
-    </ul>
-
-    <a href="#" class="br-menu-link">
-      <div class="br-menu-item">
-        <i class="menu-item-icon icon ion-ios-briefcase-outline tx-22"></i>
-        <span class="menu-item-label">Gestion des événements </span>
-        <i class="menu-item-arrow fa fa-angle-down"></i>
-      </div><!-- menu-item -->
-    </a><!-- br-menu-link -->
-    <ul class="br-menu-sub nav flex-column">
-      <li class="nav-item"><a routerLink="" class="nav-link">Liste des événements</a></li>
-      <li class="nav-item"><a routerLink="" class="nav-link">Ajouter événement</a></li>
-
-    </ul>
-    <a routerLink="/admin/addUser" class="br-menu-link">
+    
+    <a routerLink="/moderateur/entraineurs" class="br-menu-link">
       <div class="br-menu-item">
         <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
-        <span class="menu-item-label">Ajouter utilisateur </span>
+        <span class="menu-item-label">Gestion des entraineurs  </span>
       </div><!-- menu-item -->
     </a><!-- br-menu-link -->
     
-    <a routerLink="/admin/adherents" class="br-menu-link">
+    <a routerLink="/moderateur" class="br-menu-link">
         <div class="br-menu-item">
           <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
-          <span class="menu-item-label">Liste des adhérents</span>
+          <span class="menu-item-label">Consultation des membres </span>
         </div><!-- menu-item -->
       </a>
-      <a routerLink="/admin/moderateurs" class="br-menu-link">
-        <div class="br-menu-item">
-          <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
-          <span class="menu-item-label">Liste des modarateurs </span>
-        </div><!-- menu-item -->
-      </a>
-      <a routerLink="/admin/gestionnaires" class="br-menu-link">
-        <div class="br-menu-item">
-          <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
-          <span class="menu-item-label">Liste des gestionnaires </span>
-        </div><!-- menu-item -->
-      </a>
+    
 
 
   </div><!-- br-sideleft-menu -->
@@ -172,7 +123,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-header wd-200">
             <ul class="list-unstyled user-profile-nav">
-              <li><a routerLink="/admin/profil"><i class="icon ion-ios-person"></i> Profil</a></li>
+              <li><a routerLink="/moderateur/profil"><i class="icon ion-ios-person"></i> Profil</a></li>
   
               <li><a  (click)="deconnect()"><i class="icon ion-power"></i> Déconnecter</a></li>
             </ul>
