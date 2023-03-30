@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListeAdherentComponent } from 'src/app/components/liste-adherent/liste-adherent.component';
+import { ListeAdherentsComponent } from './liste-adherents/liste-adherents.component';
+
 
 const routes: Routes = [
-  {path:'' , component:ListeAdherentComponent }
+  {path:'' , component:ListeAdherentsComponent }
 ];
 
 @NgModule({

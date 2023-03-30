@@ -6,12 +6,13 @@ import { mustMatch } from 'src/app/validators/mustMatch';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
+
 @Component({
-  selector: 'app-reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.css']
+  selector: 'app-reset-password-layout',
+  templateUrl: './reset-password-layout.component.html',
+  styleUrls: ['./reset-password-layout.component.css']
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordLayoutComponent implements OnInit {
 
   ResetPasswordForm !: FormGroup ;
 
