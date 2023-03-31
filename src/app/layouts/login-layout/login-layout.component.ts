@@ -52,6 +52,11 @@ export class LoginLayoutComponent implements OnInit {
           // Rediriger vers la page de gestionnaire
           this.router.navigate(['/gestionnaire']);
         }
+        else if (this.role === 'MODERATEUR') {
+          // Rediriger vers la page de gestionnaire
+          this.router.navigate(['/moderateur']);
+        }
+
 
 
       },
