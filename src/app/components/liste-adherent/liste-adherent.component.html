@@ -1,4 +1,4 @@
- 
+
  <!-- ########## START: MAIN PANEL ########## -->
  <!-- Alerte de confirmation -->
  <div class="container">
@@ -54,7 +54,7 @@
             <tr>
               <th class="wd-15p">Id</th>
               <th class="wd-15p">Nom</th>
-              <th class="wd-20p">Prénom</th>
+              <th class="wd-20p"></th>
               <th class="wd-15p">E-mail</th>
               <th class="wd-15p">Action</th>
             </tr>
@@ -71,14 +71,14 @@
             </tr>
             <div class="pagination">
               <button class="prev" [disabled]="currentPage == 1" (click)="prevPage()">Précédent</button>
-            
+
               <ng-container *ngFor="let page of pages">
                 <button class="page" [class.active]="currentPage === page" (click)="goToPage(page)">{{ page }}</button>
               </ng-container>
-            
+
               <button class="next" [disabled]="currentPage == totalPages" (click)="nextPage()">Suivant</button>
             </div>
-           
+
           </tbody>
         </table>
 
@@ -92,6 +92,6 @@
 
     </div><!-- br-section-wrapper -->
   </div><!-- br-pagebody -->
- 
+
 </div><!-- br-mainpanel -->
 <!-- ########## END: MAIN PANEL ########## -->

@@ -34,7 +34,7 @@ export class ListeAdherentComponent implements OnInit {
   }
 
   ListeDesUtilisateurs () : void {
-    this.UserService.ListeDesUtilisateurs('ROLE_USER').subscribe((data)=>{
+    this.UserService.ListeDesUtilisateurs('ADHERENT').subscribe((data)=>{
       this.adherents = data;
       this.nb_adherents = this.adherents.length;
       this.adherentsInitiaux=data;
@@ -47,7 +47,7 @@ export class ListeAdherentComponent implements OnInit {
     this.totalPages = Math.ceil(this.adherents.length / this.itemsPerPage);
     this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
     this.displayedUsers = this.getUsersForPage(this.currentPage);
-  
+
     // Ajouter la vérification pour afficher les résultats de la recherche
     if (this.query) {
       this.currentPage = 1;
@@ -132,7 +132,7 @@ export class ListeAdherentComponent implements OnInit {
       this.nb_resultats = this.adherents.length;
        this.Pagination();
 
-     
+
 
     });
   }

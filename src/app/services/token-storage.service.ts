@@ -7,7 +7,7 @@ export class TokenStorageService {
 
   constructor() { }
   private TOKEN_KEY = 'auth-token';
-  private USER_KEY = 'auth-user'; 
+  private USER_KEY = 'auth-user';
   signOut(): void {
     window.sessionStorage.clear();
   }
@@ -33,5 +33,9 @@ export class TokenStorageService {
     }
 
     return {};
+  }
+
+  getRole(): string {
+    return this.getUser().role;
   }
 }

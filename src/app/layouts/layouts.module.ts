@@ -6,6 +6,8 @@ import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModerateurLayoutComponent } from './moderateur-layout/moderateur-layout.component';
 import { GestionnaireLayoutComponent } from './gestionnaire-layout/gestionnaire-layout.component';
+import { ForgetPasswordLayoutComponent } from './forget-password-layout/forget-password-layout.component';
+import { ResetPasswordLayoutComponent } from './reset-password-layout/reset-password-layout.component';
 
 
 
@@ -14,7 +16,9 @@ import { GestionnaireLayoutComponent } from './gestionnaire-layout/gestionnaire-
     AdminLayoutComponent,
     LoginLayoutComponent,
     ModerateurLayoutComponent,
-    GestionnaireLayoutComponent
+    GestionnaireLayoutComponent,
+    ForgetPasswordLayoutComponent,
+    ResetPasswordLayoutComponent
   ],
   imports: [
     CommonModule,

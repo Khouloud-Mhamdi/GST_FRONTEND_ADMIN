@@ -77,18 +77,18 @@
   
               </tr>
   
-              <div class="pagination">
-                <button class="prev" [disabled]="currentPage == 1" (click)="prevPage()">Précédent</button>
               
-                <ng-container *ngFor="let page of pages">
-                  <button class="page" [class.active]="currentPage === page" (click)="goToPage(page)">{{ page }}</button>
-                </ng-container>
-              
-                <button class="next" [disabled]="currentPage == totalPages" (click)="nextPage()">Suivant</button>
-              </div>
             </tbody>
           </table>
-  
+          <div class="pagination">
+            <button class="prev" [disabled]="currentPage == 1" (click)="prevPage()">Précédent</button>
+          
+            <ng-container *ngFor="let page of pages">
+              <button class="page" [class.active]="currentPage === page" (click)="goToPage(page)">{{ page }}</button>
+            </ng-container>
+          
+            <button class="next" [disabled]="currentPage == totalPages" (click)="nextPage()">Suivant</button>
+          </div>
   
         </div><!-- table-wrapper -->
   
