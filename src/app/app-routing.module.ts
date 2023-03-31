@@ -32,7 +32,7 @@ const routes: Routes = [
     {path:'moderateurs' , loadChildren:()=>import('./views/liste-moderateurs/liste-moderateurs.module').then(m=>m.ListeModerateursModule)},
     {path:'addEvent' ,loadChildren:()=>import('./views/ajout-event/ajout-event.module').then(m=>m.AjoutEventModule) }
   ]},
-  {path:'moderateur' , component:ModerateurLayoutComponent ,children:[
+  {path:'moderateur' , component:ModerateurLayoutComponent ,  canActivate: [GestionnaireGuardGuard] , children:[
     {path:'entraineurs' , loadChildren:()=>import('./views/gestion-entraineurs/gestion-entraineurs.module').then(m=>m.GestionEntraineursModule)},
     {path:'profil' , loadChildren:()=>import('./views/profil/profil.module').then(m=>m.ProfilModule)},
     { path: '', redirectTo: 'profil', pathMatch: 'full' },
