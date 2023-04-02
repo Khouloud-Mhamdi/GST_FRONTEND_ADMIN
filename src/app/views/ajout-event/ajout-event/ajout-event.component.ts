@@ -20,7 +20,7 @@ export class AjoutEventComponent implements OnInit {
     this.eventService.dataForm = this.formBuilder.group ({
       titre : ['', [Validators.required]],
       lieu : ['', [Validators.required]],
-     //  date: [''],
+      date: [''],
       description : ['', [Validators.required]],
     }) ; 
   }

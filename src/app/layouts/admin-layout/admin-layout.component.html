@@ -31,6 +31,16 @@
 
         </div>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Gestion des évènements
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/admin/addUser" >Ajouter un évènement </a>
+          <a class="dropdown-item" routerLink="/admin/moderateurs"> Consulter les évènements </a>
+        
+        </div>
+      </li>
     </ul>
   </div>
 </nav>
@@ -57,6 +67,22 @@
           </ul>
         </li>
         <li>
+          <a href="#eventSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <i class="fa fa-users"></i>
+            Gestion des évènements
+          </a>
+          <ul class="collapse list-unstyled" id="eventSubmenu">
+            <li>
+              <a routerLink="/admin/addEvent">Ajouter un évènement  </a>
+            </li>
+            <li>
+              <a routerLink="/admin/listeEvents">Liste des évènements </a>
+            </li>
+          </ul>
+         
+
+        </li>
+        <li>
           <a href="#rolesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             <i class="fa fa-user-lock"></i>
             Gestion des rôles
@@ -73,6 +99,7 @@
             </li>
           </ul>
         </li>
+       
       </ul>
     </nav>
 

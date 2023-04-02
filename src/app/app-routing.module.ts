@@ -31,7 +31,8 @@ const routes: Routes = [
     {path:'adherents' , loadChildren:()=>import('./views/liste-adherents/liste-adherents.module').then(m=>m.ListeAdherentsModule)},
     {path:'gestionnaires' , loadChildren:()=>import('./views/liste-gestionnaires/liste-gestionnaires.module').then(m=>m.ListeGestionnairesModule)},
     {path:'moderateurs' , loadChildren:()=>import('./views/liste-moderateurs/liste-moderateurs.module').then(m=>m.ListeModerateursModule)},
-    {path:'addEvent' ,loadChildren:()=>import('./views/ajout-event/ajout-event.module').then(m=>m.AjoutEventModule) }
+    {path:'addEvent' ,loadChildren:()=>import('./views/ajout-event/ajout-event.module').then(m=>m.AjoutEventModule) } , 
+    {path:'listeEvents' ,loadChildren:()=>import('./views/gestion-events/gestion-events.module').then(m=>m.GestionEventsModule) }
   ]},
   {path:'moderateur' , component:ModerateurLayoutComponent , children:[
     {path:'entraineurs' ,  canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/gestion-entraineurs/gestion-entraineurs.module').then(m=>m.GestionEntraineursModule)},
