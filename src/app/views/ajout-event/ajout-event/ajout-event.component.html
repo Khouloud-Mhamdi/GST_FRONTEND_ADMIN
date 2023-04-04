@@ -408,43 +408,86 @@
         </nav>
       </div><!-- br-pageheader -->
       <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-        <h4 class="tx-gray-800 mg-b-5">Formulaire d'ajout </h4>
+        <h4 class="tx-gray-800 mg-b-5">Ajouter un nouveau évènement  </h4>
         <p class="mg-b-0"></p>
       </div>
 
       <div class="br-pagebody">
         <div class="br-section-wrapper">
           
-
+  <!--alert de succée -->
+  <div class="alert alert-success" role="alert"  *ngIf="ajoutEvent" >
+    <strong class="d-block d-sm-inline-block-force">  évenement  publié avec succée !  </strong>
+  </div>
+  <!--alert d'erreur  -->
+  <div class="alert alert-danger" role="alert"  *ngIf="erreur" >
+    <strong class="d-block d-sm-inline-block-force"> Veuillez verifier vos champs !  </strong>
+  </div>
+   
+     <!--alerte de confirmation -->
+   <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-info confirmation-dialog" role="alert" *ngIf="showConfirmationDialog">
+          <h4 class="alert-heading">Confirmation</h4>
+          <p>Voulez vous vraiment publier cet évenement ?  </p>
+          <hr>
+          <div class="button-container">
+            <button class="btn btn-primary confirm-button" (click)=" onSubmit()">Publier </button>
+            <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialog()">Annuler</button>
           
-
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
          
           <div class="row mg-t-80">
             <div class="col-xl-12">
               <div class="form-layout form-layout-4">
-                <h6 class="tx-gray-800  tx-bold tx-14 mg-b-10">Ajouter un nouveau évènement </h6>
+                <h6 class="tx-gray-800  tx-bold tx-14 mg-b-10"> évènement </h6>
                 <p class="mg-b-30 tx-gray-600"></p>
                 <form  [formGroup]="this.eventService.dataForm">
+                  <!--titre-->
                     <div class="row">
                         <label class="col-sm-4 form-control-label">Titre : <span class="tx-danger">*</span></label>
                         <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                          <input type="text" class="form-control" formControlName="titre" placeholder="Enter firstname">
+                          <input type="text" class="form-control" formControlName="titre" placeholder="Entrer un titre ">
+                          <div *ngIf="this.eventService.dataForm.controls['titre'].invalid && (
+                            this.eventService.dataForm.controls['titre'].touched || this.eventService.dataForm.controls['titres'].dirty
+                          )">
+                               <div *ngIf ="this.eventService.dataForm.controls['titre'].errors?.['required']" class="red"> Ce champ est obligatoire   </div>
+                              
+                          </div>
                         </div>
-                      </div><!-- row -->
+                      </div>
+                     
+                      <!--lieu -->
                       <div class="row mg-t-20">
                         <label class="col-sm-4 form-control-label">Lieu :  <span class="tx-danger">*</span></label>
                         <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                          <input type="text" class="form-control"  formControlName="lieu" placeholder="lieu">
+                          <input type="text" class="form-control"  formControlName="lieu" placeholder="Entrer un lieu ">
+                          <div *ngIf="this.eventService.dataForm.controls['lieu'].invalid && (
+                            this.eventService.dataForm.controls['lieu'].touched || this.eventService.dataForm.controls['lieu'].dirty
+                          )">
+                               <div *ngIf ="this.eventService.dataForm.controls['lieu'].errors?.['required']" class="red"> Ce champ est obligatoire   </div>
+      
+                          </div>
                         </div>
                       </div>
+                      
+                      <!--date-->
                       <div class="row mg-t-20">
-                        <label class="col-sm-4 form-control-label">Date  :  <span class="tx-danger">*</span></label>
-                        <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                           <input type="date" formControlName="date">
-                        </div>
+                       
+                          <label class="col-sm-4 form-control-label">Date <span class="tx-danger">*</span></label>
+                             <div  class="col-sm-8 mg-t-10 mg-sm-t-0" >
+                            <input type="datetime-local" class="form-control" id="nom" formControlName="date" placeholder="Entrez la date de l'evenement " formControlName="date">
+                           </div>
+                           
+                        
                       </div>
                       <div class="row mg-t-20">
-                          <label class="col-sm-4 form-control-label"> photos  :  <span class="tx-danger">*</span></label>
+                          <label class="col-sm-4 form-control-label"> photo :  <span class="tx-danger">*</span></label>
                           <input type="file" accept="image/*" (change)="onSelectFile($event)">
                           <img [src]="imgURL" height="200" *ngIf="imgURL">
                       </div>
@@ -452,10 +495,16 @@
                         <label class="col-sm-4 form-control-label">Description :  <span class="tx-danger">*</span></label>
                         <div class="col-sm-8 mg-t-10 mg-sm-t-0">
                           <textarea rows="6" class="form-control" formControlName="description"  placeholder="Entrez une description "></textarea>
+                          <div *ngIf="this.eventService.dataForm.controls['description'].invalid && (
+                            this.eventService.dataForm.controls['description'].touched || this.eventService.dataForm.controls['description'].dirty
+                          )">
+                               <div *ngIf ="this.eventService.dataForm.controls['description'].errors?.['required']" class="red"> Ce champ est obligatoire   </div>
+      
+                          </div>
                         </div>
                       </div>
                       <div class="form-layout-footer mg-t-30">
-                        <button class="btn btn-info" (click)="onSubmit()">Ajouter </button>
+                        <button class="btn btn-info" (click)="openConfirmationDialog()">Ajouter </button>
                         <button class="btn btn-secondary">Annuler</button>
                       </div>
                 </form>

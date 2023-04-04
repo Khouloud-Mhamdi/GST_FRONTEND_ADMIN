@@ -38,7 +38,7 @@ export class AjoutEntraineurComponent implements OnInit {
       Date_De_Naissance : [""], 
      }
      );
-    // this.getAllclubs();
+     this.getAllclubs();
   }
   getAllclubs()
   {

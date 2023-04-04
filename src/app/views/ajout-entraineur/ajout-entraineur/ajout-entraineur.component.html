@@ -113,8 +113,11 @@
                 <input class="form-control" type="text" name="address" id="telephone" placeholder="Entrez un numéro de telephone  " formControlName="téléphone">
               </div>
             </div>
-            <!-- role -->
-          
+            <!-- date de naissance  -->
+            <div class="col-lg-4">
+              <label for="nom">Date de naissance: <span class="tx-danger">*</span></label>
+                <input type="datetime-local" class="form-control" id="nom" formControlName="date" placeholder="Entrez votre adresse mail">
+               </div>
             <!-- discipline_id -->
             <div class="col-lg-4" >
               <div class="form-group mg-b-10-force">
@@ -125,11 +128,9 @@
                 </select>
               </div>
             </div>
-            Date de naissance : <input type="date" formControlName="Date_De_Naissance">
+           
           </div><!-- row -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Launch demo modal
-          </button>
+        
           <div class="form-layout-footer">
             <button class="btn btn-info" (click)="test()">Ajouter</button>
           </div>
@@ -140,27 +141,7 @@
 
   </div>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
+  
 
 
 

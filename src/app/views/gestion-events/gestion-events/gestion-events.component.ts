@@ -10,6 +10,10 @@ import { EvenementService } from 'src/app/services/evenement.service';
 export class GestionEventsComponent implements OnInit {
   public events : any ; 
   public eventsInitiaux  :any;
+  deleted = false ; 
+  modified = false ; 
+  erreurDelete = false ; 
+  modifiederreur = false ; 
   valide = false ; 
   query !: any ; 
   dataEvent = {
@@ -26,6 +30,8 @@ export class GestionEventsComponent implements OnInit {
   imgURL: any;
   public message !: string;
   selectImg = true  ; 
+  eventID : any ; 
+  showConfirmationDialog = false ; 
   constructor(public eventService : EvenementService   , public formBuilder : FormBuilder) { }
 
   ngOnInit(): void {
@@ -45,15 +51,28 @@ export class GestionEventsComponent implements OnInit {
      );
    
   }
-  removeData(id: number) {
+  
+  removeData() {
    
-    this.eventService.deleteData(id)
+    this.eventService.deleteData(this.eventID)
       .subscribe(
-        data => {
+        (data) => {
           console.log(data);
           this.getData();
+          this.deleted = true ; 
+          setTimeout(() => {
+            this.deleted= false;
+          }, 3000);
         },
-        error => console.log(error));
+        (error) => {
+          console.log(error) ; 
+          this.erreurDelete = true ; 
+          setTimeout(() => {
+            this.erreurDelete= false;
+          }, 3000);
+        } 
+        );
+        this.closeConfirmationDialog() ; 
   
   }
   getDetails(id : number , titre : any , date : any ,  description : any   , lieu : any  )
@@ -95,10 +114,24 @@ export class GestionEventsComponent implements OnInit {
     }
    
     updateData () {
-      this.eventService.updatEvent(this.dataEvent).subscribe( data => {
+      this.eventService.updatEvent(this.dataEvent).subscribe( (data) => {
         console.log("succée mayssa ! ") ; 
+        this.modified = true ; 
+        setTimeout(() => {
+          this.modified= false;
+        }, 3000);
+        this.getData() ; 
+        } , 
+
+        (error) => {
+          this.modifiederreur = true ; 
+          console.log(error) ; 
+          setTimeout(() => {
+            this.modifiederreur= false;
+          }, 3000);
+        } 
         
-        }); ; 
+        );  
     }
 
    /* search(query : any ){
@@ -131,4 +164,13 @@ export class GestionEventsComponent implements OnInit {
         this.nb_resultats=null;
       }
     }*/
+
+    openConfirmationDialog(id : any ) {
+         this.eventID = id ; 
+         this.showConfirmationDialog = true  ; 
+    }
+    closeConfirmationDialog() {
+      this.showConfirmationDialog = false ; 
+    }
+
 }

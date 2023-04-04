@@ -1,22 +1,26 @@
  
+
+
  <!-- Alerte de confirmation -->
- <!--
+ 
  <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="alert alert-danger confirmation-dialog" role="alert" *ngIf="showConfirmationDialog">
           <h4 class="alert-heading">Confirmation de suppression</h4>
-          <p>Voulez-vous vraiment supprimer cet utilisateur ?</p>
+          <p>Voulez-vous vraiment supprimer cet évenement ?</p>
           <hr>
           <div class="button-container">
             <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialog()">Annuler</button>
-            <button class="btn btn-danger confirm-button" (click)="deleteUser()">Supprimer</button>
+            <button class="btn btn-danger confirm-button" (click)="removeData()">Supprimer</button>
           </div>
         </div>
       </div>
     </div>
-  </div>-->
+  </div>
    <!-- Alerte de confirmation -->
+
+
    <div class="br-mainpanel">
     <div class="br-pageheader pd-y-15 pd-l-20">
       <nav class="breadcrumb pd-0 mg-0 tx-12">
@@ -27,15 +31,17 @@
     </div><!-- br-pageheader -->
     <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
       <h4 class="tx-gray-800 mg-b-5">Liste des évènements </h4>
-  
+       <!--alert de succée -->
+       <div class="alert alert-success" role="alert"  *ngIf="deleted" >
+      <strong class="d-block d-sm-inline-block-force"> Cet évenement est supprimé avec succée  </strong>
+       </div>
+      <!--alert d'erreur  -->
+      <div class="alert alert-danger" role="alert"  *ngIf="erreurDelete" >
+      <strong class="d-block d-sm-inline-block-force">  Un probleme s'est produit lors de la suppression !  </strong>
+      </div>
   
     </div>
-    <div class="alert alert-success" role="alert"  *ngIf="valide" >
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <strong class="d-block d-sm-inline-block-force">Utilisateur suppimé avec succés!</strong>
-    </div><!-- alert -->
+   
     <div class="br-pagebody">
       <div class="br-section-wrapper">
         
@@ -58,7 +64,7 @@
                 <th class="wd-15p">Lieu</th>
                 <th class="wd-20p">Date</th>
                 <th class="wd-15p">Photo</th>
-                <th class="wd-15p">Description</th>
+                <th class="wd-40p">Description</th>
               
               </tr>
             </thead>
@@ -75,7 +81,7 @@
                 <td>{{item.description}}</td>
                 <td></td>
   
-                <td><button type="button"   class="btn btn-danger" (click)=" removeData(item.id) ">Supprimer</button></td>
+                <td><button type="button"   class="btn btn-danger" (click)="openConfirmationDialog(item.id)">Supprimer</button></td>
                 <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getDetails(item.id, item.titre , item.date , item.description , item.lieu)">
                   Modifier
                 </button>
@@ -121,19 +127,27 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+          <!--alert de succée dans le cas de modification  -->
+            <div class="alert alert-success" role="alert"  *ngIf="modified" >
+             <strong class="d-block d-sm-inline-block-force"> Cet évenement est modifié   </strong>
+            </div>
+            <!--alert d'eereur dans le cas de modification  -->
+            <div class="alert alert-danger" role="alert"  *ngIf="modifiederreur" >
+              <strong class="d-block d-sm-inline-block-force"> Veuillez verifier vos champs !  </strong>
+             </div>
         </div>
         <form  [formGroup]="this.eventService.dataForm" >
           <div class="modal-body">
             <div class="form-group">
-              <label for="exampleFormControlInput1">Titre</label>
+              <label for="exampleFormControlInput1">Titre  <span class="tx-danger">*</span></label>
               <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="dataEvent.titre" placeholder="Entrer un titre " [ngModelOptions]="{standalone:true}">
             </div>
             <div class="form-group">
-              <label for="exampleFormControlInput1">Lieu</label>
+              <label for="exampleFormControlInput1">Lieu <span class="tx-danger">*</span> </label>
               <input type="text" class="form-control" id="exampleFormControlInput1"[(ngModel)]="dataEvent.lieu" placeholder="Entrer un lieu " [ngModelOptions]="{standalone:true}">
             </div>
             <div class="form-group">
-              <label for="exampleFormControlInput1">Description</label>
+              <label for="exampleFormControlInput1">Description <span class="tx-danger">*</span> </label>
               <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="dataEvent.description" placeholder="Entrer une description " [ngModelOptions]="{standalone:true}">
             </div>
             <div class="form-group">
@@ -141,7 +155,7 @@
               <img src="{{this.eventService.host+'/api/Imgevents/'+dataEvent.id}}" height="200" *ngIf="selectImg">
             </div>
             <div class="form-group">
-              <label for="example-date-input" class="col-2 col-form-label">Date</label>
+              <label for="example-date-input" class="col-2 col-form-label">Date <span class="tx-danger">*</span></label>
               <div class="col-10">
                 <input class="form-control" type="date" value="{{dataEvent.date}}" id="example-date-input"[(ngModel)]="dataEvent.date"  [ngModelOptions]="{standalone:true}">
               </div>
