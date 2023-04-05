@@ -38,7 +38,7 @@ export class AddUserComponent implements OnInit {
      );
      this.getAllclubs();
 
-
+    console.log("data here : " , this.clubs ) ; 
 
   }
 

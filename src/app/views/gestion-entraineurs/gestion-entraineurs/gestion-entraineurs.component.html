@@ -5,7 +5,7 @@
       <div class="col-md-12">
         <div class="alert alert-danger confirmation-dialog" role="alert" *ngIf="showConfirmationDialog">
           <h4 class="alert-heading">Confirmation de suppression</h4>
-          <p>Voulez-vous vraiment supprimer cet utilisateur ?</p>
+          <p>Voulez-vous vraiment supprimer cet entraineur  ?</p>
           <hr>
           <div class="button-container">
             <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialog()">Annuler</button>
@@ -20,12 +20,12 @@
     <div class="br-pageheader pd-y-15 pd-l-20">
       <nav class="breadcrumb pd-0 mg-0 tx-12">
   
-        <span class="breadcrumb-item" >Gestion des rôles</span>
-        <span class="breadcrumb-item active">Liste des gestionnaires</span>
+        <span class="breadcrumb-item" >Gestion des entraineurs</span>
+        <span class="breadcrumb-item active">Liste des entraineurs </span>
       </nav>
     </div><!-- br-pageheader -->
     <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-      <h4 class="tx-gray-800 mg-b-5">Liste des gestionnaires </h4>
+      <h4 class="tx-gray-800 mg-b-5">Liste des entraineurs  </h4>
   
   
     </div>
@@ -33,7 +33,7 @@
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <strong class="d-block d-sm-inline-block-force">Utilisateur suppimé avec succés!</strong>
+      <strong class="d-block d-sm-inline-block-force">Entraineur suppimé avec succés!</strong>
     </div><!-- alert -->
     <div class="br-pagebody">
       <div class="br-section-wrapper">
@@ -43,10 +43,10 @@
   
   
         <form style="width: 70%;margin-bottom: 3%;">
-          <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom ou prénom ou email "  (input)="onInputChange()">
+          <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom ou prénom ou email ou discipline "  (input)="onInputChange()">
           <button  type="submit" (click)="search(query)">Rechercher</button>
         </form>
-        <p *ngIf="nb_resultats !== null"> {{nb_resultats}} résultats trouvés sur {{nb_gestionnaires}}</p>
+        <p *ngIf="nb_resultats !== null"> {{nb_resultats}} résultats trouvés sur {{nb_entraineurs}}</p>
         <div class="table-wrapper">
   
           <table id="datatable1" class="table display responsive nowrap">
@@ -55,9 +55,11 @@
                 <th class="wd-15p">Id</th>
                 <th class="wd-15p">Nom</th>
                 <th class="wd-15p">Prénom</th>
+                <th class="wd-15p">Naissance</th>
                 <th class="wd-20p">E-mail</th>
                 <th class="wd-15p">Téléphone</th>
                 <th class="wd-15p">Adresse</th>
+                <th class="wd-15p">Discipline</th>
                 <th class="wd-15p">Action</th>
               </tr>
             </thead>
@@ -66,30 +68,42 @@
                 <td>{{a.id}}</td>
                 <td>{{a.nom}}</td>
                 <td>{{a.prenom}}</td>
+                <td>{{a.naissance}}</td>
                 <td>{{a.email}}</td>
                 <td>{{a.telephone}}</td>
                 <td>{{a.adresse}}</td>
+                <td>{{a.discipline.discipline}}</td>
+                                                       
   
                 <td  ><button type="button"  (click)="openConfirmationDialog(a.id)" class="btn btn-danger">Supprimer</button></td>
+                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getDetailsForUpdate(  a.id , a.nom , a.prenom , a.naissance , a.email , a.telephone , a.adresse )">
+                  Modifier
+                </button>
+                </td>
+                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal11" (click)="getDetails( a.id , a.nom , a.prenom , a.naissance , a.email , a.telephone , a.adresse , a.discipline.discipline)">
+                  Consulter 
+                </button>
+                </td>
+  
   
               </tr>
-              <div class="pagination">
-                <button class="prev" [disabled]="currentPage == 1" (click)="prevPage()">Précédent</button>
-              
-                <ng-container *ngFor="let page of pages">
-                  <button class="page" [class.active]="currentPage === page" (click)="goToPage(page)">{{ page }}</button>
-                </ng-container>
-              
-                <button class="next" [disabled]="currentPage == totalPages" (click)="nextPage()">Suivant</button>
-              </div>
+             
   
             </tbody>
           </table>
-  
+          
   
         </div><!-- table-wrapper -->
   
-  
+        <div class="pagination">
+          <button class="prev" [disabled]="currentPage == 1" (click)="prevPage()">Précédent</button>
+        
+          <ng-container *ngFor="let page of pages">
+            <button class="page" [class.active]="currentPage === page" (click)="goToPage(page)">{{ page }}</button>
+          </ng-container>
+        
+          <button class="next" [disabled]="currentPage == totalPages" (click)="nextPage()">Suivant</button>
+        </div>
   
   
   
@@ -99,4 +113,111 @@
     
   </div>
  
+  
+    <!--1ere modele -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Entraineur</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <!--alert de succée dans le cas de modification  -->
+            <div class="alert alert-success" role="alert"  *ngIf="modified" >
+             <strong class="d-block d-sm-inline-block-force"> Cet évenement est modifié   </strong>
+            </div>
+            <!--alert d'eereur dans le cas de modification  -->
+            <div class="alert alert-danger" role="alert"  *ngIf="modifiederreur" >
+              <strong class="d-block d-sm-inline-block-force"> Veuillez verifier vos champs !  </strong>
+             </div>
+        </div>
+        <form>
+          
+          <div class="modal-body">
+            <div class="form-group">
+              <img src="assets/photos/entrIcon.png" height="200">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Nom  <span class="tx-danger">*</span></label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]=" dataEntraineur.nom" placeholder="Entrer un nom  " [ngModelOptions]="{standalone:true}">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Prenom <span class="tx-danger">*</span> </label>
+              <input type="text" class="form-control" id="exampleFormControlInput1"[(ngModel)]=" dataEntraineur.prenom" placeholder=" Entrer un prenom " [ngModelOptions]="{standalone:true}">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Email<span class="tx-danger">*</span> </label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" [(ngModel)]=" dataEntraineur.email" placeholder="Entrer un email " [ngModelOptions]="{standalone:true}">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Adresse<span class="tx-danger">*</span> </label>
+              <input type="text" class="form-control" id="exampleFormControlInput1"[(ngModel)]=" dataEntraineur.adresse" placeholder="Entrer une adresse " [ngModelOptions]="{standalone:true}">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Telephone<span class="tx-danger">*</span> </label>
+              <input type="text" class="form-control" id="exampleFormControlInput1"[(ngModel)]=" dataEntraineur.telephone" placeholder="Entrer un numero de telephone " [ngModelOptions]="{standalone:true}">
+            </div>
+            <div class="form-group">
+              <label for="example-date-input" class="col-2 col-form-label">Date <span class="tx-danger">*</span></label>
+              <div class="col-10">
+                <input class="form-control" type="date" value="{{ dataEntraineur.naissance}}" id="example-date-input"[(ngModel)]=" dataEntraineur.naissance"  [ngModelOptions]="{standalone:true}">
+              </div>
+            </div>
+         
+            <form [formGroup]="disForm">
+            <div >
+              <div class="form-group mg-b-10-force">
+                <label for="c" class="form-control-label">Discipline : <span class="tx-danger">*</span></label>
+                <select  class="form-control"  form-control-lg  formControlName="id_discipline" id="c" >
+                  <option label="Choisir une discipline "></option>
+                  <option  *ngFor="let c of clubs " value="{{c?.id}}">{{c?.discipline}}</option>
+                </select>
+              </div>
+            </div>
+            </form>
+
+
+            <div  class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+              <button type="submit" class="btn btn-primary" (click)="updateEntraineur()">Modifier</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--2eme modele -->
+  <div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Entraineur  </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            
+            <img src="assets/photos/entrIcon.png" height="200">
+          </div>
+          <h4>Nom : {{infoEntraineur.nom}}</h4>
+          <h4>Prenom : {{infoEntraineur.prenom}}</h4>
+          <h4>Email : {{infoEntraineur.email}}</h4>
+          <h4>Adresse : {{infoEntraineur.adresse}}</h4>
+          <h4>Telephone : {{infoEntraineur.telephone}}</h4>
+          <h4>Discipline : {{infoEntraineur.discipline}}</h4>
+
+          <br>
+         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+         
+        </div>
+      </div>
+    </div>
+  </div>
   
