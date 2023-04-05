@@ -27,7 +27,7 @@ export class ListeGestionnairesComponent implements OnInit {
     this.ListeDesUtilisateurs();
   }
   ListeDesUtilisateurs () : void {
-    this.UserService.ListeDesUtilisateurs('GESTIONNAIRE').subscribe((data)=>{
+     this.UserService.ListeDesUtilisateurs('GESTIONNAIRE').subscribe((data)=>{
       this.gestionnaires = data;
       this.nb_gestionnaires = this.gestionnaires.length;
       this.GestionnairesInitiaux=data;

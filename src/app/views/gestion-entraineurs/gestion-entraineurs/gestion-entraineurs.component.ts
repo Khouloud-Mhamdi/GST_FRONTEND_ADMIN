@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DisciplineService } from 'src/app/services/discipline.service';
+import { EntraineurService } from 'src/app/services/entraineur.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
@@ -7,37 +10,75 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
   styleUrls: ['./gestion-entraineurs.component.css']
 })
 export class GestionEntraineursComponent implements OnInit {
-  
-  public gestionnaires :any;
-  public GestionnairesInitiaux :any;
-  
+  disForm !:  FormGroup;  
+  public clubs : any ; 
+  public entraineurs :any;
+  public entraineursInitiaux :any;
+  public modified = false ; 
+  public modifiederreur = false ; 
+
   query :any;
   supprimer=false;
   showConfirmationDialog = false;
   userID :any;
   nb_resultats: number | null = null;
-  nb_gestionnaires: number | null = null;
+  nb_entraineurs: number | null = null;
   itemsPerPage: number = 2; // Nombre d'utilisateurs à afficher par page.
   totalPages: number = 1; // Nombre total de pages.
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
   displayedUsers: any;
-  constructor(private UserService :  UtilisateurService) { }
-
-  ngOnInit(): void {
+  dataEntraineur = {
+    id : 0 , 
+    nom : '' , 
+    prenom : '' , 
+    naissance : '' , 
+    email : '' , 
+    telephone : '' , 
+    adresse : '' , 
+   
   }
+  infoEntraineur = {
+  
+    nom : '' , 
+    prenom : '' , 
+    naissance : '' , 
+    email : '' , 
+    telephone : '' , 
+    adresse : '' , 
+    discipline : '' , 
+  }
+  constructor(private UserService :  UtilisateurService , private entraineurService : EntraineurService , public disciplineService : DisciplineService  , private formBuilder : FormBuilder) { }
+  
+  ngOnInit(): void {
+    this.disForm= this.formBuilder.group({
+      
+      id_discipline : ["", [Validators.required]]
+     }
+     );
+    this.ListeDesUtilisateurs();
+    this.getAllclubs () ; 
+  }
+  getAllclubs()
+  {
+    this.disciplineService.ListerDisciplines().subscribe((data)=>{
+    this.clubs = data ;
+    })
+  }
+ 
   ListeDesUtilisateurs () : void {
-    this.UserService.ListeDesUtilisateurs('ROLE_GESTIONNAIRE').subscribe((data)=>{
-      this.gestionnaires = data;
-      this.nb_gestionnaires = this.gestionnaires.length;
-      this.GestionnairesInitiaux=data;
+    this.entraineurService.listerEntraineurs().subscribe((data)=>{
+      this.entraineurs = data;
+      console.log("here data : " , this.entraineurs) ; 
+      this.nb_entraineurs = this.entraineurs.length;
+      this.entraineursInitiaux=data;
       this.Pagination();
    
     })
   }
 
    Pagination () : void {
-    this.totalPages = Math.ceil(this.gestionnaires.length / this.itemsPerPage);
+    this.totalPages = Math.ceil(this.entraineurs.length / this.itemsPerPage);
     this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
     this.displayedUsers = this.getUsersForPage(this.currentPage);
    }
@@ -45,7 +86,7 @@ export class GestionEntraineursComponent implements OnInit {
     // Calcul des utilisateurs à afficher pour la page donnée.
     const startIndex = (page - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    return this.gestionnaires.slice(startIndex, endIndex);
+    return this.entraineurs.slice(startIndex, endIndex);
   }
 
   goToPage(page: number): void {
@@ -71,7 +112,7 @@ export class GestionEntraineursComponent implements OnInit {
   }
   onInputChange(): void {
     if (this.query === '') {
-      this.gestionnaires = this.GestionnairesInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
+      this.entraineurs = this.entraineursInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
       this.Pagination();
 
       this.nb_resultats=null;
@@ -100,18 +141,69 @@ export class GestionEntraineursComponent implements OnInit {
       this.closeConfirmationDialog();
 
     })
+    this.entraineurService.deleteEntraineurById(this.userID).subscribe(
+      (data)=>{
+        this.supprimer = true ; 
+        setTimeout(() => {
+          this.supprimer = false;
+        }, 3000); // 3000 ms = 3 secondes
+        this.ListeDesUtilisateurs();
+        this.closeConfirmationDialog() ; 
+      }
+     
+    )
   }
 
 
    search(query: any){
-    console.log(this.query);
-    this.UserService.RechercherUtilisateur('ROLE_GESTIONNAIRE',this.query).subscribe((data)=>{
-      this.gestionnaires = data;
-      this.nb_resultats= this.gestionnaires.length;
+  
+    console.log(this.query) ; 
+    this.entraineurService.RechercherEntraineur(this.query).subscribe((data)=>{
+      this.entraineurs = data;
+      this.nb_resultats= this.entraineurs.length;
       this.Pagination();
-
-
-
     })
-  }
+    
+    }
+
+ // getDetails(a.nom , a.prenom , a.naissance , a.email , a.telephone , a.adresse , a.discipline.discipline)
+   getDetailsForUpdate (id : number , nom : any , prenom : any , naissance : any , email : any , telephone : any , adresse : any  ) {
+  this.dataEntraineur.id = id ; 
+  this.dataEntraineur.nom = nom ; 
+  this.dataEntraineur.prenom = prenom ; 
+  this.dataEntraineur.naissance = naissance ; 
+  this.dataEntraineur.email = email ; 
+  this.dataEntraineur.telephone = telephone ; 
+  this.dataEntraineur.adresse = adresse ; 
+  
+   }
+   getDetails(id : number , nom : any , prenom : any , naissance : any , email : any , telephone : any , adresse : any , discipline : any )
+   {
+      this.infoEntraineur.nom = nom ; 
+      this.infoEntraineur.prenom = prenom ; 
+      this.infoEntraineur.naissance = naissance ; 
+      this.infoEntraineur.email = email ; 
+      this.infoEntraineur.telephone = telephone ; 
+      this.infoEntraineur.adresse = adresse ; 
+      this.infoEntraineur.discipline = discipline ; 
+   }
+   
+   updateEntraineur() {
+      this.entraineurService.updateEntraineur(this.dataEntraineur , this.disForm.value.id_discipline).subscribe(
+        (data)=>{
+         this.modified = true ; 
+         setTimeout(() => {
+          this.modified= false;
+        }, 3000);
+        this.ListeDesUtilisateurs();
+        } , 
+        (err) => {
+          this.modifiederreur = true ; 
+          console.log(err) ; 
+          setTimeout(() => {
+            this.modifiederreur= false;
+          }, 3000);
+        }
+      )
+       }
 }

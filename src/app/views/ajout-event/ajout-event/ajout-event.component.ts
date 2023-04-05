@@ -13,6 +13,10 @@ export class AjoutEventComponent implements OnInit {
   public imagePath : any ;
   imgURL: any;
   public message !: string;
+  showConfirmationDialog = false ; 
+  ajoutEvent =  false ; 
+  erreur = false ; 
+
   
   constructor(  private router : Router  , public  eventService : EvenementService , public formBuilder : FormBuilder) { }
 
@@ -20,7 +24,7 @@ export class AjoutEventComponent implements OnInit {
     this.eventService.dataForm = this.formBuilder.group ({
       titre : ['', [Validators.required]],
       lieu : ['', [Validators.required]],
-     //  date: [''],
+      date: ['' ,  [Validators.required] ],
       description : ['', [Validators.required]],
     }) ; 
   }
@@ -48,18 +52,55 @@ export class AjoutEventComponent implements OnInit {
      
       
     }
-
+   
     addData() {
       const formData = new  FormData();
       const event = this.eventService.dataForm.value ; 
       formData.append('event',JSON.stringify(event));
       formData.append('file',this.userFile);
-      this.eventService.createData(formData).subscribe( data => {
+      this.eventService.createData(formData).subscribe( 
+      (data) => {
       console.log("succée mayssa ! ") ; 
-        
-      });
+        this.ajoutEvent = true ; 
+        setTimeout(() => {
+          this.ajoutEvent = false;
+        }, 3000);
+        this.eventService.dataForm.reset() ; 
+        this.ngOnInit() ; 
+      }, 
+      (err) => {
+        console.log('probleme !!! ', err);
+        this.erreur = true;
+        setTimeout(() => {
+          this.erreur = false;
+        }, 3000); // 3000 ms = 3 secondes
+      }
+      ); 
     }
+
+
     onSubmit(){
-      this.addData() ; 
+      if ((!this.userFile)||(!this.eventService.dataForm.value.date)){
+        this.erreur = true ; 
+        setTimeout(() => {
+          this.erreur = false;
+        }, 3000); // 3000 ms = 3 secondes
+      }
+      else {
+        this.addData() ; 
+        if (this.ajoutEvent == true ) {
+          this.eventService.dataForm.reset() ; 
+        }
+      }
+     this.closeConfirmationDialog() ; 
     }
+    closeConfirmationDialog(){
+       this.showConfirmationDialog = false ; 
+    }
+    openConfirmationDialog(){
+      this.showConfirmationDialog = true;
+    }
+  
+   
+
 }
