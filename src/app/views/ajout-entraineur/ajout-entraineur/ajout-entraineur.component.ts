@@ -59,7 +59,7 @@ export class AjoutEntraineurComponent implements OnInit {
 
 
 
-  /*test(){
+  test(){
     
     console.log("this is a selected date" ,this.addUserForm.value); 
     console.log("this is the selected id_discipline " , this.addUserForm.value.id_discipline )  ; 
@@ -81,7 +81,7 @@ export class AjoutEntraineurComponent implements OnInit {
       }
     ); 
     this.closeConfirmationDialog() ; 
-  }*/
+  }
 
   addUser(){
     console.log ("hello 0 ") ; 

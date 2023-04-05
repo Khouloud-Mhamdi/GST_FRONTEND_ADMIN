@@ -9,7 +9,7 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/gestionnaire/dashboard">Dashboard</a>
+        <a class="nav-link" routerLink="/moderateur">Espace Modérateur </a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,9 +40,15 @@
     <nav class="sidebar">
       <ul class="list-unstyled">
         <li>
-          <a routerLink="/gestionnaire/dashboard">
+          <a routerLink="/moderateur">
             <i class="fa fa-tachometer-alt"></i>
-            Espace moderateur 
+            Espace modérateur 
+          </a>
+        </li>
+        <li>
+          <a routerLink="/moderateur">
+            <i class="fa fa-users"></i>
+            Consultation des membres 
           </a>
         </li>
         <li>
@@ -59,23 +65,7 @@
             </li>
           </ul>
         </li>
-        <li>
-          <a href="#rolesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            <i class="fa fa-user-lock"></i>
-            Gestion des rôles
-          </a>
-          <ul class="collapse list-unstyled" id="rolesSubmenu">
-            <li>
-              <a routerLink="/gestionnaire/addUser">Ajouter un rôle</a>
-            </li>
-            <li>
-              <a routerLink="/gestionnaire/gestionnaires">Liste des gestionnaires </a>
-            </li>
-            <li>
-              <a routerLink="/gestionnaire/moderateurs">Liste des modérateurs</a>
-            </li>
-          </ul>
-        </li>
+       
       </ul>
     </nav>
 

@@ -110,7 +110,7 @@
             <!-- Telephone -->
             <div class="col-lg-4">
               <div class="form-group mg-b-10-force">
-                <label class="form-control-label"> Télephone : </label>
+                <label class="form-control-label"> Télephone : <span class="tx-danger">*</span> </label>
                 <input class="form-control" type="text" name="address" id="telephone" placeholder="Entrez un numéro de telephone  " formControlName="telephone">
               </div>
             </div>
@@ -131,7 +131,8 @@
             </div>
            
           </div><!-- row -->
-        
+          <br> 
+          <br>
           <div class="form-layout-footer">
             <button class="btn btn-info" (click)="openConfirmationDialog()">Ajouter</button>
           </div>

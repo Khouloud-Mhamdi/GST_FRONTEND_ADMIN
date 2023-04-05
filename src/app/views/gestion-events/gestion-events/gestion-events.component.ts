@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EvenementService } from 'src/app/services/evenement.service';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
   selector: 'app-gestion-events',
@@ -8,6 +9,9 @@ import { EvenementService } from 'src/app/services/evenement.service';
   styleUrls: ['./gestion-events.component.css']
 })
 export class GestionEventsComponent implements OnInit {
+  public evenements :any;
+  public evenementsInitiaux :any;
+  // mes variables 
   public events : any ; 
   public eventsInitiaux  :any;
   deleted = false ; 
@@ -32,7 +36,18 @@ export class GestionEventsComponent implements OnInit {
   selectImg = true  ; 
   eventID : any ; 
   showConfirmationDialog = false ; 
-  constructor(public eventService : EvenementService   , public formBuilder : FormBuilder) { }
+  // mes variables 
+ 
+  supprimer=false;
+ 
+ 
+  nb_evenements: number | null = null;
+  itemsPerPage: number = 4; // Nombre d'utilisateurs à afficher par page.
+  totalPages: number = 1; // Nombre total de pages.
+  currentPage: number = 1; // Page actuelle.
+  pages: number[] = []; // Tableau des numéros de page.
+  displayedEvents: any;
+  constructor(public eventService : EvenementService   , public formBuilder : FormBuilder , private UserService :  UtilisateurService ) { }
 
   ngOnInit(): void {
     this.eventService.dataForm = this.formBuilder.group ({
@@ -42,40 +57,70 @@ export class GestionEventsComponent implements OnInit {
       date: [''],
       description : ['', [Validators.required]],
     }) ; 
-    this.getData(); 
+   this.getData() ; 
   }
-  getData() {
-    this.eventService.getAll().subscribe(
-      response =>{this.eventService.listData = response; this.events = response  ; this.eventsInitiaux = response } 
-      
-     );
-   
-  }
+  getData () : void {
+    this.eventService.getAll().subscribe((data)=>{
+    this.eventService.listData = data ; 
+     this.evenements = data;
+     this.nb_evenements = this.evenements.length;
+     this.evenementsInitiaux=data;
+     this.Pagination();
   
-  removeData() {
-   
-    this.eventService.deleteData(this.eventID)
-      .subscribe(
-        (data) => {
-          console.log(data);
-          this.getData();
-          this.deleted = true ; 
-          setTimeout(() => {
-            this.deleted= false;
-          }, 3000);
-        },
-        (error) => {
-          console.log(error) ; 
-          this.erreurDelete = true ; 
-          setTimeout(() => {
-            this.erreurDelete= false;
-          }, 3000);
-        } 
-        );
-        this.closeConfirmationDialog() ; 
-  
+   })
+ }
+
+  Pagination () : void {
+   this.totalPages = Math.ceil(this.evenements.length / this.itemsPerPage);
+   this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
+   this.displayedEvents = this.getUsersForPage(this.currentPage);
   }
-  getDetails(id : number , titre : any , date : any ,  description : any   , lieu : any  )
+  getUsersForPage(page: number): any[] {
+   // Calcul des utilisateurs à afficher pour la page donnée.
+   const startIndex = (page - 1) * this.itemsPerPage;
+   const endIndex = startIndex + this.itemsPerPage;
+   return this.evenements.slice(startIndex, endIndex);
+ }
+
+ goToPage(page: number): void {
+   // Changement de la page actuelle.
+   this.currentPage = page;
+   this.displayedEvents = this.getUsersForPage(page);
+ }
+
+ nextPage(): void {
+   // Passage à la page suivante.
+   if (this.currentPage < this.totalPages) {
+     this.currentPage++;
+     this.displayedEvents = this.getUsersForPage(this.currentPage);
+   }
+ }
+
+ prevPage(): void {
+   // Passage à la page précédente.
+   if (this.currentPage > 1) {
+     this.currentPage--;
+     this.displayedEvents = this.getUsersForPage(this.currentPage);
+   }
+ }
+ onInputChange(): void {
+   if (this.query === '') {
+     this.evenements = this.evenementsInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
+     this.Pagination();
+
+     this.nb_resultats=null;
+   }
+ }
+
+ openConfirmationDialog(id : any) {
+   this.eventID = id;
+   this.showConfirmationDialog = true;
+ }
+ closeConfirmationDialog() {
+   this.showConfirmationDialog = false;
+ }
+
+ getDetails(id : number , titre : any , date : any ,  description : any   , lieu : any  )
   {
         
         this.dataEvent.titre = titre ; 
@@ -112,65 +157,59 @@ export class GestionEventsComponent implements OnInit {
      
       
     }
+ removeData() {
    
-    updateData () {
-      this.eventService.updatEvent(this.dataEvent).subscribe( (data) => {
-        console.log("succée mayssa ! ") ; 
-        this.modified = true ; 
+  this.eventService.deleteData(this.eventID)
+    .subscribe(
+      (data) => {
+        console.log(data);
+        this.getData();
+        this.deleted = true ; 
         setTimeout(() => {
-          this.modified= false;
+          this.deleted= false;
         }, 3000);
-        this.getData() ; 
-        } , 
+      },
+      (error) => {
+        console.log(error) ; 
+        this.erreurDelete = true ; 
+        setTimeout(() => {
+          this.erreurDelete= false;
+        }, 3000);
+      } 
+      );
+      this.closeConfirmationDialog() ; 
 
-        (error) => {
-          this.modifiederreur = true ; 
-          console.log(error) ; 
-          setTimeout(() => {
-            this.modifiederreur= false;
-          }, 3000);
-        } 
-        
-        );  
-    }
+}
 
-   /* search(query : any ){
-      console.log(this.query);
-      this.UserService.RechercherUtilisateur('GESTIONNAIRE',this.query).subscribe((data)=>{
-        this.gestionnaires = data;
-        this.nb_resultats= this.gestionnaires.length;
-        this.Pagination();
-      })
-    }*/
-    search (query : any ) {
-      console.log (this.query) ; 
-      this.eventService.RechercherEvenement(this.query).subscribe((data)=>{
-      this.events = data ; 
-      this.nb_resultats = this.events.length ; 
-      })
-    }
-    onInputChange() {
-    if (this.query === ''){
-      this.events = this.eventsInitiaux ; 
-      this.nb_resultats = null ; 
-      this.getData() ; 
-    }
-    }
-   /* onInputChange(): void {
-      if (this.query === '') {
-        this.gestionnaires = this.GestionnairesInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
-        this.Pagination();
-  
-        this.nb_resultats=null;
-      }
-    }*/
+ updateData () {
+  this.eventService.updatEvent(this.dataEvent).subscribe( (data) => {
+    console.log("succée mayssa ! ") ; 
+    this.modified = true ; 
+    setTimeout(() => {
+      this.modified= false;
+    }, 3000);
+    this.getData() ; 
+    } , 
 
-    openConfirmationDialog(id : any ) {
-         this.eventID = id ; 
-         this.showConfirmationDialog = true  ; 
+    (error) => {
+      this.modifiederreur = true ; 
+      console.log(error) ; 
+      setTimeout(() => {
+        this.modifiederreur= false;
+      }, 3000);
+    } 
+    
+    );  
+}
+  search(query: any){
+   console.log(this.query);
+   this.eventService.RechercherEvenement(this.query).subscribe(
+    (data)=>{
+      this.evenements = data;
+      this.nb_resultats= this.evenements.length;
+      this.Pagination();
     }
-    closeConfirmationDialog() {
-      this.showConfirmationDialog = false ; 
-    }
-
+   )
+ }
+ 
 }

@@ -196,4 +196,7 @@ form {
     background-color: #007bff;
     color: #fff;
   }
- 
+  .modal-content {
+    width: 600px; /* ou toute autre taille que vous souhaitez */
+    margin: auto;
+  }
