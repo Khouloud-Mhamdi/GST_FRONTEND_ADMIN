@@ -41,6 +41,7 @@ const routes: Routes = [
     {path:'profil' , canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/profil/profil.module').then(m=>m.ProfilModule)},
     { path: '', redirectTo: 'profil', pathMatch: 'full' },
     {path:'ajout' , canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/ajout-entraineur/ajout-entraineur.module').then(m=>m.AjoutEntraineurModule)},
+    {path:'consultation' , canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/consultation-membres-moderateur/consultation-membres-moderateur.module').then(m=>m.ConsultationMembresModerateurModule)},
   ]},
 
 

@@ -38,5 +38,11 @@ export class UtilisateurService {
   EnvoyerEmailRefus(mail : any) {
     return this.httpClient.get(this.InscriURL+"/refus/"+ mail);
   }
-
+  //partie moderateur ( consultation des membres )
+  consulterMembreParModerateur(discipline : any ){
+    return this.httpClient.get(this.InscriURL+"/membres/" + discipline ) ; 
+  }
+  RechercherMembreParModerateur(critere : any , discipline : any ) {
+    return this.httpClient.get(this.InscriURL+"/rechercheMembres/" + critere + "/" + discipline ) ; 
+  }
 }
