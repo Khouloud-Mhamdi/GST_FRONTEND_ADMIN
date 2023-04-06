@@ -129,3 +129,7 @@ form {
     color: #fff;
   }
   
+  .modal-content {
+    width: 500px; /* ou toute autre taille que vous souhaitez */
+    margin: auto;
+  }

@@ -157,4 +157,5 @@ export class ConsultationMembresModerateurComponent implements OnInit {
     this.infoMembre.discipline = discipline ;     
   }
   
+  
 }
