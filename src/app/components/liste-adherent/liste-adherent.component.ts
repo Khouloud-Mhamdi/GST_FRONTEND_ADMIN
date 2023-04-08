@@ -20,7 +20,7 @@ export class ListeAdherentComponent implements OnInit {
   nb_resultats: number | null = null;
   nb_adherents: number | null = null;
 
-  itemsPerPage: number = 2; // Nombre d'utilisateurs à afficher par page.
+  itemsPerPage: number = 1; // Nombre d'utilisateurs à afficher par page.
   totalPages: number = 1; // Nombre total de pages.
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.

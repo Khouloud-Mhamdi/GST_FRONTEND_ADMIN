@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AjoutEntraineurComponent } from './ajout-entraineur/ajout-entraineur.component';
+import { AddEntraineurComponent } from './add-entraineur/add-entraineur.component';
 
 const routes: Routes = [
-  {
-    path:'' , component : AjoutEntraineurComponent
-  }
+  {path : '' , component : AddEntraineurComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AjoutEntraineurRoutingModule { }
+export class AddEntraineurRoutingModule { }

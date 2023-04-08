@@ -3,12 +3,12 @@
 <div class="br-mainpanel">
     <div class="br-pageheader pd-y-15 pd-l-20">
       <nav class="breadcrumb pd-0 mg-0 tx-12">
-        <a class="breadcrumb-item" href="#">Gestion des entraineurs </a>
-        <span class="breadcrumb-item active">Ajouter un entraineur  </span>
+        <a class="breadcrumb-item" href="#">Gestion de roles </a>
+        <span class="breadcrumb-item active">Ajouter utilisateur </span>
       </nav>
     </div><!-- br-pageheader -->
     <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-      <h4 class="tx-gray-800 mg-b-5">Ajouter un nouveau entraineur  </h4>
+      <h4 class="tx-gray-800 mg-b-5">Ajouter un nouveau utilisateur </h4>
     </div>
    <!--alerte de confirmation -->
  <div class="container">
@@ -16,7 +16,7 @@
     <div class="col-md-12">
       <div class="alert alert-info confirmation-dialog" role="alert" *ngIf="showConfirmationDialog">
         <h4 class="alert-heading">Confirmation</h4>
-        <p>Voulez vous vraiment ajouter cet entraineur ? </p>
+        <p>Un mot de passe sera envoyé à l'utilisateur par mail </p>
         <hr>
         <div class="button-container">
           <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialog()">Annuler</button>
@@ -28,7 +28,7 @@
 </div>
 <!--alert de succée -->
 <div class="alert alert-success" role="alert"  *ngIf="ajout" >
-  <strong class="d-block d-sm-inline-block-force"> un nouveau entraineur est ajouté avec succés </strong>
+  <strong class="d-block d-sm-inline-block-force"> un nouveau utilisateur est ajouté avec succés </strong>
 </div>
  <!--alert alert d'erreur -->
 
@@ -45,34 +45,34 @@
 
           <!--debut de formulare -->
 
-         <form [formGroup]="addUserForm" >
+         <form [formGroup]="EntraineurForm " >
           <div class="row mg-b-25">
             <!--nom-->
             <div class="col-lg-4">
               <div class="form-group">
                 <label class="form-control-label">Nom : <span class="tx-danger">*</span></label>
-                <input class="form-control" type="text" name="nom" id="firstname" placeholder="Entrez un nom " formControlName="nom" >
-                <div *ngIf="addUserForm.controls['nom'].invalid && (
-              addUserForm.controls['nom'].touched || addUserForm.controls['nom'].dirty
+                <input class="form-control" class="form-control" type="text" name="nom" id="firstname" placeholder="Entrez un nom " formControlName="nom" >
+                <div *ngIf="EntraineurForm .controls['nom'].invalid && (
+              EntraineurForm .controls['nom'].touched || EntraineurForm .controls['nom'].dirty
             )">
-                 <div *ngIf ="addUserForm.controls['nom'].errors?.['required']" class="red"> Ce champ est obligatoire  </div>
-                 <div  *ngIf ="addUserForm.controls['nom'].errors?.['minlength']" class="red"> Au mois 3 caractéres  </div>
+                 <div *ngIf ="EntraineurForm .controls['nom'].errors?.['required']" class="red"> Ce champ est obligatoire  </div>
+                 <div  *ngIf ="EntraineurForm .controls['nom'].errors?.['minlength']" class="red"> Au mois 3 caractéres  </div>
 
             </div>
               </div>
 
             </div>
 
-            <!--prénom-->
+            <!--prenom-->
             <div class="col-lg-4">
               <div class="form-group">
                 <label class="form-control-label">Prénom : <span class="tx-danger">*</span></label>
                 <input class="form-control" type="text" name="prenom"  placeholder="Entrez un prenom " id="lastname" formControlName="prenom">
-                <div *ngIf="addUserForm.controls['prénom'].invalid && (
-                  addUserForm.controls['prénom'].touched || addUserForm.controls['prénom'].dirty
+                <div *ngIf="EntraineurForm .controls['prenom'].invalid && (
+                  EntraineurForm .controls['prenom'].touched || EntraineurForm .controls['prenom'].dirty
                 )">
-                     <div *ngIf ="addUserForm.controls['prénom'].errors?.['required']" class="red"> Ce champ est obligatoire  </div>
-                     <div  *ngIf ="addUserForm.controls['prénom'].errors?.['minlength']" class="red"> Au moins 3 caractére  </div>
+                     <div *ngIf ="EntraineurForm .controls['prenom'].errors?.['required']" class="red"> Ce champ est obligatoire  </div>
+                     <div  *ngIf ="EntraineurForm .controls['prenom'].errors?.['minlength']" class="red"> Au moins 3 caractére  </div>
 
                 </div>
               </div>
@@ -83,11 +83,11 @@
               <div class="form-group">
                 <label class="form-control-label">Email : <span class="tx-danger">*</span></label>
                 <input class="form-control" type="text" name="email"  placeholder="Entrez un E-mail " id="email" formControlName="email">
-                <div *ngIf="addUserForm.controls['email'].invalid && (
-                  addUserForm.controls['email'].touched || addUserForm.controls['email'].dirty
+                <div *ngIf="EntraineurForm .controls['email'].invalid && (
+                  EntraineurForm .controls['email'].touched || EntraineurForm .controls['email'].dirty
                 )">
-                     <div *ngIf ="addUserForm.controls['email'].errors?.['required']" class="red">  Ce champ est obligatoire </div>
-                     <div *ngIf ="addUserForm.controls['email'].errors?.['email']" class="red"> Email est incorrecte </div>
+                     <div *ngIf ="EntraineurForm .controls['email'].errors?.['required']" class="red">  Ce champ est obligatoire </div>
+                     <div *ngIf ="EntraineurForm .controls['email'].errors?.['email']" class="red"> Email est incorrecte </div>
 
                 </div>
               </div>
@@ -97,12 +97,11 @@
               <div class="form-group mg-b-10-force">
                 <label class="form-control-label">Adresse :  <span class="tx-danger">*</span></label>
                 <input class="form-control" type="text" name="address" placeholder="Entrez une adresse " formControlName="adresse">
-                
-                <div *ngIf="addUserForm.controls['adresse'].invalid && (
-                  addUserForm.controls['adresse'].touched || addUserForm.controls['adresse'].dirty
+                <div *ngIf="EntraineurForm .controls['adresse'].invalid && (
+                  EntraineurForm .controls['adresse'].touched || EntraineurForm .controls['adresse'].dirty
                 )">
-                     <div *ngIf ="addUserForm.controls['adresse'].errors?.['required']" class="red"> Ce champ est obligatoire  </div>
-                     <div  *ngIf ="addUserForm.controls['adresse'].errors?.['minlength']" class="red"> Au mois 3 caractéres  </div>
+                     <div *ngIf ="EntraineurForm .controls['adresse'].errors?.['required']" class="red"> Ce champ est obligatoire  </div>
+                     <div  *ngIf ="EntraineurForm .controls['adresse'].errors?.['minlength']" class="red"> Au mois 3 caractéres  </div>
                 </div>
               </div>
             </div>
@@ -110,17 +109,18 @@
             <!-- Telephone -->
             <div class="col-lg-4">
               <div class="form-group mg-b-10-force">
-                <label class="form-control-label"> Télephone : <span class="tx-danger">*</span> </label>
+                <label class="form-control-label"> Télephone : </label>
                 <input class="form-control" type="text" name="address" id="telephone" placeholder="Entrez un numéro de telephone  " formControlName="telephone">
               </div>
-            </div>
-            <!-- date de naissance  -->
-            <div class="col-lg-4">
-              <label for="nom">Date de naissance: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="date" id="example-date-input" formControlName="naissance" placeholder="Entrez une date de naissance "  >
-               </div>
-             <!-- discipline_id -->
-             <div class="col-lg-4"  >
+            </div> 
+             <!-- date de naissance  -->
+             <div class="col-lg-4">
+                <label for="nom">Date de naissance: <span class="tx-danger">*</span></label>
+                    <input class="form-control" type="date" id="example-date-input" formControlName="naissance" placeholder="Entrez une date de naissance "  >
+                 </div>
+          
+            <!-- discipline_id -->
+            <div class="col-lg-4"   >
               <div class="form-group mg-b-10-force">
                 <label for="c" class="form-control-label">Discipline : <span class="tx-danger">*</span></label>
                 <select  class="form-control"  formControlName="id_discipline" id="c" >
@@ -129,10 +129,8 @@
                 </select>
               </div>
             </div>
-           
           </div><!-- row -->
-          <br> 
-          <br>
+
           <div class="form-layout-footer">
             <button class="btn btn-info" (click)="openConfirmationDialog()">Ajouter</button>
           </div>
@@ -142,14 +140,6 @@
       </div>
 
   </div>
-
-  
-
-
-
-
-
-
 
 
   <div id="modaldemo" class="modal fade effect-scale">
