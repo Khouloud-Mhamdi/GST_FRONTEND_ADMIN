@@ -11,42 +11,36 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/moderateur">Espace Modérateur </a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/moderateur/consultation">Consultation des membres  </a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Gestion des entraineurs 
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/moderateur/ajout" >Ajouter un entraineur </a>
+          <a class="dropdown-item" routerLink="/moderateur/addEntraineur" >Ajouter un entraineur </a>
           <a class="dropdown-item" routerLink="/moderateur/entraineurs"> Liste des entraineurs </a>
-          <a class="dropdown-item" routerLink="/gestionnaire/gestionnaires"> Liste des gestionnaires</a>
+         
         </div>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Gestion des adhérents
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-          <a class="dropdown-item" routerLink="/gestionnaire/adherents"> Liste des adhérents</a>
-
-        </div>
-      </li>
+     
     </ul>
   </div>
 </nav>
 <div class="br-sideleft overflow-y-auto">
-  <label class="sidebar-label pd-x-15 mg-t-20">Navigation</label>
+  <label class="sidebar-label pd-x-15 mg-t-20">Navigation </label>
   <div class="br-sideleft-menu">
     <nav class="sidebar">
       <ul class="list-unstyled">
         <li>
           <a routerLink="/moderateur">
-            <i class="fa fa-tachometer-alt"></i>
+            <i></i>
             Espace modérateur 
           </a>
         </li>
         <li>
-          <a routerLink="/moderateur">
+          <a routerLink="/moderateur/consultation">
             <i class="fa fa-users"></i>
             Consultation des membres 
           </a>
@@ -58,7 +52,7 @@
           </a>
           <ul class="collapse list-unstyled" id="adherentsSubmenu">
             <li>
-              <a routerLink="/moderateur/ajout">Ajouter un entraineur </a>
+              <a routerLink="/moderateur/addEntraineur">Ajouter un entraineur </a>
             </li>
             <li>
               <a routerLink="/moderateur/entraineurs">Liste des entraineurs </a>
@@ -88,7 +82,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/gestionnaire/dashboard">Dashboard</a>
+          <a class="nav-link" routerLink="/moderateur">Espace moderateur </a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -40,7 +40,8 @@ const routes: Routes = [
     {path:'entraineurs' ,  canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/gestion-entraineurs/gestion-entraineurs.module').then(m=>m.GestionEntraineursModule)},
     {path:'profil' , canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/profil/profil.module').then(m=>m.ProfilModule)},
     { path: '', redirectTo: 'profil', pathMatch: 'full' },
-    {path:'ajout' , canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/ajout-entraineur/ajout-entraineur.module').then(m=>m.AjoutEntraineurModule)},
+    {path:'addEntraineur' , canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/add-entraineur/add-entraineur.module').then(m=>m.AddEntraineurModule)},
+    {path:'consultation' , canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/consultation-membres-moderateur/consultation-membres-moderateur.module').then(m=>m.ConsultationMembresModerateurModule)},
   ]},
 
 
