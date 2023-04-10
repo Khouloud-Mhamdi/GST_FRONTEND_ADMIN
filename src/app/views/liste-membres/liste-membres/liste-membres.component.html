@@ -5,8 +5,8 @@
   <div class="row">
     <div class="col-md-12">
       <div class="alert alert-danger confirmation-dialog" role="alert" *ngIf="showConfirmationDialog">
-        <h4 class="alert-heading">Confirmation de refus</h4>
-        <p>Voulez-vous vraiment refuser cette demande d'inscription ?</p>
+        <h4 class="alert-heading">Confirmation de suppression</h4>
+        <p>Voulez-vous vraiment supprimer ce membre ?</p>
         <hr>
         <div class="button-container">
           <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialog()">Annuler</button>
@@ -37,9 +37,9 @@
     </button>
     <strong class="d-block d-sm-inline-block-force">Ce membre est suppimé avec succés!</strong>
     <br>
-   
+
   </div><!-- alert -->
- 
+
   <div class="br-pagebody">
     <div class="br-section-wrapper">
 
@@ -63,9 +63,9 @@
               <th class="wd-15p">Adresse</th>
                <th class="wd-15p">Date de naissance</th>
                <th class="wd-15p">Lieu de naissance</th>
-               
 
-              
+
+
                <th class="wd-15p">Discipline</th>
               <th class="wd-15p">Action</th>
             </tr>
@@ -126,14 +126,14 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          
+
           <img src="assets/photos/membre.png" height="200">
         </div>
         <h2>Coordonnées</h2>
         <br>
         <h4> <strong>Nom :</strong> {{membreDetails.nom}}</h4>
         <h4> <strong>Prenom :</strong>  {{membreDetails.prenom}}</h4>
-        
+
         <h4><strong>Email :</strong> {{membreDetails.email}}</h4>
         <h4><strong>Telephone : </strong>{{membreDetails.telephone}}</h4>
         <h4><strong>Adresse :</strong>{{membreDetails.adresse}} </h4>
@@ -146,7 +146,7 @@
         <h4><strong>Discipline :</strong> {{membreDetails.discipline}}</h4>
         <h4><strong>Date d'inscription :</strong>{{membreDetails.date_inscription}} </h4>
         <h4><strong>Mode de paiement :</strong>{{membreDetails.mode_paiement}} </h4>
-        
+
         <br>
 
         <h2>Autres informations</h2>
@@ -154,13 +154,13 @@
         <h4 *ngIf="membreDetails.relation"> De <strong>{{membreDetails.NomAdherent}}  {{membreDetails.PrenomAdherent}} </strong></h4>
         <h4><strong>Profession  :</strong> {{membreDetails.Profession}} </h4>
         <h4><strong>Catégorie : </strong>{{membreDetails.stegiste}}</h4>
-        
-        
-       
+
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-       
+
       </div>
     </div>
   </div>
