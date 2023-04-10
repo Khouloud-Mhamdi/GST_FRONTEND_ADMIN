@@ -16,6 +16,6 @@ export class ModerateurLayoutComponent implements OnInit {
   }
   deconnect(){
     this.token.signOut(); 
-    
+    this.router.navigate(['']);
    }
 }

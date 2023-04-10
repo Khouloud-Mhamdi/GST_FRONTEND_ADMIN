@@ -17,6 +17,10 @@ export class GestionEntraineursComponent implements OnInit {
   public entraineursInitiaux :any;
   public modified = false ; 
   public modifiederreur = false ; 
+  
+
+  NomDiscipline : any ; 
+  IdDiscipline : any ; 
 
   query :any;
   supprimer=false;
@@ -169,7 +173,7 @@ export class GestionEntraineursComponent implements OnInit {
     }
 
  // getDetails(a.nom , a.prenom , a.naissance , a.email , a.telephone , a.adresse , a.discipline.discipline)
-   getDetailsForUpdate (id : number , nom : any , prenom : any , naissance : any , email : any , telephone : any , adresse : any  ) {
+   getDetailsForUpdate (id : number , nom : any , prenom : any , naissance : any , email : any , telephone : any , adresse : any , nomDis : any , idDis : any  ) {
   this.dataEntraineur.id = id ; 
   this.dataEntraineur.nom = nom ; 
   this.dataEntraineur.prenom = prenom ; 
@@ -177,6 +181,9 @@ export class GestionEntraineursComponent implements OnInit {
   this.dataEntraineur.email = email ; 
   this.dataEntraineur.telephone = telephone ; 
   this.dataEntraineur.adresse = adresse ; 
+
+  this.NomDiscipline = nomDis ; 
+  this.IdDiscipline = idDis ; 
   
    }
    getDetails(id : number , nom : any , prenom : any , naissance : any , email : any , telephone : any , adresse : any , discipline : any )
@@ -191,7 +198,7 @@ export class GestionEntraineursComponent implements OnInit {
    }
    
    updateEntraineur() {
-      this.entraineurService.updateEntraineur(this.dataEntraineur , this.disForm.value.id_discipline).subscribe(
+      this.entraineurService.updateEntraineur(this.dataEntraineur ).subscribe(
         (data)=>{
          this.modified = true ; 
          setTimeout(() => {
