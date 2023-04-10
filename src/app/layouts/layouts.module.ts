@@ -8,6 +8,7 @@ import { ModerateurLayoutComponent } from './moderateur-layout/moderateur-layout
 import { GestionnaireLayoutComponent } from './gestionnaire-layout/gestionnaire-layout.component';
 import { ForgetPasswordLayoutComponent } from './forget-password-layout/forget-password-layout.component';
 import { ResetPasswordLayoutComponent } from './reset-password-layout/reset-password-layout.component';
+import { ErreurPageComponent } from './erreur-page/erreur-page.component';
 
 
 
@@ -18,7 +19,8 @@ import { ResetPasswordLayoutComponent } from './reset-password-layout/reset-pass
     ModerateurLayoutComponent,
     GestionnaireLayoutComponent,
     ForgetPasswordLayoutComponent,
-    ResetPasswordLayoutComponent
+    ResetPasswordLayoutComponent,
+    ErreurPageComponent
   ],
   imports: [
     CommonModule,

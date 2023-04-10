@@ -15,7 +15,7 @@ export class ModerateurGuardGuard implements CanActivate {
     if (role === 'MODERATEUR') {
       return true;
     } else {
-      this.router.navigate (['/admin/dashboard']);
+      this.router.navigate (['/erreur']);
       return false;
     }
   }

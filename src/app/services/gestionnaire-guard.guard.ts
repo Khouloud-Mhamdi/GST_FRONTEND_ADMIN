@@ -14,7 +14,7 @@ export class GestionnaireGuardGuard implements CanActivate {
     if (role === 'GESTIONNAIRE') {
       return true;
     } else {
-      this.router.navigate (['/admin/dashboard']);
+      this.router.navigate (['/erreur']);
       return false;
     }
   }

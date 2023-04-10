@@ -45,7 +45,7 @@ export class LoginLayoutComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.role = this.tokenStorage.getUser().role;
-        if (this.role === 'ADHERENT') {
+        if (this.role === 'ADMIN') {
           // Rediriger vers la page d'administration
           this.router.navigate(['/admin']);
         } else if (this.role === 'GESTIONNAIRE') {
@@ -56,7 +56,9 @@ export class LoginLayoutComponent implements OnInit {
           // Rediriger vers la page de gestionnaire
           this.router.navigate(['/moderateur']);
         }
-
+       else {
+        this.router.navigate(['/erreur']) ; 
+       }
 
 
       },

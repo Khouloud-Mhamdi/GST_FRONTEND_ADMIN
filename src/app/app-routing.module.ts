@@ -13,42 +13,44 @@ import { AdminGuardGuard } from './services/admin-guard.guard';
 
 import { GestionnaireGuardGuard } from './services/gestionnaire-guard.guard';
 import { ModerateurGuardGuard } from './services/moderateur-guard.guard';
+import { ErreurPageComponent } from './layouts/erreur-page/erreur-page.component';
 
 
 
 const routes: Routes = [
 
+  {path:'erreur' , component: ErreurPageComponent   },
   {path:'' , component: LoginLayoutComponent   },
   {path:'forgetPassword' , component: ForgetPasswordLayoutComponent   },
   {path:'resetPassword' , component: ResetPasswordLayoutComponent   },
 
 
   {path:'admin' , component:AdminLayoutComponent  ,children:[
-    {path:'dashboard' , loadChildren:()=>import('./views/dashboard/dashboard.module').then(m=>m.DashboardModule)},
+    {path:'dashboard' , canActivate: [AdminGuardGuard]  , loadChildren:()=>import('./views/dashboard/dashboard.module').then(m=>m.DashboardModule)},
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     {path:'addUser' ,  canActivate: [AdminGuardGuard] ,loadChildren:()=>import('./views/add-user/add-user.module').then(m=>m.AddUserModule)},
     {path:'profil' , loadChildren:()=>import('./views/profil/profil.module').then(m=>m.ProfilModule)},
 
-    {path:'adherents' , loadChildren:()=>import('./views/liste-adherents/liste-adherents.module').then(m=>m.ListeAdherentsModule)},
-    {path:'gestionnaires' , loadChildren:()=>import('./views/liste-gestionnaires/liste-gestionnaires.module').then(m=>m.ListeGestionnairesModule)},
-    {path:'moderateurs' , loadChildren:()=>import('./views/liste-moderateurs/liste-moderateurs.module').then(m=>m.ListeModerateursModule)},
-    {path:'addEvent' ,loadChildren:()=>import('./views/ajout-event/ajout-event.module').then(m=>m.AjoutEventModule) } ,
-    {path:'listeEvents' ,loadChildren:()=>import('./views/gestion-events/gestion-events.module').then(m=>m.GestionEventsModule) }
+    {path:'adherents' ,  canActivate: [AdminGuardGuard] , loadChildren:()=>import('./views/liste-adherents/liste-adherents.module').then(m=>m.ListeAdherentsModule)},
+    {path:'gestionnaires' , canActivate: [AdminGuardGuard] , loadChildren:()=>import('./views/liste-gestionnaires/liste-gestionnaires.module').then(m=>m.ListeGestionnairesModule)},
+    {path:'moderateurs', canActivate: [AdminGuardGuard] , loadChildren:()=>import('./views/liste-moderateurs/liste-moderateurs.module').then(m=>m.ListeModerateursModule)},
+    {path:'addEvent' , canActivate: [AdminGuardGuard] , loadChildren:()=>import('./views/ajout-event/ajout-event.module').then(m=>m.AjoutEventModule) } ,
+    {path:'listeEvents' , canActivate: [AdminGuardGuard] , loadChildren:()=>import('./views/gestion-events/gestion-events.module').then(m=>m.GestionEventsModule) }
 
   ]},
   {path:'moderateur' , component:ModerateurLayoutComponent , children:[
     {path:'entraineurs' ,  canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/gestion-entraineurs/gestion-entraineurs.module').then(m=>m.GestionEntraineursModule)},
     {path:'profil' , canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/profil/profil.module').then(m=>m.ProfilModule)},
     { path: '', redirectTo: 'profil', pathMatch: 'full' },
-    {path:'addEntraineur' , canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/add-entraineur/add-entraineur.module').then(m=>m.AddEntraineurModule)},
+    {path:'addEntraineur' ,  canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/add-entraineur/add-entraineur.module').then(m=>m.AddEntraineurModule)},
     {path:'consultation' , canActivate: [ModerateurGuardGuard]  , loadChildren:()=>import('./views/consultation-membres-moderateur/consultation-membres-moderateur.module').then(m=>m.ConsultationMembresModerateurModule)},
   ]},
 
 
   {path:'gestionnaire' , component:GestionnaireLayoutComponent ,children:[
 
-    {path:'dashboard' , loadChildren:()=>import('./views/dashboard/dashboard.module').then(m=>m.DashboardModule)},
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    
+    { path: '', redirectTo: 'profil', pathMatch: 'full' },
     {path:'profil' , loadChildren:()=>import('./views/profil/profil.module').then(m=>m.ProfilModule)},
     {path:'liste' , canActivate: [GestionnaireGuardGuard]  , loadChildren:()=>import('./views/confirmer-inscriptions/confirmer-inscriptions.module').then(m=>m.ConfirmerInscriptionsModule)},
 

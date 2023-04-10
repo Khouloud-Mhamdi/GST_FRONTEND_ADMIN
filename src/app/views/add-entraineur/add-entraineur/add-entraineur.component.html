@@ -4,11 +4,11 @@
     <div class="br-pageheader pd-y-15 pd-l-20">
       <nav class="breadcrumb pd-0 mg-0 tx-12">
         <a class="breadcrumb-item" href="#">Gestion de roles </a>
-        <span class="breadcrumb-item active">Ajouter utilisateur </span>
+        <span class="breadcrumb-item active">Ajouter Entraineur </span>
       </nav>
     </div><!-- br-pageheader -->
     <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-      <h4 class="tx-gray-800 mg-b-5">Ajouter un nouveau utilisateur </h4>
+      <h4 class="tx-gray-800 mg-b-5">Ajouter un nouveau Entraineur </h4>
     </div>
    <!--alerte de confirmation -->
  <div class="container">
@@ -16,7 +16,7 @@
     <div class="col-md-12">
       <div class="alert alert-info confirmation-dialog" role="alert" *ngIf="showConfirmationDialog">
         <h4 class="alert-heading">Confirmation</h4>
-        <p>Un mot de passe sera envoyé à l'utilisateur par mail </p>
+        <p>Voulez vous vraiment ajouter cet entraineur </p>
         <hr>
         <div class="button-container">
           <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialog()">Annuler</button>
@@ -28,7 +28,7 @@
 </div>
 <!--alert de succée -->
 <div class="alert alert-success" role="alert"  *ngIf="ajout" >
-  <strong class="d-block d-sm-inline-block-force"> un nouveau utilisateur est ajouté avec succés </strong>
+  <strong class="d-block d-sm-inline-block-force"> un nouveau Entraineur est ajouté avec succés </strong>
 </div>
  <!--alert alert d'erreur -->
 

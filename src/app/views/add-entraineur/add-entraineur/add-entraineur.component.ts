@@ -57,52 +57,7 @@ export class AddEntraineurComponent implements OnInit {
     this.clubs = data ;
     })
   }
- /* addUser(){
-    if((!this.controleSaisieNom())||(!this.controleSaisiePrénom())||(!this.controleSaisieTelephone())||(!this.controleSaisieEmail()))
-    {this.valid=true;
-      console.log(this.valid);
-      setTimeout(() => {
-        this.valid = false;
-      }, 3000);
-
-  }
-    else{
-      this.authService.ExistEmail(this.EntraineurForm .value.email).subscribe(
-        (exist:boolean) => {
-          if (exist === true )
-          {this.erreur=true;
-
-            setTimeout(() => {
-              this.erreur = false;
-            }, 4000);}
-          }
-
-      )
-
-    console.log(this.EntraineurForm .value);
-    this.authService.addNewUser(this.EntraineurForm .value).subscribe(
-      (data) => {
-
-        console.log(data);
-        this.ajout=true;
-        setTimeout(() => {
-          this.ajout = false;
-        }, 3000); // 3000 ms = 3 secondes
-      },
-      (err) => {
-        console.log("here error from BE", err);
-        this.emailExistence=err;
-
-        this.valid=true;
-        setTimeout(() => {
-          this.valid = false;
-        }, 3000); // 3000 ms = 3 secondes
-      }
-
-    );}
-    this.closeConfirmationDialog();
-  }*/
-
+ 
  
   addUser(){
     this.pass = true ; 
