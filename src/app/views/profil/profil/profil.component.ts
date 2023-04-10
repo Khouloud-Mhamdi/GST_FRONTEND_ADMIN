@@ -47,7 +47,7 @@ export class ProfilComponent implements OnInit {
             this.showConfirmationDialog = false;
             this.erreur = true;
             setTimeout(() => {
-              
+
               this.erreur = false;
 
             }, 4000);
@@ -117,7 +117,7 @@ export class ProfilComponent implements OnInit {
 
     const nomInput = document.getElementById("firstName") as HTMLInputElement;
     console.log(nomInput);
-    const regex =/^[a-zA-Z]{3,}$/ ;
+    const regex =/^[a-zA-Z\s]{3,}$/ ;
     if (!regex.test(this.user.nom)) {
       nomInput.classList.add("invalid");
 
@@ -131,7 +131,7 @@ export class ProfilComponent implements OnInit {
 
     const nomInput = document.getElementById("lastName") as HTMLInputElement;
 
-    const regex =/^[a-zA-Z]{3,}$/ ;
+    const regex =/^[a-zA-Z\s]{3,}$/ ;
     if (!regex.test(this.user.prenom)) {
       nomInput.classList.add("invalid");
 

@@ -40,7 +40,7 @@ export class AddUserComponent implements OnInit {
      this.getAllclubs();
      this.titleService.setTitle('Ajouter Utilisateur ');
 
-    console.log("data here : " , this.clubs ) ; 
+    console.log("data here : " , this.clubs ) ;
 
   }
 
@@ -124,7 +124,7 @@ export class AddUserComponent implements OnInit {
 
     const nomInput = document.getElementById("firstname") as HTMLInputElement;
     console.log(nomInput);
-    const regex =/^[a-zA-Z]{3,}$/ ;
+    const regex =/^[a-zA-Z\s]{3,}$/ ;
     if (!regex.test(this.addUserForm.value.firstName)) {
       nomInput.classList.add("invalid");
 
@@ -138,7 +138,7 @@ export class AddUserComponent implements OnInit {
 
     const nomInput = document.getElementById("lastname") as HTMLInputElement;
     console.log(nomInput);
-    const regex =/^[a-zA-Z]{3,}$/ ;
+    const regex =/^[a-zA-Z\s]{3,}$/ ;
     if (!regex.test(this.addUserForm.value.lastName)) {
       nomInput.classList.add("invalid");
 

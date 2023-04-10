@@ -205,3 +205,12 @@ form {
     max-height: 200px; /* Remplacez 200px par la hauteur souhaitée */
     overflow-y: auto; /* Ajoute une barre de défilement verticale si la liste est plus longue que la hauteur spécifiée */
   }
+  .table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+#datatable1 {
+  width: 100%;
+
+}
