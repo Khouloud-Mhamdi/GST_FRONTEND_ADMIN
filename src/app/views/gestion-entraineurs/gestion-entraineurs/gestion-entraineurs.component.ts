@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { DisciplineService } from 'src/app/services/discipline.service';
 import { EntraineurService } from 'src/app/services/entraineur.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
@@ -48,9 +49,10 @@ export class GestionEntraineursComponent implements OnInit {
     adresse : '' , 
     discipline : '' , 
   }
-  constructor(private UserService :  UtilisateurService , private entraineurService : EntraineurService , public disciplineService : DisciplineService  , private formBuilder : FormBuilder) { }
+  constructor(private titleService: Title ,private UserService :  UtilisateurService , private entraineurService : EntraineurService , public disciplineService : DisciplineService  , private formBuilder : FormBuilder) { }
   
   ngOnInit(): void {
+  this.titleService.setTitle("Liste des entraineurs")
     this.disForm= this.formBuilder.group({
       
       id_discipline : ["", [Validators.required]]

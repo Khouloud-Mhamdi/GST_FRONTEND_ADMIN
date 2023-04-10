@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
@@ -21,9 +22,10 @@ export class ListeModerateursComponent implements OnInit {
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
   displayedUsers: any; 
-  constructor(private UserService :  UtilisateurService) { }
+  constructor(private titleService: Title ,private UserService :  UtilisateurService) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Liste des modérateurs")
     this.ListeDesUtilisateurs();
   }
   ListeDesUtilisateurs () : void {

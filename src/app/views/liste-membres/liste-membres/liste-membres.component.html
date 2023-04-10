@@ -1,1 +1,167 @@
-<p>liste-membres works!</p>
+
+
+ <!-- Alerte de confirmation -->
+ <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-danger confirmation-dialog" role="alert" *ngIf="showConfirmationDialog">
+        <h4 class="alert-heading">Confirmation de refus</h4>
+        <p>Voulez-vous vraiment refuser cette demande d'inscription ?</p>
+        <hr>
+        <div class="button-container">
+          <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialog()">Annuler</button>
+          <button class="btn btn-danger confirm-button" (click)="deleteInscription()">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- Alerte de confirmation -->
+ <div class="br-mainpanel">
+  <div class="br-pageheader pd-y-15 pd-l-20">
+    <nav class="breadcrumb pd-0 mg-0 tx-12">
+
+      <span class="breadcrumb-item" >Gestion des adhérents</span>
+      <span class="breadcrumb-item active">Liste des adhérents</span>
+    </nav>
+  </div><!-- br-pageheader -->
+  <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+    <h4 class="tx-gray-800 mg-b-5">Liste des adhérents</h4>
+
+
+  </div>
+
+  <div class="alert alert-success" role="alert"  *ngIf="supprimer" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong class="d-block d-sm-inline-block-force">Ce membre est suppimé avec succés!</strong>
+    <br>
+   
+  </div><!-- alert -->
+ 
+  <div class="br-pagebody">
+    <div class="br-section-wrapper">
+
+
+
+      <form style="width: 70%;margin-bottom: 3%;">
+        <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom, prénom, email, discipline, stegiste, non_stegiste"  (input)="onInputChange()">
+        <button  type="submit" (click)="search(query)">Rechercher</button>
+      </form>
+      <p *ngIf="nb_resultats !== null"> {{nb_resultats}} résultats trouvés sur {{nb_membres}}</p>
+      <div class="table-wrapper">
+
+        <table id="datatable1" class="table display responsive nowrap">
+          <thead>
+            <tr>
+              <th class="wd-15p">Id d'inscription</th>
+              <th class="wd-15p" >Nom</th>
+              <th class="wd-20p">Prénom</th>
+              <th class="wd-15p">E-mail</th>
+              <th class="wd-15p">Télephone</th>
+              <th class="wd-15p">Adresse</th>
+               <th class="wd-15p">Date de naissance</th>
+               <th class="wd-15p">Lieu de naissance</th>
+               
+
+              
+               <th class="wd-15p">Discipline</th>
+              <th class="wd-15p">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of displayedUsers">
+              <td>{{a[0]}}</td>
+              <td>{{a[1]}}</td>
+              <td>{{a[2]}}</td>
+              <td>{{a[3]}}</td>
+              <td>{{a[4]}}</td>
+              <td>{{a[5]}}</td>
+              <td>{{a[7]}}</td>
+              <td>{{a[6]}}</td>
+              <td>{{a[17]}}</td>
+
+
+                <td  >
+
+                  <button type="button"    class="btn btn-info" data-toggle="modal" data-target="#exampleModal11" (click)="getDetails(a[0] ,a[1] , a[2] , a[3] , a[4] , a[5] , a[7] ,a[6] , a[17], a[11] ,a[13],  a[14],  a[8],a[16] , a[9] , a[10])">Consulter</button></td>
+                  <td  >
+                    <button type="button"  (click)="openConfirmationDialog(a[0],a[3],a[15])" class="btn btn-danger">Supprimer</button></td>
+            </tr>
+
+
+          </tbody>
+        </table>
+        <div class="pagination">
+          <button class="prev" [disabled]="currentPage == 1" (click)="prevPage()">Précédent</button>
+
+          <ng-container *ngFor="let page of pages">
+            <button class="page" [class.active]="currentPage === page" (click)="goToPage(page)">{{ page }}</button>
+          </ng-container>
+
+          <button class="next" [disabled]="currentPage == totalPages" (click)="nextPage()">Suivant</button>
+        </div>
+
+      </div><!-- table-wrapper -->
+
+
+
+
+
+
+    </div><!-- br-section-wrapper -->
+  </div><!-- br-pagebody -->
+
+</div><!-- br-mainpanel -->
+
+<div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Membre  </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          
+          <img src="assets/photos/membre.png" height="200">
+        </div>
+        <h2>Coordonnées</h2>
+        <br>
+        <h4> <strong>Nom :</strong> {{membreDetails.nom}}</h4>
+        <h4> <strong>Prenom :</strong>  {{membreDetails.prenom}}</h4>
+        
+        <h4><strong>Email :</strong> {{membreDetails.email}}</h4>
+        <h4><strong>Telephone : </strong>{{membreDetails.telephone}}</h4>
+        <h4><strong>Adresse :</strong>{{membreDetails.adresse}} </h4>
+        <h4><strong>Date_naissance :</strong>{{membreDetails.date_naissance}} </h4>
+        <h4><strong>Lieu de naissance :</strong> {{membreDetails.lieu_naissance}}</h4>
+        <br>
+
+        <h2>Inscription</h2>
+        <br>
+        <h4><strong>Discipline :</strong> {{membreDetails.discipline}}</h4>
+        <h4><strong>Date d'inscription :</strong>{{membreDetails.date_inscription}} </h4>
+        <h4><strong>Mode de paiement :</strong>{{membreDetails.mode_paiement}} </h4>
+        
+        <br>
+
+        <h2>Autres informations</h2>
+        <h4 *ngIf="membreDetails.relation">  C'est le/l' : {{membreDetails.relation}} </h4>
+        <h4 *ngIf="membreDetails.relation"> De <strong>{{membreDetails.NomAdherent}}  {{membreDetails.PrenomAdherent}} </strong></h4>
+        <h4><strong>Profession  :</strong> {{membreDetails.Profession}} </h4>
+        <h4><strong>Catégorie : </strong>{{membreDetails.stegiste}}</h4>
+        
+        
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+       
+      </div>
+    </div>
+  </div>
+</div>

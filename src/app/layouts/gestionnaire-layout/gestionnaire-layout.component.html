@@ -15,9 +15,9 @@
           Gestion des inscriptions
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/gestionnaire/addUser" >Ajouter un membre</a>
+
           <a class="dropdown-item" routerLink="/gestionnaire/liste"> Validation des inscriptions</a>
-          <a class="dropdown-item" routerLink="/gestionnaire/gestionnaires"> Liste des membres</a>
+          <a class="dropdown-item" routerLink="/gestionnaire/membres"> Liste des membres</a>
 
         </div>
       </li>
@@ -43,14 +43,12 @@
             Gestion des inscriptions
           </a>
           <ul class="collapse list-unstyled" id="rolesSubmenu">
-            <li>
-              <a routerLink="/gestionnaire/addUser">Ajouter un membre</a>
-            </li>
+
             <li>
               <a routerLink="/gestionnaire/liste">Validation des inscriptions </a>
             </li>
             <li>
-              <a routerLink="/gestionnaire/moderateurs">Liste des membres</a>
+              <a routerLink="/gestionnaire/membres">Liste des membres</a>
             </li>
           </ul>
         </li>
@@ -161,7 +159,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-header wd-200">
             <ul class="list-unstyled user-profile-nav">
-              <li><a routerLink="/admin/profil"><i class="icon ion-ios-person"></i> Profil</a></li>
+              <li><a routerLink="/gestionnaire/profil"><i class="icon ion-ios-person"></i> Profil</a></li>
 
               <li><a  (click)="deconnect()"><i class="icon ion-power"></i> Déconnecter</a></li>
             </ul>

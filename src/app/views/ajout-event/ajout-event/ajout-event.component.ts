@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { EvenementService } from 'src/app/services/evenement.service';
 
@@ -18,9 +19,10 @@ export class AjoutEventComponent implements OnInit {
   erreur = false ; 
 
   
-  constructor(  private router : Router  , public  eventService : EvenementService , public formBuilder : FormBuilder) { }
+  constructor( private titleService: Title , private router : Router  , public  eventService : EvenementService , public formBuilder : FormBuilder) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Ajouter évènement")
     this.eventService.dataForm = this.formBuilder.group ({
       titre : ['', [Validators.required]],
       lieu : ['', [Validators.required]],

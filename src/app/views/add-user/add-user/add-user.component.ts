@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { AuthService } from 'src/app/services/auth.service';
 import { DisciplineService } from 'src/app/services/discipline.service';
 
@@ -23,7 +24,7 @@ export class AddUserComponent implements OnInit {
 
   emailExistence :any;
 
-  constructor(private authService : AuthService , private disciplineService : DisciplineService , private formBuilder :FormBuilder) { }
+  constructor(private titleService: Title , private authService : AuthService , private disciplineService : DisciplineService , private formBuilder :FormBuilder) { }
 
   ngOnInit(): void {
     this.addUserForm= this.formBuilder.group({
@@ -37,6 +38,7 @@ export class AddUserComponent implements OnInit {
      }
      );
      this.getAllclubs();
+     this.titleService.setTitle('Ajouter Utilisateur ');
 
     console.log("data here : " , this.clubs ) ; 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { AuthService } from 'src/app/services/auth.service';
 import { DisciplineService } from 'src/app/services/discipline.service';
 import { EntraineurService } from 'src/app/services/entraineur.service';
@@ -10,6 +11,7 @@ import { EntraineurService } from 'src/app/services/entraineur.service';
   styleUrls: ['./ajout-entraineur.component.css']
 })
 export class AjoutEntraineurComponent implements OnInit {
+
   addUserForm !: FormGroup <any> ;
   public clubs : any = [] ;
   showDisciplines = false ;
@@ -31,11 +33,12 @@ export class AjoutEntraineurComponent implements OnInit {
   }
 
 
-  constructor(private authService : AuthService, private entraineurService : EntraineurService , private disciplineService : DisciplineService , private formBuilder :FormBuilder ) {
+  constructor(private titleService: Title ,private authService : AuthService, private entraineurService : EntraineurService , private disciplineService : DisciplineService , private formBuilder :FormBuilder ) {
    
    }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Ajouter Entraineur");
     this.addUserForm= this.formBuilder.group({
       nom : ["", [Validators.required, Validators.minLength(3)]],
       prenom : ["", [Validators.required , Validators.minLength(3)]],

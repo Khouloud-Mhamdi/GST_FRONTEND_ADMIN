@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { InscriptionService } from 'src/app/services/inscription.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-confirmer-inscription',
   templateUrl: './confirmer-inscription.component.html',
-  styleUrls: ['./confirmer-inscription.component.css']
+  styleUrls:  ['./confirmer-inscription.component.css']
 })
 export class ConfirmerInscriptionComponent implements OnInit {
 
@@ -13,9 +15,12 @@ export class ConfirmerInscriptionComponent implements OnInit {
 
   query !:any;
   supprimer=false;
+  valider=false;
   showConfirmationDialog = false;
+  showConfirmationDialogValidation = false;
   inscriID :any;
   email : any;
+  membreID : any ;
   nb_resultats: number | null = null;
   nb_membres: number | null = null;
 
@@ -25,13 +30,15 @@ export class ConfirmerInscriptionComponent implements OnInit {
   pages: number[] = []; // Tableau des numéros de page.
   displayedUsers: any;
 
-  constructor(private UserService :  UtilisateurService) { }
+  constructor(private titleService: Title , private UserService :  UtilisateurService ,private InscriptionService :  InscriptionService) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Liste Des Inscriptions")
     this.ListeDesUtilisateurs();
+
   }
   ListeDesUtilisateurs () : void {
-    this.UserService.DemandeInscriptions().subscribe((data)=>{
+    this.InscriptionService.DemandeInscriptions().subscribe((data)=>{
       this.membres = data;
       console.log(this.membres);
       this.nb_membres = this.membres.length;
@@ -81,7 +88,7 @@ export class ConfirmerInscriptionComponent implements OnInit {
   onInputChange(): void {
     if (this.query === '') {
       this.membres = this.membresInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
-      
+      this.nb_resultats=null;
 
       this.Pagination();
     }
@@ -89,25 +96,39 @@ export class ConfirmerInscriptionComponent implements OnInit {
 
 
 
-  openConfirmationDialog(id : any , mail : any) {
+  openConfirmationDialog(id : any , mail : any , idM:any) {
     this.inscriID = id;
     this.email=mail;
+    this.membreID=idM;
     this.showConfirmationDialog = true;
   }
   closeConfirmationDialog() {
     this.showConfirmationDialog = false;
   }
+  openConfirmationDialogValidation(id : any , mail : any ) {
+    this.inscriID = id;
+    this.email=mail;
 
+    this.showConfirmationDialogValidation = true;
+  }
+  closeConfirmationDialogValidation() {
+    this.showConfirmationDialogValidation = false;
+  }
 
   deleteInscription(){
 
     this.showConfirmationDialog = true;
-    this.UserService.EnvoyerEmailRefus(this.email).subscribe((data)=>
+    this.InscriptionService.EnvoyerEmailRefus(this.email).subscribe((data)=>
     {
 
     })
+    if(this.membreID!==null)
+    {this.InscriptionService.SupprimerMembre(this.membreID).subscribe((data)=>
+      {
 
-    this.UserService.SupprimerInscription(this.inscriID).subscribe((data)=>{
+      })   }
+
+    this.InscriptionService.SupprimerInscription(this.inscriID).subscribe((data)=>{
       this.supprimer=true;
       setTimeout(() => {
         this.supprimer = false;
@@ -119,11 +140,25 @@ export class ConfirmerInscriptionComponent implements OnInit {
 
     })
   }
+  ValidateInscription()
+  {
+    console.log(this.inscriID);
+    console.log(this.email);
+    this.showConfirmationDialogValidation = true;
+    this.InscriptionService.ValiderInscription(this.inscriID ,this.email).subscribe((data)=>{
+      this.valider=true;
+      setTimeout(() => {
+        this.valider = false;
+      }, 3000);
+this.ListeDesUtilisateurs();
+    this.closeConfirmationDialogValidation();
+    });
 
+  }
 
    search(query: any){
     console.log(this.query);
-    this.UserService.RechercheInscriptions(this.query).subscribe((data)=>{
+    this.InscriptionService.RechercheInscriptions(this.query).subscribe((data)=>{
       this.membres = data;
       console.log(this.query);
       console.log(data);

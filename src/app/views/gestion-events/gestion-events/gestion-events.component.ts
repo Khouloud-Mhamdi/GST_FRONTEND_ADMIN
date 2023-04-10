@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { EvenementService } from 'src/app/services/evenement.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
@@ -47,9 +48,10 @@ export class GestionEventsComponent implements OnInit {
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
   displayedEvents: any;
-  constructor(public eventService : EvenementService   , public formBuilder : FormBuilder , private UserService :  UtilisateurService ) { }
+  constructor(private titleService: Title ,public eventService : EvenementService   , public formBuilder : FormBuilder , private UserService :  UtilisateurService ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Liste des évènements")
     this.eventService.dataForm = this.formBuilder.group ({
       id : [''] , 
       titre : ['', [Validators.required]],

@@ -50,7 +50,7 @@ const routes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     {path:'profil' , loadChildren:()=>import('./views/profil/profil.module').then(m=>m.ProfilModule)},
     {path:'liste' , canActivate: [GestionnaireGuardGuard]  , loadChildren:()=>import('./views/confirmer-inscriptions/confirmer-inscriptions.module').then(m=>m.ConfirmerInscriptionsModule)},
-
+    {path:'membres' , canActivate: [GestionnaireGuardGuard]  , loadChildren:()=>import('./views/liste-membres/liste-membres.module').then(m=>m.ListeMembresModule)},
   ]},
 
 

@@ -1,5 +1,21 @@
 
-
+<!-- Alerte de confirmation -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-succes confirmation-dialog" role="alert" *ngIf="showConfirmationDialogValidation">
+        <h4 class="alert-heading">Confirmation d'inscription</h4>
+        <p>Voulez-vous vraiment accepter cette demande d'inscription ?</p>
+        <hr>
+        <div class="button-container">
+          <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialogValidation()">Annuler</button>
+          <button class="btn btn-success confirm-button" (click)="ValidateInscription()">Confirmer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- Alerte de confirmation -->
  <!-- Alerte de confirmation -->
  <div class="container">
   <div class="row">
@@ -36,14 +52,24 @@
       <span aria-hidden="true">&times;</span>
     </button>
     <strong class="d-block d-sm-inline-block-force">Demande d'inscription suppimé avec succés!</strong>
+    <br>
+    <p class="d-block d-sm-inline-block-force">Un email de refus sera envoyer au membre concerné</p>
+  </div><!-- alert -->
+  <div class="alert alert-success" role="alert"  *ngIf="valider" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong class="d-block d-sm-inline-block-force">Demande d'inscription accepté avec succés!</strong>
+    <br>
+    <p class="d-block d-sm-inline-block-force">Un email de confirmation sera envoyer au membre concerné</p>
   </div><!-- alert -->
   <div class="br-pagebody">
     <div class="br-section-wrapper">
 
 
 
-      <form style="width: 70%;margin-bottom: 3%;">
-        <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom ou prénom ou email "  (input)="onInputChange()">
+      <form style="width: 80%;margin-bottom: 3%;">
+        <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom, prénom, email, discipline, stegiste, non_stegiste"  (input)="onInputChange()">
         <button  type="submit" (click)="search(query)">Rechercher</button>
       </form>
       <p *ngIf="nb_resultats !== null"> {{nb_resultats}} résultats trouvés sur {{nb_membres}}</p>
@@ -56,10 +82,10 @@
               <th class="wd-15p" >Nom</th>
               <th class="wd-20p">Prénom</th>
               <th class="wd-15p">E-mail</th>
-               <th class="wd-30p">Date de naissance</th>
+               <th class="wd-15p">Date de naissance</th>
                <th class="wd-15p">Stegiste</th>
                <th class="wd-15p">Matricule</th>
-              
+
                <th class="wd-15p">Date d'inscription</th>
                <th class="wd-15p">Discipline</th>
               <th class="wd-15p">Action</th>
@@ -75,11 +101,14 @@
               <td>{{a[5]}}</td>
               <td>{{a[6]}}</td>
               <td>{{a[7]}}</td>
-              <td>{{a[8]}}</td>
+              <td>{{a[9]}}</td>
 
-              <td  >
-                <button type="button"  (click)="openConfirmationDialog(a[0],a[3])" class="btn btn-danger">Refuser</button></td>
 
+                <td  >
+
+                  <button type="button"  (click)="openConfirmationDialogValidation(a[0],a[3])"  class="btn btn-info">Accepter</button></td>
+                  <td  >
+                    <button type="button"  (click)="openConfirmationDialog(a[0],a[3],a[8])" class="btn btn-danger">Refuser</button></td>
             </tr>
 
 
