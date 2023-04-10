@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
@@ -17,9 +18,10 @@ export class ProfilComponent implements OnInit {
   erreur = false ;
   valid=false;
   emailInvalid = false;
-  constructor(private token: TokenStorageService , private authService : AuthService , private router : Router) { }
+  constructor(private titleService: Title ,private token: TokenStorageService , private authService : AuthService , private router : Router) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Profil")
     this.currentUser = this.token.getUser();
     console.log(this.currentUser.id);
     this.authService.getCurrentUserById(this.currentUser.id).subscribe((data) => {this.user = data; console.log(data); } );
@@ -45,7 +47,7 @@ export class ProfilComponent implements OnInit {
             this.showConfirmationDialog = false;
             this.erreur = true;
             setTimeout(() => {
-              
+
               this.erreur = false;
 
             }, 4000);
@@ -115,7 +117,7 @@ export class ProfilComponent implements OnInit {
 
     const nomInput = document.getElementById("firstName") as HTMLInputElement;
     console.log(nomInput);
-    const regex =/^[a-zA-Z]{3,}$/ ;
+    const regex =/^[a-zA-Z\s]{3,}$/ ;
     if (!regex.test(this.user.nom)) {
       nomInput.classList.add("invalid");
 
@@ -129,7 +131,7 @@ export class ProfilComponent implements OnInit {
 
     const nomInput = document.getElementById("lastName") as HTMLInputElement;
 
-    const regex =/^[a-zA-Z]{3,}$/ ;
+    const regex =/^[a-zA-Z\s]{3,}$/ ;
     if (!regex.test(this.user.prenom)) {
       nomInput.classList.add("invalid");
 

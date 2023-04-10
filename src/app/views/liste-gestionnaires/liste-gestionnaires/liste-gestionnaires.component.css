@@ -196,4 +196,12 @@ form {
     background-color: #007bff;
     color: #fff;
   }
- 
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  #datatable1 {
+    width: 100%;
+  
+  }

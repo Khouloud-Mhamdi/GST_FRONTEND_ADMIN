@@ -200,3 +200,12 @@ form {
     width: 600px; /* ou toute autre taille que vous souhaitez */
     margin: auto;
   }
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  #datatable1 {
+    width: 100%;
+  
+  }
