@@ -110,6 +110,7 @@ export class ListeModerateursComponent implements OnInit {
     this.UserService.RechercherUtilisateur('MODERATEUR',this.query).subscribe((data)=>{
       this.moderateurs = data;
       this.nb_resultats= this.moderateurs.length;
+      this.currentPage = 1;
       this.Pagination();
 
 

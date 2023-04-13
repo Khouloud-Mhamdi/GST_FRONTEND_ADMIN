@@ -10,7 +10,7 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
 export class ListeAdherentsComponent implements OnInit {
   public adherents :any;
   public adherentsInitiaux :any;
-  
+
   query !:any;
   supprimer=false;
   showConfirmationDialog = false;
@@ -22,7 +22,7 @@ export class ListeAdherentsComponent implements OnInit {
   totalPages: number = 1; // Nombre total de pages.
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
-  displayedUsers: any; 
+  displayedUsers: any;
 
   constructor(private UserService :  UtilisateurService ,private titleService: Title ) { }
 
@@ -36,8 +36,8 @@ export class ListeAdherentsComponent implements OnInit {
       this.nb_adherents = this.adherents.length;
       this.adherentsInitiaux=data;
       this.Pagination();
-   
-      
+
+
     })
   }
 
@@ -80,14 +80,14 @@ export class ListeAdherentsComponent implements OnInit {
   onInputChange(): void {
     if (this.query === '') {
       this.adherents = this.adherentsInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
-      
-       
+
+
       this.Pagination();
       this.nb_resultats=null;
     }
   }
 
-  
+
 
   openConfirmationDialog(id : any) {
     this.userID = id;
@@ -121,8 +121,9 @@ export class ListeAdherentsComponent implements OnInit {
     this.UserService.RechercherUtilisateur('ADHERENT',this.query).subscribe((data)=>{
       this.adherents = data;
       this.nb_resultats = this.adherents.length;
-
+      this.currentPage = 1;
       this.Pagination();
+
 
     })
   }

@@ -209,6 +209,7 @@ export class GestionEventsComponent implements OnInit {
     (data)=>{
       this.evenements = data;
       this.nb_resultats= this.evenements.length;
+      this.currentPage = 1;
       this.Pagination();
     }
    )

@@ -159,6 +159,7 @@ export class ListeMembresComponent implements OnInit {
       console.log(this.query);
       console.log(data);
       this.nb_resultats = this.membres.length;
+      this.currentPage = 1;
 
       this.Pagination();
 

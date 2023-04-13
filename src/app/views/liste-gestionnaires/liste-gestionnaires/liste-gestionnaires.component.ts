@@ -10,14 +10,14 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
 export class ListeGestionnairesComponent implements OnInit {
   public gestionnaires :any;
   public GestionnairesInitiaux :any;
-  
+
   query :any;
   supprimer=false;
   showConfirmationDialog = false;
   userID :any;
   nb_resultats: number | null = null;
   nb_gestionnaires: number | null = null;
-  itemsPerPage: number = 2; // Nombre d'utilisateurs à afficher par page.
+  itemsPerPage: number = 5; // Nombre d'utilisateurs à afficher par page.
   totalPages: number = 1; // Nombre total de pages.
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
@@ -34,7 +34,7 @@ export class ListeGestionnairesComponent implements OnInit {
       this.nb_gestionnaires = this.gestionnaires.length;
       this.GestionnairesInitiaux=data;
       this.Pagination();
-   
+
     })
   }
 
@@ -110,6 +110,7 @@ export class ListeGestionnairesComponent implements OnInit {
     this.UserService.RechercherUtilisateur('GESTIONNAIRE',this.query).subscribe((data)=>{
       this.gestionnaires = data;
       this.nb_resultats= this.gestionnaires.length;
+      this.currentPage = 1;
       this.Pagination();
 
 

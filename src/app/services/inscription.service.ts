@@ -25,8 +25,8 @@ export class InscriptionService {
   SupprimerMembre(id : any ){
     return this.httpClient.delete (this.MembreURL+ "/Supprimer/" +id);
   }
-  EnvoyerEmailRefus(mail : any) {
-    return this.httpClient.get(this.InscriURL+"/refus/"+ mail);
+  RefuserInscription(id:any , mail : any) {
+    return this.httpClient.get(this.InscriURL+"/refus/" +id+ "/" +mail);
   }
   ValiderInscription( id:any ,mail : any ) {
     return this.httpClient.get(this.InscriURL+"/validation/" + id + "/" +mail);
