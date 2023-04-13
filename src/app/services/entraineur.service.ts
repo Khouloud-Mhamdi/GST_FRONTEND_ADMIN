@@ -12,8 +12,8 @@ export class EntraineurService {
     return this.httpClient.post(this.entraineursURL + "/ajouter" + '/' + id , entraineur ) ; 
   }
 
-  updateEntraineur(entraineur : any  , id : number ){
-    return this.httpClient.put(this.entraineursURL + "/Modifier" + '/' + id, entraineur ) ; 
+  updateEntraineur(entraineur : any ){
+    return this.httpClient.put(this.entraineursURL + "/Modifier" , entraineur) ; 
   }
 
   deleteEntraineurById (id : number ) {
