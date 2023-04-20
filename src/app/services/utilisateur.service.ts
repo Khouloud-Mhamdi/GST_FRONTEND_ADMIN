@@ -15,15 +15,17 @@ export class UtilisateurService {
   ListeDesUtilisateurs(role : any) {
     return this.httpClient.get(this.UserURL+"/ListeDesUtilisateurs/"+ role);
   }
-
-  RechercherUtilisateur(role:any ,query: any) {
-    return this.httpClient.get(this.UserURL+"/RechercherUtilisateur/"+ role + "/" +query ) ;
+ 
+  RechercherAdherent(role:any ,query: any) {
+    return this.httpClient.get(this.UserURL+"/RechercherAdherent/"+ role + "/" +query ) ;
   }
+
+  
   SupprimerUtilisateur(id : any ){
     return this.httpClient.delete (this.UserURL+ "/Supprimer/" +id);
   }
-  ListeAvecDisciplines(role : any) {
-    return this.httpClient.get(this.UserURL+"/ListeAvecDisciplines/"+ role);
+  ListeUsers() {
+    return this.httpClient.get(this.UserURL+"/ListeAvecDisciplines");
   }
 
   DemandeInscriptions() {
@@ -40,9 +42,9 @@ export class UtilisateurService {
   }
   //partie moderateur ( consultation des membres )
   consulterMembreParModerateur(discipline : any ){
-    return this.httpClient.get(this.InscriURL+"/membres/" + discipline ) ; 
+    return this.httpClient.get(this.InscriURL+"/membres/" + discipline ) ;
   }
   RechercherMembreParModerateur(critere : any , discipline : any ) {
-    return this.httpClient.get(this.InscriURL+"/rechercheMembres/" + critere + "/" + discipline ) ; 
+    return this.httpClient.get(this.InscriURL+"/rechercheMembres/" + critere + "/" + discipline ) ;
   }
 }

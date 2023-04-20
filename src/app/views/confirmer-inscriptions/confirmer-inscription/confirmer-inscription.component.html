@@ -69,7 +69,7 @@
 
 
       <form style="width: 80%;margin-bottom: 3%;">
-        <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom, prénom, email, discipline, stegiste, non_stegiste"  (input)="onInputChange()">
+        <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom, prénom, email, discipline, stegiste"  (input)="onInputChange()">
         <button  type="submit" (click)="search(query)">Rechercher</button>
       </form>
       <p *ngIf="nb_resultats !== null"> {{nb_resultats}} résultats trouvés sur {{nb_membres}}</p>

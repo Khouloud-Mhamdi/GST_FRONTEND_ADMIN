@@ -10,31 +10,33 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
 export class ListeModerateursComponent implements OnInit {
   public moderateurs :any;
   public modérateursInitiaux :any;
-  
+
   query :any;
+  role:any;
+  discipline =false;
   supprimer=false;
   showConfirmationDialog = false;
   userID :any;
   nb_resultats: number | null = null;
   nb_moderateurs: number | null = null;
-  itemsPerPage: number = 2; // Nombre d'utilisateurs à afficher par page.
+  itemsPerPage: number = 5; // Nombre d'utilisateurs à afficher par page.
   totalPages: number = 1; // Nombre total de pages.
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
-  displayedUsers: any; 
+  displayedUsers: any;
   constructor(private titleService: Title ,private UserService :  UtilisateurService) { }
 
   ngOnInit(): void {
     this.titleService.setTitle("Liste des modérateurs")
-    this.ListeDesUtilisateurs();
+   this.ListeDesUtilisateurs();
   }
-  ListeDesUtilisateurs () : void {
-    this.UserService.ListeDesUtilisateurs('MODERATEUR').subscribe((data)=>{
+ ListeDesUtilisateurs () : void {
+    this.UserService.ListeUsers().subscribe((data)=>{
       this.moderateurs = data;
       this.nb_moderateurs = this.moderateurs.length;
-      this.modérateursInitiaux=data;
+     this.modérateursInitiaux=data;
       this.Pagination();
-   
+
     })
   }
 
@@ -79,7 +81,7 @@ export class ListeModerateursComponent implements OnInit {
     }
   }
 
- 
+
   openConfirmationDialog(id : any) {
     this.userID = id;
     this.showConfirmationDialog = true;
@@ -98,23 +100,28 @@ export class ListeModerateursComponent implements OnInit {
         this.supprimer = false;
       }, 3000); // 3000 ms = 3 secondes
 
-      this.ListeDesUtilisateurs();
+     // this.ListeDesUtilisateurs();
       this.closeConfirmationDialog();
 
     })
   }
 
-
-   search(query: any){
-    console.log(this.query);
-    this.UserService.RechercherUtilisateur('MODERATEUR',this.query).subscribe((data)=>{
+  filtrer(role :any)
+  {
+    this.nb_resultats=null;
+    if (this.role==='MODERATEUR')
+   { this.discipline=true;}
+   else {this.discipline=false; }
+    this.UserService.ListeDesUtilisateurs(this.role).subscribe((data)=>{
+      this.moderateurs=null;
       this.moderateurs = data;
-      this.nb_resultats= this.moderateurs.length;
+     
+      this.nb_resultats=this.moderateurs.length;
       this.currentPage = 1;
+      this.modérateursInitiaux=data;
       this.Pagination();
-
-
     })
+   
   }
 
 }

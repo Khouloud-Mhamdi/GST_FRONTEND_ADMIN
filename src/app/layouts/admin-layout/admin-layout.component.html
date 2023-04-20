@@ -11,36 +11,18 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/admin/dashboard">Dashboard</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Gestion des rôles
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/admin/addUser" >Ajouter un rôle</a>
-          <a class="dropdown-item" routerLink="/admin/moderateurs"> Liste des modérateus</a>
-          <a class="dropdown-item" routerLink="/admin/gestionnaires"> Liste des gestionnaires</a>
-        </div>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/admin/adherents">Gestion des adhérents</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Gestion des adhérents
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-          <a class="dropdown-item" routerLink="/admin/adherents"> Liste des adhérents</a>
-
-        </div>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/admin/moderateurs">Gestion des utilisateurs</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Gestion des évènements
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/admin/addUser" >Ajouter un évènement </a>
-          <a class="dropdown-item" routerLink="/admin/moderateurs"> Consulter les évènements </a>
-        
-        </div>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/admin/listeEvents">Gestion des évènements</a>
       </li>
+     
+     
+     
     </ul>
   </div>
 </nav>
@@ -56,49 +38,26 @@
           </a>
         </li>
         <li>
-          <a href="#adherentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <a routerLink="/admin/adherents">
             <i class="fa fa-users"></i>
             Gestion des adhérents
           </a>
-          <ul class="collapse list-unstyled" id="adherentsSubmenu">
-            <li>
-              <a routerLink="/admin/adherents">Liste des adhérents</a>
-            </li>
-          </ul>
         </li>
         <li>
-          <a href="#eventSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            <i class="fa fa-users"></i>
+          <a routerLink="/admin/moderateurs">
+            <i class="fa fa-user-lock"></i>
+            Gestion des utilisateurs
+          </a>
+        </li>
+        <li>
+          <a routerLink="/admin/listeEvents">
+            <i class="fa fa-map-marker"></i>
             Gestion des évènements
           </a>
-          <ul class="collapse list-unstyled" id="eventSubmenu">
-            <li>
-              <a routerLink="/admin/addEvent">Ajouter un évènement  </a>
-            </li>
-            <li>
-              <a routerLink="/admin/listeEvents">Liste des évènements </a>
-            </li>
-          </ul>
-         
-
         </li>
-        <li>
-          <a href="#rolesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            <i class="fa fa-user-lock"></i>
-            Gestion des rôles
-          </a>
-          <ul class="collapse list-unstyled" id="rolesSubmenu">
-            <li>
-              <a routerLink="/admin/addUser">Ajouter un rôle</a>
-            </li>
-            <li>
-              <a routerLink="/admin/gestionnaires">Liste des gestionnaires </a>
-            </li>
-            <li>
-              <a routerLink="/admin/moderateurs">Liste des modérateurs</a>
-            </li>
-          </ul>
-        </li>
+       
+       
+        
        
       </ul>
     </nav>

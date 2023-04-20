@@ -20,12 +20,12 @@
     <div class="br-pageheader pd-y-15 pd-l-20">
       <nav class="breadcrumb pd-0 mg-0 tx-12">
 
-        <span class="breadcrumb-item" >Gestion des rôles</span>
-        <span class="breadcrumb-item active">Liste des modérateurs </span>
+        <span class="breadcrumb-item" >Gestion des utilisateurs</span>
+        <span class="breadcrumb-item active">Liste des utilisateurs </span>
       </nav>
     </div><!-- br-pageheader -->
     <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-      <h4 class="tx-gray-800 mg-b-5">Liste des modérateurs</h4>
+      <h4 class="tx-gray-800 mg-b-5">Liste des utilisateurs</h4>
 
 
     </div>
@@ -42,14 +42,20 @@
         <button type="button" class="button-86" routerLink="/admin/addUser/">Ajouter utilisateur </button>
         <p class="mg-b-25 mg-lg-b-50"></p>
 
+        <p><strong>Filtrer la liste par role</strong></p>
+        <form style="width: 60%;margin-bottom: 3%;">
+        <select class="form-control"  data-placeholder="Choisir role"  [(ngModel)]="role"  name="role"  >
+         
+          <option value="MODERATEUR">Moderateur</option>
+          <option value="GESTIONNAIRE">Gestionnaire</option>
+        </select>
+        <button  type="submit" (click)="filtrer(role)">Filtrer</button>
+      </form>
+       
 
-
-        <form style="width: 70%;margin-bottom: 3%;">
-          <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom ou prénom ou email "  (input)="onInputChange()">
-          <button  type="submit" (click)="search(query)">Rechercher</button>
-        </form>
         <p *ngIf="nb_resultats !== null"> {{nb_resultats}} résultats trouvés sur  {{nb_moderateurs}} </p>
         <div class="table-wrapper">
+
 
           <table id="datatable1" class="table display responsive nowrap">
             <thead>
@@ -60,7 +66,7 @@
                 <th class="wd-20p">E-mail</th>
                 <th class="wd-15p">Téléphone</th>
                 <th class="wd-15p">Adresse</th>
-                <th class="wd-15p">Discipline</th>
+                <th class="wd-15p" *ngIf="discipline">Discipline</th>
                 <th class="wd-15p">Action</th>
               </tr>
             </thead>
@@ -72,7 +78,7 @@
                 <td>{{a.email}}</td>
                 <td>{{a.telephone}}</td>
                 <td>{{a.adresse}}</td>
-                <td>{{a.discipline.discipline}}</td>
+                <td  *ngIf="discipline">{{a.discipline.discipline}}</td>
                 <td  ><button type="button"  (click)="openConfirmationDialog(a.id)" class="btn btn-danger">Supprimer</button></td>
 
               </tr>

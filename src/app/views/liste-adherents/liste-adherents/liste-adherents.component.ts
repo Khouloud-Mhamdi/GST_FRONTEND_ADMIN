@@ -118,7 +118,7 @@ export class ListeAdherentsComponent implements OnInit {
 
    search(query: any){
     console.log(this.query);
-    this.UserService.RechercherUtilisateur('ADHERENT',this.query).subscribe((data)=>{
+    this.UserService.RechercherAdherent('ADHERENT',this.query).subscribe((data)=>{
       this.adherents = data;
       this.nb_resultats = this.adherents.length;
       this.currentPage = 1;

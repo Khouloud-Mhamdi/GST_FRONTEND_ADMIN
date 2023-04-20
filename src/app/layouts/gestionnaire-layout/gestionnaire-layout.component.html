@@ -9,18 +9,12 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/gestionnaire/dashboard">Dashboard</a>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Gestion des membres
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-          <a class="dropdown-item" routerLink="/gestionnaire/liste"> Demandes d'inscription</a>
-          <a class="dropdown-item" routerLink="/gestionnaire/membres"> Liste des membres</a>
-
-        </div>
-      </li>
+        <a class="nav-link" routerLink="/gestionnaire/dashboard">Dashboard</a></li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/gestionnaire/liste">Demandes d'inscription</a></li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/gestionnaire/membres">Gestion des membres</a></li>
+     
 
     </ul>
   </div>
@@ -36,22 +30,20 @@
             Dashboard
           </a>
         </li>
-
         <li>
-          <a href="#rolesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <a routerLink="/gestionnaire/liste">
             <i class="fa fa-user-lock"></i>
-            Gestion des membres
+            Demandes d'inscription
           </a>
-          <ul class="collapse list-unstyled" id="rolesSubmenu">
-
-            <li>
-              <a routerLink="/gestionnaire/liste">Demandes d'inscription</a>
-            </li>
-            <li>
-              <a routerLink="/gestionnaire/membres">Liste des membres</a>
-            </li>
-          </ul>
         </li>
+        <li>
+          <a routerLink="/gestionnaire/membres">
+            <i class="fa fa-users"></i>
+           Gestion des membres
+          </a>
+        </li>
+
+        
       </ul>
     </nav>
 
