@@ -33,6 +33,7 @@ export class AddEntraineurComponent implements OnInit {
     adresse : '' ,
     telephone : '' ,
     naissance : '' ,
+    embauche : '' , 
   }
 
 
@@ -51,6 +52,7 @@ export class AddEntraineurComponent implements OnInit {
       adresse : ["", [Validators.required , Validators.minLength(3) , Validators.maxLength(100)]],
       telephone : ["", [Validators.required]],
       naissance : ["", [Validators.required]] ,
+      dateEmbauche: ["", [Validators.required]],
       id_discipline :  ["" , [Validators.required]] ,
 
      }
@@ -104,7 +106,9 @@ export class AddEntraineurComponent implements OnInit {
     this.entraineur.adresse = this.EntraineurForm.value.adresse ;
     this.entraineur.telephone = this.EntraineurForm.value.telephone ;
     this.entraineur.naissance = this.EntraineurForm.value.naissance ;
+    this.entraineur.embauche = this.EntraineurForm.value.dateEmbauche ; 
     console.log ("this is entraineur " , this.entraineur) ;
+    console.log("this is form  " , this.EntraineurForm.value)
     this.entraineurService.addentraineur(this.entraineur , this.EntraineurForm.value.id_discipline  ).subscribe(
       (data) => {
         this.ajout=true;
