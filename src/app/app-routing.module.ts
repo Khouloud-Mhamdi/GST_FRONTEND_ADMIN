@@ -32,7 +32,7 @@ const routes: Routes = [
     {path:'profil' , loadChildren:()=>import('./views/profil/profil.module').then(m=>m.ProfilModule)},
 
     {path:'adherents' ,  canActivate: [AdminGuardGuard] , loadChildren:()=>import('./views/liste-adherents/liste-adherents.module').then(m=>m.ListeAdherentsModule)},
-    {path:'gestionnaires' , canActivate: [AdminGuardGuard] , loadChildren:()=>import('./views/liste-gestionnaires/liste-gestionnaires.module').then(m=>m.ListeGestionnairesModule)},
+   
     {path:'moderateurs', canActivate: [AdminGuardGuard] , loadChildren:()=>import('./views/liste-moderateurs/liste-moderateurs.module').then(m=>m.ListeModerateursModule)},
     {path:'addEvent' , canActivate: [AdminGuardGuard] , loadChildren:()=>import('./views/ajout-event/ajout-event.module').then(m=>m.AjoutEventModule) } ,
     {path:'listeEvents' , canActivate: [AdminGuardGuard] , loadChildren:()=>import('./views/gestion-events/gestion-events.module').then(m=>m.GestionEventsModule) }

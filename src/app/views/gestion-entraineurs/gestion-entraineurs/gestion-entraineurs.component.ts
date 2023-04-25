@@ -167,6 +167,7 @@ export class GestionEntraineursComponent implements OnInit {
     this.entraineurService.RechercherEntraineur(this.query).subscribe((data)=>{
       this.entraineurs = data;
       this.nb_resultats= this.entraineurs.length;
+      this.currentPage = 1;
       this.Pagination();
     })
     

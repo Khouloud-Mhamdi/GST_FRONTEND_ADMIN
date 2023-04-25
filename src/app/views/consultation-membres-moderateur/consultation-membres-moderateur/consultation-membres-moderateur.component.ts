@@ -141,6 +141,7 @@ export class ConsultationMembresModerateurComponent implements OnInit {
         console.log("Resultat de la recherche " , data) ; 
         this.membres = data;
         this.nb_resultats = this.membres.length;
+        this.currentPage = 1;
         this.Pagination();
       }
     )

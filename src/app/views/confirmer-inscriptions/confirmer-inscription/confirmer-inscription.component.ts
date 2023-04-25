@@ -118,27 +118,17 @@ export class ConfirmerInscriptionComponent implements OnInit {
   deleteInscription(){
 
     this.showConfirmationDialog = true;
-    this.InscriptionService.EnvoyerEmailRefus(this.email).subscribe((data)=>
+    this.InscriptionService.RefuserInscription(this.inscriID ,this.email).subscribe((data)=>
     {
-
-    })
-    if(this.membreID!==null)
-    {this.InscriptionService.SupprimerMembre(this.membreID).subscribe((data)=>
-      {
-
-      })   }
-
-    this.InscriptionService.SupprimerInscription(this.inscriID).subscribe((data)=>{
-      this.supprimer=true;
+this.supprimer=true;
       setTimeout(() => {
         this.supprimer = false;
-      }, 3000); // 3000 ms = 3 secondes
-
+      }, 3000);
       this.ListeDesUtilisateurs();
 
       this.closeConfirmationDialog();
-
     })
+
   }
   ValidateInscription()
   {
@@ -163,6 +153,7 @@ this.ListeDesUtilisateurs();
       console.log(this.query);
       console.log(data);
       this.nb_resultats = this.membres.length;
+      this.currentPage = 1;
 
       this.Pagination();
 
