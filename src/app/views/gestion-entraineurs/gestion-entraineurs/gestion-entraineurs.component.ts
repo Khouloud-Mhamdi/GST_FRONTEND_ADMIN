@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { DisciplineService } from 'src/app/services/discipline.service';
 import { EntraineurService } from 'src/app/services/entraineur.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
@@ -40,8 +41,9 @@ export class GestionEntraineursComponent implements OnInit {
     naissance : '' , 
     email : '' , 
     telephone : '' , 
-    adresse : '' , 
-   
+    adresse : '' ,
+    dateEmbauche : ''  , 
+    
   }
   infoEntraineur = {
   
@@ -52,8 +54,13 @@ export class GestionEntraineursComponent implements OnInit {
     telephone : '' , 
     adresse : '' , 
     discipline : '' , 
+    dateEmbauche : '', 
   }
-  constructor(private titleService: Title ,private UserService :  UtilisateurService , private entraineurService : EntraineurService , public disciplineService : DisciplineService  , private formBuilder : FormBuilder) { }
+  objDiscipline = {
+    id : 0 , 
+    discipline : '' , 
+  }
+  constructor(private titleService: Title ,private UserService :  UtilisateurService , private entraineurService : EntraineurService , public disciplineService : DisciplineService  , private formBuilder : FormBuilder , private token : TokenStorageService) { }
   
   ngOnInit(): void {
   this.titleService.setTitle("Liste des entraineurs")
@@ -62,6 +69,7 @@ export class GestionEntraineursComponent implements OnInit {
       id_discipline : ["", [Validators.required]]
      }
      );
+    this.objDiscipline = this.token.getUser().discipline ; 
     this.ListeDesUtilisateurs();
     this.getAllclubs () ; 
   }
@@ -73,7 +81,7 @@ export class GestionEntraineursComponent implements OnInit {
   }
  
   ListeDesUtilisateurs () : void {
-    this.entraineurService.listerEntraineurs().subscribe((data)=>{
+    this.entraineurService.listerEntraineurs(this.objDiscipline.discipline).subscribe((data)=>{
       this.entraineurs = data;
       console.log("here data : " , this.entraineurs) ; 
       this.nb_entraineurs = this.entraineurs.length;
@@ -164,7 +172,7 @@ export class GestionEntraineursComponent implements OnInit {
    search(query: any){
   
     console.log(this.query) ; 
-    this.entraineurService.RechercherEntraineur(this.query).subscribe((data)=>{
+    this.entraineurService.RechercherEntraineur(this.query , this.objDiscipline.discipline).subscribe((data)=>{
       this.entraineurs = data;
       this.nb_resultats= this.entraineurs.length;
       this.currentPage = 1;
@@ -174,7 +182,7 @@ export class GestionEntraineursComponent implements OnInit {
     }
 
  // getDetails(a.nom , a.prenom , a.naissance , a.email , a.telephone , a.adresse , a.discipline.discipline)
-   getDetailsForUpdate (id : number , nom : any , prenom : any , naissance : any , email : any , telephone : any , adresse : any , nomDis : any , idDis : any  ) {
+   getDetailsForUpdate (id : number , nom : any , prenom : any , naissance : any , email : any , telephone : any , adresse : any , nomDis : any , idDis : any , dateEmbauche : any  ) {
   this.dataEntraineur.id = id ; 
   this.dataEntraineur.nom = nom ; 
   this.dataEntraineur.prenom = prenom ; 
@@ -182,12 +190,12 @@ export class GestionEntraineursComponent implements OnInit {
   this.dataEntraineur.email = email ; 
   this.dataEntraineur.telephone = telephone ; 
   this.dataEntraineur.adresse = adresse ; 
-
+  this.dataEntraineur.dateEmbauche = dateEmbauche ; 
   this.NomDiscipline = nomDis ; 
   this.IdDiscipline = idDis ; 
   
    }
-   getDetails(id : number , nom : any , prenom : any , naissance : any , email : any , telephone : any , adresse : any , discipline : any )
+   getDetails(id : number , nom : any , prenom : any , naissance : any , email : any , telephone : any , adresse : any , discipline : any , dateEmbauche : any )
    {
       this.infoEntraineur.nom = nom ; 
       this.infoEntraineur.prenom = prenom ; 
@@ -196,6 +204,8 @@ export class GestionEntraineursComponent implements OnInit {
       this.infoEntraineur.telephone = telephone ; 
       this.infoEntraineur.adresse = adresse ; 
       this.infoEntraineur.discipline = discipline ; 
+      this.infoEntraineur.dateEmbauche = dateEmbauche ; 
+
    }
    
    updateEntraineur() {
