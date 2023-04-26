@@ -9,7 +9,7 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
 })
 export class ListeModerateursComponent implements OnInit {
   public moderateurs :any;
-  public modérateursInitiaux :any;
+
 
   query :any;
   role:any;
@@ -34,7 +34,7 @@ export class ListeModerateursComponent implements OnInit {
     this.UserService.ListeUsers().subscribe((data)=>{
       this.moderateurs = data;
       this.nb_moderateurs = this.moderateurs.length;
-     this.modérateursInitiaux=data;
+
       this.Pagination();
 
     })
@@ -73,13 +73,7 @@ export class ListeModerateursComponent implements OnInit {
       this.displayedUsers = this.getUsersForPage(this.currentPage);
     }
   }
-  onInputChange(): void {
-    if (this.query === '') {
-      this.moderateurs = this.modérateursInitiaux;// Réinitialise la liste des utilisateurs lorsque le champ de recherche est vide
-      this.Pagination();
-      this.nb_resultats=null;
-    }
-  }
+
 
 
   openConfirmationDialog(id : any) {
@@ -115,13 +109,24 @@ export class ListeModerateursComponent implements OnInit {
     this.UserService.ListeDesUtilisateurs(this.role).subscribe((data)=>{
       this.moderateurs=null;
       this.moderateurs = data;
-     
+
       this.nb_resultats=this.moderateurs.length;
       this.currentPage = 1;
-      this.modérateursInitiaux=data;
+
       this.Pagination();
-    })
-   
+    }) ;
+    if (this.role==='tous')
+    {
+      this.UserService.ListeUsers().subscribe((data)=>{
+        this.moderateurs = data;
+        console.log(data)
+        this.nb_moderateurs = this.moderateurs.length;
+        this.nb_resultats=this.moderateurs.length;
+        this.Pagination();
+
+      })
+    }
+
   }
 
 }

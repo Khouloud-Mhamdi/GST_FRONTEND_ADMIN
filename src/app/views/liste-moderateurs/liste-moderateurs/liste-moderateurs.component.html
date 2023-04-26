@@ -46,12 +46,14 @@
         <form style="width: 60%;margin-bottom: 3%;">
         <select class="form-control"  data-placeholder="Choisir role"  [(ngModel)]="role"  name="role"  >
          
+          <option value="tous" >Tous</option>
+
           <option value="MODERATEUR">Moderateur</option>
           <option value="GESTIONNAIRE">Gestionnaire</option>
         </select>
         <button  type="submit" (click)="filtrer(role)">Filtrer</button>
       </form>
-       
+
 
         <p *ngIf="nb_resultats !== null"> {{nb_resultats}} résultats trouvés sur  {{nb_moderateurs}} </p>
         <div class="table-wrapper">
@@ -67,6 +69,7 @@
                 <th class="wd-15p">Téléphone</th>
                 <th class="wd-15p">Adresse</th>
                 <th class="wd-15p" *ngIf="discipline">Discipline</th>
+                <th class="wd-15p">Role</th>
                 <th class="wd-15p">Action</th>
               </tr>
             </thead>
@@ -79,6 +82,7 @@
                 <td>{{a.telephone}}</td>
                 <td>{{a.adresse}}</td>
                 <td  *ngIf="discipline">{{a.discipline.discipline}}</td>
+                <td>{{a.role.name}}</td>
                 <td  ><button type="button"  (click)="openConfirmationDialog(a.id)" class="btn btn-danger">Supprimer</button></td>
 
               </tr>
