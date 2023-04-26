@@ -33,7 +33,7 @@
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <strong class="d-block d-sm-inline-block-force">Entraineur suppimé avec succés!</strong>
+      <strong class="d-block d-sm-inline-block-force">Entraineur suppimé avec succès </strong>
     </div><!-- alert -->
     <div class="br-pagebody">
       <div class="br-section-wrapper">
@@ -43,7 +43,7 @@
   
   
         <form style="width: 70%;margin-bottom: 3%;">
-          <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom ou prénom ou email ou discipline "  (input)="onInputChange()">
+          <input type="text" [(ngModel)]="query"  name="query" placeholder="Rechercher par nom ou prénom ou email ou adresse "  (input)="onInputChange()">
           <button  type="submit" (click)="search(query)">Rechercher</button>
         </form>
         <p *ngIf="nb_resultats !== null"> {{nb_resultats}} résultats trouvés sur {{nb_entraineurs}}</p>
@@ -58,6 +58,7 @@
                 <th class="wd-15p">Naissance</th>
                 <th class="wd-20p">E-mail</th>
                 <th class="wd-15p">Téléphone</th>
+                <th class="wd-15p">Date embauche</th>
                 <th class="wd-15p">Adresse</th>
                 <th class="wd-15p">Discipline</th>
                 <th class="wd-15p">Action</th>
@@ -71,16 +72,17 @@
                 <td>{{a.naissance}}</td>
                 <td>{{a.email}}</td>
                 <td>{{a.telephone}}</td>
+                <td>{{a.dateEmbauche}}</td>
                 <td>{{a.adresse}}</td>
                 <td>{{a.discipline.discipline}}</td>
                                                        
   
                 <td  ><button type="button"  (click)="openConfirmationDialog(a.id)" class="btn btn-danger">Supprimer</button></td>
-                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getDetailsForUpdate(  a.id , a.nom , a.prenom , a.naissance , a.email , a.telephone , a.adresse , a.discipline.discipline , a.discipline.id)">
+                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getDetailsForUpdate(  a.id , a.nom , a.prenom , a.naissance , a.email , a.telephone , a.adresse , a.discipline.discipline , a.discipline.id , a.dateEmbauche)">
                   Modifier
                 </button>
                 </td>
-                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal11" (click)="getDetails( a.id , a.nom , a.prenom , a.naissance , a.email , a.telephone , a.adresse , a.discipline.discipline)">
+                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal11" (click)="getDetails( a.id , a.nom , a.prenom , a.naissance , a.email , a.telephone , a.adresse , a.discipline.discipline , a.dateEmbauche)">
                   Consulter 
                 </button>
                 </td>
@@ -125,7 +127,7 @@
           </button>
           <!--alert de succée dans le cas de modification  -->
             <div class="alert alert-success" role="alert"  *ngIf="modified" >
-             <strong class="d-block d-sm-inline-block-force"> Cet évenement est modifié   </strong>
+             <strong class="d-block d-sm-inline-block-force"> Cet entraineur est modifié avec succès   </strong>
             </div>
             <!--alert d'eereur dans le cas de modification  -->
             <div class="alert alert-danger" role="alert"  *ngIf="modifiederreur" >
@@ -162,6 +164,12 @@
               <label for="example-date-input" class="col-2 col-form-label">Date <span class="tx-danger">*</span></label>
               <div class="col-10">
                 <input class="form-control" type="date" value="{{ dataEntraineur.naissance}}" id="example-date-input"[(ngModel)]=" dataEntraineur.naissance"  [ngModelOptions]="{standalone:true}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="example-date-input" class="col-2 col-form-label">Date <span class="tx-danger">*</span></label>
+              <div class="col-10">
+                <input class="form-control" type="date" value="{{ dataEntraineur.dateEmbauche}}" id="example-date-input"[(ngModel)]=" dataEntraineur.dateEmbauche"  [ngModelOptions]="{standalone:true}">
               </div>
             </div>
          <!--
@@ -206,9 +214,11 @@
           </div>
           <h4>Nom : {{infoEntraineur.nom}}</h4>
           <h4>Prenom : {{infoEntraineur.prenom}}</h4>
+          <h4>Date de naissance  : {{infoEntraineur.naissance}}</h4>
           <h4>Email : {{infoEntraineur.email}}</h4>
           <h4>Adresse : {{infoEntraineur.adresse}}</h4>
           <h4>Telephone : {{infoEntraineur.telephone}}</h4>
+          <h4>Date embauche  {{infoEntraineur.dateEmbauche}}</h4>
           <h4>Discipline : {{infoEntraineur.discipline}}</h4>
 
           <br>

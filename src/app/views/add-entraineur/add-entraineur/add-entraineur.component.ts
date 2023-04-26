@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { AuthService } from 'src/app/services/auth.service';
 import { DisciplineService } from 'src/app/services/discipline.service';
 import { EntraineurService } from 'src/app/services/entraineur.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-add-entraineur',
@@ -22,7 +23,10 @@ export class AddEntraineurComponent implements OnInit {
   valid=false;
 
   emailExistence :any;
-
+  objDiscipline = {
+    id : 0 , 
+    discipline : '' , 
+  }
   // variables :
 
   pass = true ;
@@ -33,11 +37,12 @@ export class AddEntraineurComponent implements OnInit {
     adresse : '' ,
     telephone : '' ,
     naissance : '' ,
+    dateEmbauche: '' , 
   }
 
 
 
-  constructor(private titleService: Title ,private authService : AuthService, private entraineurService : EntraineurService , private disciplineService : DisciplineService , private formBuilder :FormBuilder ) {
+  constructor(private titleService: Title ,private authService : AuthService, private entraineurService : EntraineurService , private disciplineService : DisciplineService , private formBuilder :FormBuilder , private token : TokenStorageService ) {
 
    }
 
@@ -51,11 +56,13 @@ export class AddEntraineurComponent implements OnInit {
       adresse : ["", [Validators.required , Validators.minLength(3) , Validators.maxLength(100)]],
       telephone : ["", [Validators.required]],
       naissance : ["", [Validators.required]] ,
-      id_discipline :  ["" , [Validators.required]] ,
+      dateEmbauche: ["", [Validators.required]],
+     
 
      }
      );
      this.getAllclubs();
+     this.objDiscipline = this.token.getUser().discipline ; 
 
     console.log("data here : " , this.clubs ) ;
   }
@@ -104,8 +111,13 @@ export class AddEntraineurComponent implements OnInit {
     this.entraineur.adresse = this.EntraineurForm.value.adresse ;
     this.entraineur.telephone = this.EntraineurForm.value.telephone ;
     this.entraineur.naissance = this.EntraineurForm.value.naissance ;
+    this.entraineur.dateEmbauche = this.EntraineurForm.value.dateEmbauche ; 
     console.log ("this is entraineur " , this.entraineur) ;
-    this.entraineurService.addentraineur(this.entraineur , this.EntraineurForm.value.id_discipline  ).subscribe(
+    console.log("this is form  " , this.EntraineurForm.value) ; 
+    this.objDiscipline = this.token.getUser().discipline ; 
+   console.log ("id discipline du moderateur connécté : ", this.objDiscipline.id) ; 
+   console.log ("le nom du discipline du moderateur connécté : ", this.objDiscipline.discipline) ; 
+    this.entraineurService.addentraineur(this.entraineur , this.objDiscipline.id ).subscribe(
       (data) => {
         this.ajout=true;
         this.showConfirmationDialog = false;

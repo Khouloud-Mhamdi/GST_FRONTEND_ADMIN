@@ -8,7 +8,8 @@
       </nav>
     </div><!-- br-pageheader -->
     <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-      <h4 class="tx-gray-800 mg-b-5">Ajouter un nouveau Entraineur </h4>
+      <h4 class="tx-gray-800 mg-b-5">Ajouter un nouveau Entraineur de {{objDiscipline.discipline}}</h4>
+    
     </div>
    <!--alerte de confirmation -->
  <div class="container">
@@ -118,17 +119,13 @@
                 <label for="nom">Date de naissance: <span class="tx-danger">*</span></label>
                     <input class="form-control" type="date" id="example-date-input" formControlName="naissance" placeholder="Entrez une date de naissance "  >
                  </div>
-          
-            <!-- discipline_id -->
-            <div class="col-lg-4"   >
-              <div class="form-group mg-b-10-force">
-                <label for="c" class="form-control-label">Discipline : <span class="tx-danger">*</span></label>
-                <select  class="form-control"  formControlName="id_discipline" id="c" >
-                  <option label="Choisir une discipline "></option>
-                  <option  *ngFor="let c of clubs " value="{{c?.id}}">{{c?.discipline}}</option>
-                </select>
-              </div>
-            </div>
+                 <!--date d'embauche -->
+                 <div class="col-lg-4">
+                  <label for="nom">Date d'embauche :  <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="date" id="example-date-input" formControlName="dateEmbauche" placeholder="Entrez une date d'embauche "  required >
+                   </div>
+            
+           
           </div><!-- row -->
 
           <div class="form-layout-footer">
