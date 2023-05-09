@@ -52,6 +52,7 @@ const routes: Routes = [
     
     { path: '', redirectTo: 'profil', pathMatch: 'full' },
     {path:'profil' , loadChildren:()=>import('./views/profil/profil.module').then(m=>m.ProfilModule)},
+    {path:'reservations' , loadChildren:()=>import('./views/gestion-reservations/gestion-reservations.module').then(m=>m.GestionReservationsModule)},
     {path:'liste' , canActivate: [GestionnaireGuardGuard]  , loadChildren:()=>import('./views/confirmer-inscriptions/confirmer-inscriptions.module').then(m=>m.ConfirmerInscriptionsModule)},
     {path:'membres' , canActivate: [GestionnaireGuardGuard]  , loadChildren:()=>import('./views/liste-membres/liste-membres.module').then(m=>m.ListeMembresModule)},
   ]},
