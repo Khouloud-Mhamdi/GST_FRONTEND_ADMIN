@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
@@ -28,7 +29,7 @@ export class ConsultationMembresModerateurComponent implements OnInit {
   nb_resultats: number | null = null;
   nb_membres: number | null = null;
 
-  itemsPerPage: number = 5; // Nombre d'utilisateurs à afficher par page.
+  itemsPerPage: number = 10; // Nombre d'utilisateurs à afficher par page.
   totalPages: number = 1; // Nombre total de pages.
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
@@ -38,9 +39,10 @@ export class ConsultationMembresModerateurComponent implements OnInit {
     id : 0 , 
     discipline : '' , 
   }
-  constructor(private UserService :  UtilisateurService , public token : TokenStorageService , public inscriptionService : UtilisateurService) { }
+  constructor(private titleService: Title ,private UserService :  UtilisateurService , public token : TokenStorageService , public inscriptionService : UtilisateurService) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("GSTAdmin-Liste des membres")
     this.ListeDesMembres();
   }
   ListeDesMembres () : void {

@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class InscriptionService {
   InscriURL = "http://localhost:8080/inscription";
   MembreURL = "http://localhost:8080/famille";
+  ReservationURL="http://localhost:8080/reservation"
 
   constructor(private httpClient: HttpClient  ) {}
 
@@ -39,6 +40,9 @@ export class InscriptionService {
   }
   EmailSuppressionMembre(mail : any) {
     return this.httpClient.get(this.InscriURL+"/EmailSuppression/"+ mail);
+  }
+  ListeDesReservations() {
+    return this.httpClient.get(this.ReservationURL+"/Notifications" );
   }
 
 }

@@ -19,7 +19,7 @@ export class ListeModerateursComponent implements OnInit {
   userID :any;
   nb_resultats: number | null = null;
   nb_moderateurs: number | null = null;
-  itemsPerPage: number = 5; // Nombre d'utilisateurs à afficher par page.
+  itemsPerPage: number = 10; // Nombre d'utilisateurs à afficher par page.
   totalPages: number = 1; // Nombre total de pages.
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
@@ -27,7 +27,7 @@ export class ListeModerateursComponent implements OnInit {
   constructor(private titleService: Title ,private UserService :  UtilisateurService) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("Liste des modérateurs")
+    this.titleService.setTitle("GSTAdmin-Liste des utilisateurs")
    this.ListeDesUtilisateurs();
   }
  ListeDesUtilisateurs () : void {

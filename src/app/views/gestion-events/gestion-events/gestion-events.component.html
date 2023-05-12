@@ -1,8 +1,8 @@
- 
+
 
 
  <!-- Alerte de confirmation -->
- 
+
  <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -41,10 +41,10 @@
     </div>
 
   </div>
- 
+
   <div class="br-pagebody">
     <div class="br-section-wrapper">
-      
+
       <button type="button" class="button-86" routerLink="/admin/addEvent/">Ajouter évènement </button>
       <p class="mg-b-25 mg-lg-b-50"></p>
 
@@ -66,7 +66,7 @@
               <th class="wd-15p">Photo</th>
               <th class="wd-40p">Description</th>
               <th class="wd-40p">Action</th>
-            
+
             </tr>
           </thead>
           <tbody>
@@ -76,7 +76,7 @@
               <td>{{item.lieu}}</td>
               <td>{{item.date}}</td>
               <td><a href="#"><img class="card-img-top img-responsive"
-                src = "{{this.eventService.host+'/api/Imgevents/'+item.id}}" 
+                src = "{{this.eventService.host+'/api/Imgevents/'+item.id}}"
                 style = "height :200px;width:fil-content"
                alt="image"></a></td>
               <td>{{item.description}}</td>
@@ -88,25 +88,25 @@
               </button>
               </td>
               <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal11" (click)="getDetails(item.id, item.titre , item.date , item.description , item.lieu)">
-                Consulter 
+                Consulter
               </button>
               </td>
 
             </tr>
-            
+
           </tbody>
         </table>
-       
+
 
       </div><!-- table-wrapper -->
 
       <div class="pagination">
         <button class="prev" [disabled]="currentPage == 1" (click)="prevPage()">Précédent</button>
-      
+
         <ng-container *ngFor="let page of pages">
           <button class="page" [class.active]="currentPage === page" (click)="goToPage(page)">{{ page }}</button>
         </ng-container>
-      
+
         <button class="next" [disabled]="currentPage == totalPages" (click)="nextPage()">Suivant</button>
       </div>
 
@@ -116,7 +116,7 @@
 
     </div><!-- br-section-wrapper -->
   </div><!-- br-pagebody -->
-  
+
 </div>
 
 <!--1ere modele -->
@@ -176,26 +176,27 @@
 <div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Evènement </h5>
+      <div class="modal-header" style="background-color: #00b894;">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Evénement  </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         <div class="form-group">
-          
-          <img src="{{this.eventService.host+'/api/Imgevents/'+dataEvent.id}}" height="200" *ngIf="selectImg">
+
+          <img src="{{this.eventService.host+'/api/Imgevents/'+dataEvent.id}}" style="width: 350px; height: 300px; " *ngIf="selectImg">
         </div>
-        <h4>Titre : {{dataEvent.titre}}</h4>
-        <h4> Date : {{dataEvent.date}}</h4>
-        <h4> Lieu : {{dataEvent.lieu}}</h4>
-        <br>
-        <h4> Description : {{dataEvent.description}}</h4>
-      </div>
+        <div style="border: 8px solid #00b894; ">
+        <h4 class="mb-3" style="color: #002a52; ">Titre : <strong>{{dataEvent.titre}}</strong></h4>
+        <h4 class="mb-3" style="color: #002a52; "> Date :<strong>{{dataEvent.date}}</strong> </h4>
+        <h4 class="mb-3" style="color: #002a52; "> Lieu : <strong>{{dataEvent.lieu}}</strong></h4>
+       <br>
+        <h4 class="mb-3" style="color: #002a52; "> Description :<strong>{{dataEvent.description}}</strong> </h4>
+      </div> </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-       
+
       </div>
     </div>
   </div>

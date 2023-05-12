@@ -47,7 +47,7 @@ export class AddEntraineurComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.titleService.setTitle("Ajouter Entraineur");
+    this.titleService.setTitle("GSTAdmin-Ajouter Entraineur");
 
     this.EntraineurForm = this.formBuilder.group({
       nom : ["", [Validators.required, Validators.minLength(3)]],
@@ -144,14 +144,6 @@ export class AddEntraineurComponent implements OnInit {
   }
   this.closeConfirmationDialog();
   }
-
-
-
-
-
-
-
-
   controleSaisieTelephone(): boolean {
     const telephoneInput = document.getElementById("telephone") as HTMLInputElement;
 

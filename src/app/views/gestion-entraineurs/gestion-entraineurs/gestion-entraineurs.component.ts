@@ -29,7 +29,7 @@ export class GestionEntraineursComponent implements OnInit {
   userID :any;
   nb_resultats: number | null = null;
   nb_entraineurs: number | null = null;
-  itemsPerPage: number = 5; // Nombre d'utilisateurs à afficher par page.
+  itemsPerPage: number = 10; // Nombre d'utilisateurs à afficher par page.
   totalPages: number = 1; // Nombre total de pages.
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
@@ -63,7 +63,7 @@ export class GestionEntraineursComponent implements OnInit {
   constructor(private titleService: Title ,private UserService :  UtilisateurService , private entraineurService : EntraineurService , public disciplineService : DisciplineService  , private formBuilder : FormBuilder , private token : TokenStorageService) { }
   
   ngOnInit(): void {
-  this.titleService.setTitle("Liste des entraineurs")
+  this.titleService.setTitle("GSTAdmin-Liste des entraineurs")
     this.disForm= this.formBuilder.group({
       
       id_discipline : ["", [Validators.required]]
