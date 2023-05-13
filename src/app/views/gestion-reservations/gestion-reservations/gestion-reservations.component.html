@@ -67,23 +67,13 @@
         </div>
   
         </div>
-        <div class="cases-parent" *ngIf="verif">
-            
-          <div *ngFor="let horaire of horaires" class="case" >
-            <label>
-              <div class="case-content">
-                <div class="meta-top">
-                  <ul>
-                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01"></time></a></li>
-                  </ul>
-                </div>
-                <p class="time">{{ horaire.hdebut }} - {{ horaire.hfin }}</p>
-                <p> non reservé </p>
-              </div>
-            </label>
-          </div>
-         
+        <br>
+        <div class="center" *ngIf="verif">
+          <h4 >Terrain disponible</h4>
+          <br>
+          <p>Aucune demande n'est trouvée</p>
         </div>
+        
 
       </div>
       

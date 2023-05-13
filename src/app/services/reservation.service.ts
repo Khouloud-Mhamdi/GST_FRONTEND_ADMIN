@@ -20,7 +20,8 @@ export class ReservationService {
     const url = `${this.baseUrl}/refuser/${id}/${email}`;
     return this.http.get<boolean>(url);
   }
-  getReservationsEnAttente(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/reservations-en-attente`);
+  getReservationsEnAttenteByTerrain(terrainId: number): Observable<any[]> {
+    const url = `${this.baseUrl}/reservations-en-attente/${terrainId}`;
+    return this.http.get<any[]>(url);
   }
 }

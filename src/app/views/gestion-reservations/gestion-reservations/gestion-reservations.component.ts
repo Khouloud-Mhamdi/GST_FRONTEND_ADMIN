@@ -14,6 +14,8 @@ export class GestionReservationsComponent implements OnInit {
   constructor(private reservationService : ReservationService) {
     this.id_terrain = 1 ; 
    }
+   testDate : any  = ''; 
+   events : any  = {}; 
    reservationsEnAttente: any ;
    oneEvent  = {
     title : '' , 
@@ -48,21 +50,10 @@ export class GestionReservationsComponent implements OnInit {
   dateClicked : any ; 
   id_terrain : any   ; 
   reservations: any  ; 
-  horaires : any =[
-    {hdebut:'08:00' , hfin:'09:00'} , 
-    {hdebut:'09:00' , hfin:'10:00'} , 
-    {hdebut:'10:00' , hfin:'11:00'} , 
-    {hdebut:'11:00' , hfin:'12:00'} , 
-    {hdebut:'12:00' , hfin:'13:00'} , 
-    {hdebut:'13:00' , hfin:'14:00'} , 
-    {hdebut:'14:00' , hfin:'15:00'} , 
-    {hdebut:'15:00' , hfin:'16:00'} , 
-    {hdebut:'16:00' , hfin:'17:00'} , 
-    {hdebut:'17:00' , hfin:'18:00'} , 
-    {hdebut:'18:00' , hfin:'19:00'} , 
-    {hdebut:'19:00' , hfin:'20:00'} , 
-  ]
+  
   ngOnInit(): void {
+    this.getReservationsEnAttente() ; 
+    console.log ("liste events !!! " , this.events ) ; 
     console.log ("l'id du terrain : " , this.id_terrain) ; 
     this.dateActuelle = this.calendarOptions.initialDate;  
     this.dateClicked = format(this.dateActuelle, 'yyyy-MM-dd'); // Formater la date initiale
@@ -73,47 +64,54 @@ export class GestionReservationsComponent implements OnInit {
         data => {
           this.reservations = data ; 
           console.log('Horaires récupérés avec succès:', this.reservations);
+          if (this.reservations.length === 0) {
+            console.log('Le tableau de réservations est vide.');
+            this.verif = true ; 
+          }
         },
         error => {
           console.log('Une erreur est survenue lors de la récupération des horaires:', error);
         }
       );
   
-      this.getReservationsEnAttente() ; 
-      console.log ("liste events !!! " , this.events ) ; 
+     
   }
   
   getReservationsEnAttente() {
-    console.log ("heyy la liste des events : " , this.events) ; 
-    this.reservationService.getReservationsEnAttente().subscribe(
+    this.reservationService.getReservationsEnAttenteByTerrain(this.id_terrain).subscribe(
       data => {
         this.reservationsEnAttente = data;
-
+        console.log("data de reservation en attente : ", data);
         console.log("la liste des reservations en attente : ", this.reservationsEnAttente);
-
+  
         // Traitement des réservations en attente
+        const events = [];
+        const dates = [];
+  
         for (let resEnAttente of this.reservationsEnAttente) {
-          let event = {
-            title: 'demandes',
-            start: resEnAttente.date,
-            color: '#EFBA77'
-          };
-          this.events.push(event);
-          this.calendarOptions.events = this.events;
-          
+          if (dates.indexOf(resEnAttente.date) === -1) {
+            dates.push(resEnAttente.date);
+            let event = {
+              title: 'demandes',
+              start: resEnAttente.date,
+              color: '#EFBA77'
+            };
+            console.log("event by event push : ", event);
+            events.push(event);
+          }
         }
-       
+  
+        this.calendarOptions.events = events;
       },
       error => {
-        console.log('erreur lors de la recupération de la liste des reservations en attente  ' , error) ; 
+        console.log('erreur lors de la récupération de la liste des réservations en attente ', error);
       }
     );
-          
-      
   }
+  
 
   
-  events : any  = {}; 
+
   toggleWeekends() {
     this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
   }
@@ -139,6 +137,7 @@ export class GestionReservationsComponent implements OnInit {
    }
    
    handleDateSelect(selectInfo:any ) {
+    
     this.verif = false ; 
      //console.log(selectInfo.startStr);
      this.dateClicked = selectInfo.startStr ; 
@@ -160,6 +159,7 @@ export class GestionReservationsComponent implements OnInit {
       }
       
      onTerrainSelect() {
+      this.getReservationsEnAttente() ; 
       console.log(this.id_terrain); // Affiche la valeur sélectionnée dans la console
       this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
       .subscribe(

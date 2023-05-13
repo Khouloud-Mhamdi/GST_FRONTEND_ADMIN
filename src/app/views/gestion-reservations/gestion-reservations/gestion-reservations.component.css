@@ -88,3 +88,11 @@
     width: 500px; /* ou toute autre taille que vous souhaitez */
     margin: auto;
   }
+  .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+  }
+  
