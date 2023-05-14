@@ -60,7 +60,7 @@
           </div>
          <p class="time">{{ reservation.hdebut }} - {{ reservation.hfin }}</p>
          <p class="time" [ngClass]="{'button-accepted': reservation.status === 'acceptée', 'button-pending': reservation.status === 'en attente'}">{{reservation.status}}</p>
-         <button *ngIf="reservation.status === 'acceptée'" class="btn"  class="btn button-border" data-toggle="modal" data-target="#exampleModal11" (click)="consulterReservation(reservation.hdebut , reservation.hfin , reservation.status , reservation.date , reservation.user.nom , reservation.user.prenom , reservation.terrain.num_terrain)">Voir</button>
+         <button *ngIf="reservation.status === 'acceptée'" class="btn"  class="btn button-border" data-toggle="modal" data-target="#exampleModal11" (click)="consulterReservation(reservation.hdebut , reservation.hfin , reservation.status , reservation.date , reservation.user.nom , reservation.user.prenom , reservation.terrain.num_terrain , reservation.user.email)">Voir</button>
         <button *ngIf="reservation.status === 'en attente'" class="btn" class="btn button-border" data-toggle="modal" data-target="#exampleModal22" (click)="repondreReservation(reservation.id_reservation , reservation.hdebut , reservation.hfin , reservation.status , reservation.date , reservation.user.nom , reservation.user.prenom , reservation.user.email , reservation.terrain.num_terrain )">Repondre</button>
         </div>
         </label>
@@ -107,14 +107,15 @@
             <img src="assets/photos/reservation.png" style="display: block; margin: 0 auto; max-height: 150px;">
 
           </div>
-          <h4>Reservation {{objetConsult.status}} </h4>
+          <h4>Réservation {{objetConsult.status}} </h4>
           <hr>
           <h4>Date : {{objetConsult.date}}</h4>
           <h4>Horaire : {{objetConsult.hdebut}} - {{objetConsult.hfin}} </h4>
+          <h4>N° terrain : {{objetConsult.numTerrain}}</h4>
           <hr>
-          <h4>adhérent  </h4>
-          <h4>{{objetConsult.firstName}} {{objetConsult.lastName}} </h4>
-          
+          <h4>Adhérent : </h4>
+          <h4>Nom et prénom : {{objetConsult.firstName}} {{objetConsult.lastName}} </h4>
+          <h4>Email : {{objetConsult.email}}</h4>
           
           <br>
          
@@ -149,14 +150,15 @@
             <img src="assets/photos/reservation.png" style="display: block; margin: 0 auto; max-height: 150px;">
 
           </div>
-          <h4>Reservation {{objetRepondre.status}}  </h4>
+          <h4>Réservation {{objetRepondre.status}}  </h4>
           <hr>
           <h4>Date : {{objetRepondre.date}}</h4>
           <h4>Horaire :  {{objetRepondre.hdebut}}-{{objetRepondre.hfin}}</h4>
+          <h4>N° terrain : {{objetRepondre.numTerrain}}</h4>
           <hr>
-          <h4>adhérent :  </h4>
-          <h4>{{objetRepondre.firstName}} {{objetRepondre.lastName}}</h4>
-          <h4>{{objetRepondre.email}}</h4>
+          <h4>Adhérent :  </h4>
+          <h4>Nom et prénom : {{objetRepondre.firstName}} {{objetRepondre.lastName}}</h4>
+          <h4>Email : {{objetRepondre.email}}</h4>
           
           <br>
          

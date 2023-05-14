@@ -29,7 +29,8 @@ export class GestionReservationsComponent implements OnInit {
     date : '' , 
     firstName : '' , 
     lastName : '' , 
-    numTerrain : 0
+    numTerrain : 0 , 
+    email : '' , 
    }
   
    objetRepondre =  {
@@ -159,6 +160,7 @@ export class GestionReservationsComponent implements OnInit {
       }
       
      onTerrainSelect() {
+      this.verif = false ; 
       this.getReservationsEnAttente() ; 
       console.log(this.id_terrain); // Affiche la valeur sélectionnée dans la console
       this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
@@ -173,7 +175,7 @@ export class GestionReservationsComponent implements OnInit {
       );
     }
    
-     consulterReservation(hdebut : any , hfin : any , status : any , date : any , nomUser : any , prenomUser : any , numTerrain : any ) {
+     consulterReservation(hdebut : any , hfin : any , status : any , date : any , nomUser : any , prenomUser : any , numTerrain : any , email : any ) {
         this.objetConsult.hdebut = hdebut ; 
         this.objetConsult.hfin = hfin ; 
         this.objetConsult.status = status ; 
@@ -181,6 +183,7 @@ export class GestionReservationsComponent implements OnInit {
         this.objetConsult.firstName = nomUser ; 
         this.objetConsult.lastName = prenomUser ; 
         this.objetConsult.numTerrain = numTerrain ; 
+        this.objetConsult.email = email ; 
      }
      //(click)="repondreReservation(reservation.id , reservation.hdebut , reservation.hfin , reservation.status , reservation.date , reservation.user.nom , reservation.user.prenom , reservation.user.prenom , reservation.user.email , reservation.terrain.num_terrain )"
      repondreReservation(idRes : any , hdebut : any , hfin : any , status : any , date : any , nomUser : any , prenomUser : any , emailUser : any , numTerrain : any  )
