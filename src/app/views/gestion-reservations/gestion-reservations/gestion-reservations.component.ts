@@ -17,6 +17,7 @@ export class GestionReservationsComponent implements OnInit {
    testDate : any  = ''; 
    events : any  = {}; 
    reservationsEnAttente: any ;
+   reservationAcceptee : any ; 
    oneEvent  = {
     title : '' , 
     start : '' , 
@@ -54,6 +55,7 @@ export class GestionReservationsComponent implements OnInit {
   
   ngOnInit(): void {
     this.getReservationsEnAttente() ; 
+    this.getReservationAcceptee() ; 
     console.log ("liste events !!! " , this.events ) ; 
     console.log ("l'id du terrain : " , this.id_terrain) ; 
     this.dateActuelle = this.calendarOptions.initialDate;  
@@ -109,6 +111,37 @@ export class GestionReservationsComponent implements OnInit {
       }
     );
   }
+  getReservationAcceptee() {
+    this.reservationService.getReservationsAccepteesByTerrain(this.id_terrain).subscribe(
+      data => {
+        this.reservationAcceptee = data;
+        console.log("data de reservation en attente : ", data);
+        console.log("la liste des reservations en attente : ", this.reservationAcceptee);
+  
+        // Traitement des réservations en attente
+        const events = [];
+        const dates = [];
+  
+        for (let resAcceptee of this.reservationAcceptee) {
+          if (dates.indexOf(resAcceptee.date) === -1) {
+            dates.push(resAcceptee.date);
+            let event = {
+              title: 'reservation',
+              start: resAcceptee.date,
+              color: '#7EE27E'
+            };
+            console.log("event by event push : ", event);
+            events.push(event);
+          }
+        }
+  
+        this.calendarOptions.events = events;
+      },
+      error => {
+        console.log('erreur lors de la récupération de la liste des réservations acceptée ', error);
+      }
+    );
+  }
   
 
   
@@ -140,6 +173,7 @@ export class GestionReservationsComponent implements OnInit {
    handleDateSelect(selectInfo:any ) {
     
     this.verif = false ; 
+    
      //console.log(selectInfo.startStr);
      this.dateClicked = selectInfo.startStr ; 
      this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
@@ -161,7 +195,6 @@ export class GestionReservationsComponent implements OnInit {
       
      onTerrainSelect() {
       this.verif = false ; 
-      this.getReservationsEnAttente() ; 
       console.log(this.id_terrain); // Affiche la valeur sélectionnée dans la console
       this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
       .subscribe(
@@ -173,6 +206,9 @@ export class GestionReservationsComponent implements OnInit {
           console.log('Une erreur est survenue lors de la récupération des horaires:', error);
         }
       );
+      this.events = {} ; 
+      this.getReservationsEnAttente() ; 
+      this.getReservationAcceptee() ; 
     }
    
      consulterReservation(hdebut : any , hfin : any , status : any , date : any , nomUser : any , prenomUser : any , numTerrain : any , email : any ) {

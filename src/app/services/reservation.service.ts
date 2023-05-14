@@ -24,4 +24,8 @@ export class ReservationService {
     const url = `${this.baseUrl}/reservations-en-attente/${terrainId}`;
     return this.http.get<any[]>(url);
   }
+  getReservationsAccepteesByTerrain(terrainId: number): Observable<any[]> {
+    const url = `${this.baseUrl}/reservations-acceptee/${terrainId}`;
+    return this.http.get<any[]>(url);
+  }
 }
