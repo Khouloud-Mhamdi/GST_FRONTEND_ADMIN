@@ -18,7 +18,7 @@ export class ListeAdherentsComponent implements OnInit {
   nb_resultats: number | null = null;
   nb_adherents: number | null = null;
 
-  itemsPerPage: number = 5; // Nombre d'utilisateurs à afficher par page.
+  itemsPerPage: number = 10; // Nombre d'utilisateurs à afficher par page.
   totalPages: number = 1; // Nombre total de pages.
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
@@ -27,7 +27,7 @@ export class ListeAdherentsComponent implements OnInit {
   constructor(private UserService :  UtilisateurService ,private titleService: Title ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("Liste des adhérents")
+    this.titleService.setTitle("GSTAdmin-Liste des adhérents")
     this.ListeDesUtilisateurs();
   }
   ListeDesUtilisateurs () : void {

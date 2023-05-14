@@ -38,7 +38,7 @@ export class AddUserComponent implements OnInit {
      }
      );
      this.getAllclubs();
-     this.titleService.setTitle('Ajouter Utilisateur ');
+     this.titleService.setTitle('GSTAdmin-Ajouter Utilisateur ');
 
     console.log("data here : " , this.clubs ) ;
 

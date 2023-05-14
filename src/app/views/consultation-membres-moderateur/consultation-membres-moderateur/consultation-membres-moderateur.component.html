@@ -109,35 +109,31 @@
 
   <!--2eme modele -->
   <div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"> Membre de  {{objDiscipline.discipline}} </h5>
+        <div class="modal-header" style="background-color: #00b894;">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Membre de {{objDiscipline.discipline}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body text-center"  >
           <div class="form-group">
-            
-            <img src="assets/photos/membre.png" height="200">
+            <img src="assets/photos/membre.png" style="width: 200px; height: auto; border-radius: 50%;" alt="Membre Image">
           </div>
-          <h4>Nom :  {{infoMembre.nom }}</h4>
-          <h4>Prenom :  {{infoMembre.prenom}}</h4>
-          <h4>Email : {{infoMembre.email}} </h4>
-          <h4>Date de naissance :  {{infoMembre.naissance}}</h4>
-          <h4>Adresse :  {{infoMembre.naissance}}</h4>
-          <h4>Telephone : {{infoMembre.telephone}}</h4>
-          <br>
-          <h4>Date d'inscription : {{infoMembre.dateInscrit}}</h4>
-          <h4>Discipline : {{infoMembre.discipline}} </h4>
-
-          <br>
-         
+          <div style="border: 8px solid #00b894; ">
+          <h4 class="mb-3" style="color: #002a52; ">Nom : <strong>{{infoMembre.nom}}</strong></h4>
+          <h4 class="mb-3" style="color: #002a52; ">Prénom : <strong>{{infoMembre.prenom}}</strong></h4>
+          <h4 class="mb-3" style="color:#002a52; ">Email : <strong>{{infoMembre.email}}</strong></h4>
+          <h4 class="mb-3" style="color: #002a52; ">Date de naissance :<strong>{{infoMembre.naissance}}</strong> </h4>
+          <h4 class="mb-3" style="color: #002a52; ">Adresse : <strong>{{infoMembre.adresse}}</strong></h4>
+          <h4 class="mb-3" style="color: #002a52; ">Téléphone : <strong>{{infoMembre.telephone}}</strong></h4>
+          <h4 class="mb-3" style="color: #004d99; ">Date d'inscription : <strong>{{infoMembre.dateInscrit}}</strong></h4>
+          <h4 class="mb-3" style="color: #004d99; ">Discipline :<strong>{{infoMembre.discipline}}</strong> </h4>
+        </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-         
         </div>
       </div>
     </div>

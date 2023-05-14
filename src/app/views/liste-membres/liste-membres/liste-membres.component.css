@@ -138,7 +138,7 @@ button[type="submit"]:hover {
 
 }
 .modal-content {
-  width: 500px; /* ou toute autre taille que vous souhaitez */
+  width: 700px; /* ou toute autre taille que vous souhaitez */
   margin: auto;
 }
 select {
@@ -146,4 +146,7 @@ select {
   overflow-y: auto; /* Ajoute une barre de défilement verticale si la liste est plus longue que la hauteur spécifiée */
 }
 h2
-{color : #1D2939}
+{color: #004d99;}
+h4
+{font-size:20px;
+  color: #002a52;}

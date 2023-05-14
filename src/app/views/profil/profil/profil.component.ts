@@ -21,7 +21,7 @@ export class ProfilComponent implements OnInit {
   constructor(private titleService: Title ,private token: TokenStorageService , private authService : AuthService , private router : Router) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("Profil")
+    this.titleService.setTitle("GSTAdmin-Profil")
     this.currentUser = this.token.getUser();
     console.log(this.currentUser.id);
     this.authService.getCurrentUserById(this.currentUser.id).subscribe((data) => {this.user = data; console.log(data); } );

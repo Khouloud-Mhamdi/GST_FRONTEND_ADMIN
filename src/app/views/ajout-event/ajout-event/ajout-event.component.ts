@@ -22,7 +22,7 @@ export class AjoutEventComponent implements OnInit {
   constructor( private titleService: Title , private router : Router  , public  eventService : EvenementService , public formBuilder : FormBuilder) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("Ajouter évènement")
+    this.titleService.setTitle("GSTAdmin-Ajouter évènement")
     this.eventService.dataForm = this.formBuilder.group ({
       titre : ['', [Validators.required]],
       lieu : ['', [Validators.required]],
