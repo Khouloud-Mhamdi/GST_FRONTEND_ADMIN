@@ -131,39 +131,39 @@
         </div>
         <div style="border: 5px solid #00b894; ">
         <h2>Coordonnées</h2>
-       
-        <h4 class="ml-3"> Nom :<strong> {{membreDetails.nom}}</strong></h4>
+
+        <h4 class="ml-3"><strong> Nom : </strong> {{membreDetails.nom}}</h4>
         <h4 class="auto"> <strong>Prenom :</strong>  {{membreDetails.prenom}}</h4>
 
-       
+
         <h4 class="ml-3"><strong>Email :</strong> {{membreDetails.email}}</h4>
         <h4 class="auto"><strong>Telephone : </strong>{{membreDetails.telephone}}</h4>
-       
+
         <h4 class="ml-3"><strong>Adresse :</strong>{{membreDetails.adresse}} </h4>
         <h4 class="ml-5"><strong>Date_naissance :</strong>{{membreDetails.date_naissance}} </h4>
-      
+
         <h4><strong>Lieu de naissance :</strong> {{membreDetails.lieu_naissance}}</h4>
       </div>
         <br>
         <div style="border: 4px solid #00b894; ">
         <h2>Inscription</h2>
-      
-       
+
+
         <h4><strong>Discipline :</strong> {{membreDetails.discipline}}</h4>
         <h4 class="ml-5"><strong>Date d'inscription :</strong>{{membreDetails.date_inscription}} </h4>
-       
+
         <h4><strong>Mode de paiement :</strong>{{membreDetails.mode_paiement}} </h4>
 </div>
         <br>
         <div style="border: 5px solid #00b894; ">
         <h2>Autres informations</h2>
-       
-      
+
+
         <h4 *ngIf="membreDetails.relation" class="ml-5">  {{membreDetails.relation}} De <strong>{{membreDetails.NomAdherent}}  {{membreDetails.PrenomAdherent}} </strong></h4>
-       
+
         <h4><strong>Profession  :</strong> {{membreDetails.Profession}} </h4>
         <h4 class="ml-5"><strong>Type : </strong>{{membreDetails.stegiste}}</h4>
-     
+
 </div>
 
 
