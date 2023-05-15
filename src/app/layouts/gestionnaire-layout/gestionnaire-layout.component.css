@@ -26,3 +26,7 @@ nav.sidebar ul.list-unstyled li a:hover {
   background-color: #fff; /* Change the background color of the link on hover */
   color: #343a40; /* Change the color of the link on hover */
 }
+.dropdown-menu .media-list {
+  max-height: 450px; /* Ajustez la hauteur maximale selon vos besoins */
+  overflow-y: auto;
+}

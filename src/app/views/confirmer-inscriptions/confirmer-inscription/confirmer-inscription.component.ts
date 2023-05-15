@@ -29,6 +29,26 @@ export class ConfirmerInscriptionComponent implements OnInit {
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
   displayedUsers: any;
+  membreDetails = {
+    id_inscription : 0 ,
+    nom : '' ,
+    prenom : '' ,
+    date_naissance : '' ,
+    lieu_naissance : '' ,
+    email : '' ,
+    telephone : '' ,
+    adresse : '' ,
+    discipline : '' ,
+    date_inscription : '' ,
+    mode_paiement : '' ,
+    stegiste : '' ,
+    matricule: '' ,
+    relation : '' ,
+    NomAdherent : '' ,
+    PrenomAdherent : '' ,
+    Profession : '' ,
+
+  }
 
   constructor(private titleService: Title , private UserService :  UtilisateurService ,private InscriptionService :  InscriptionService) { }
 
@@ -158,6 +178,27 @@ this.ListeDesUtilisateurs();
       this.Pagination();
 
     })
+  }
+  getDetails(id : number , nom : any , prenom : any ,  email : any , telephone : any , adresse : any , date_naissance : any , lieu_naissance:any , discipline : any ,  profession:any , date_inscription:any ,  mode_paiement:any , stegiste:any ,  relation :any, NomAdherent:any , PrenomAdherent:any)
+  {
+    this.membreDetails.id_inscription = id ;
+     this.membreDetails.nom = nom ;
+     this.membreDetails.prenom = prenom ;
+     this.membreDetails.date_naissance = date_naissance ;
+     this.membreDetails.lieu_naissance = lieu_naissance ;
+     this.membreDetails.email = email ;
+     this.membreDetails.telephone = telephone ;
+     this.membreDetails.adresse = adresse ;
+     this.membreDetails.discipline = discipline ;
+     this.membreDetails.Profession= profession;
+     this.membreDetails.NomAdherent= NomAdherent;
+     this.membreDetails.PrenomAdherent= PrenomAdherent;
+     this.membreDetails.relation=relation;
+
+     this.membreDetails.stegiste=stegiste;
+     this.membreDetails.date_inscription = date_inscription ;
+     this.membreDetails.mode_paiement= mode_paiement;
+
   }
 
 }
