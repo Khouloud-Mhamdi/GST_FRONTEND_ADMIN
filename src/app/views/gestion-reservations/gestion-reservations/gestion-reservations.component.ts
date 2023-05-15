@@ -4,6 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { format } from 'date-fns';
 import { CalendarOptions } from '@fullcalendar/core';
 import { ReservationService } from 'src/app/services/reservation.service';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-gestion-reservations',
   templateUrl: './gestion-reservations.component.html',
@@ -11,7 +12,7 @@ import { ReservationService } from 'src/app/services/reservation.service';
 })
 export class GestionReservationsComponent implements OnInit {
 
-  constructor(private reservationService : ReservationService) {
+  constructor(private titleService: Title ,private reservationService : ReservationService) {
     this.id_terrain = 1 ; 
    }
    testDate : any  = ''; 
@@ -54,6 +55,7 @@ export class GestionReservationsComponent implements OnInit {
   reservations: any  ; 
   
   ngOnInit(): void {
+    this.titleService.setTitle("GST-Gestion des réservations")
     this.getReservationsEnAttente() ; 
     this.getReservationAcceptee() ; 
     console.log ("liste events !!! " , this.events ) ; 

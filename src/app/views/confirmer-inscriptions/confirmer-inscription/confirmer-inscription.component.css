@@ -146,3 +146,8 @@ select {
   max-height: 200px; /* Remplacez 200px par la hauteur souhaitée */
   overflow-y: auto; /* Ajoute une barre de défilement verticale si la liste est plus longue que la hauteur spécifiée */
 }
+h2
+{color: #004d99;}
+h4
+{font-size:20px;
+  color: #002a52;}

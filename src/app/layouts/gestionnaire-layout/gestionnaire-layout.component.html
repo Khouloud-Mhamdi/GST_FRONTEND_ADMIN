@@ -48,7 +48,7 @@
         </li>
         <li>
           <a routerLink="/gestionnaire/reservations">
-            <i class="fa fa-users"></i>
+            <i class="fa fa-calendar"></i>
            Gestion des réservations
           </a>
         </li>
@@ -112,7 +112,7 @@
               <!-- loop starts here -->
               <a routerLink="/gestionnaire/liste" class="media-list-link read" *ngIf="nb_membres>0">
                 <div class="media pd-x-20 pd-y-15">
-                  <img src="../img/img8.jpg" class="wd-40 rounded-circle" alt="">
+                  <img src="assets/photos/membre.png" class="wd-40 rounded-circle" alt="">
                   <div class="media-body">
                     <p class="tx-13 mg-b-0 tx-gray-700"> Vous avez <strong class="tx-medium tx-gray-800">{{nb_membres}}</strong> nouvelles demandes d'inscriptions</p>
                    
@@ -120,9 +120,9 @@
                 </div><!-- media -->
               </a>
               <!-- loop ends here -->
-              <a href="#" class="media-list-link read" *ngFor="let a of reservations" >
+              <a routerLink="/gestionnaire/reservations" class="media-list-link read" *ngFor="let a of reservations" >
                 <div class="media pd-x-20 pd-y-15">
-                  <img src="../img/img9.jpg" class="wd-40 rounded-circle" alt="">
+                  <img src="assets/photos/reservation.png" class="wd-40 rounded-circle" alt="">
                   <div class="media-body">
                     <p class="tx-13 mg-b-0 tx-gray-700">Vous avez une demande de réservation pour le terrain de tennis n°<strong class="tx-medium tx-gray-800">{{a.terrain.id_terrain}}</strong></p>
                     <span class="tx-12">{{a.date}}, de {{a.hdebut}} à {{a.hfin}}</span>
