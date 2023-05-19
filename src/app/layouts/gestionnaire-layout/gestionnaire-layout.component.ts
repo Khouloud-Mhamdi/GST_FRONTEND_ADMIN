@@ -13,7 +13,7 @@ export class GestionnaireLayoutComponent implements OnInit {
     nb_membres:any;
     reservations :any;
     nb_reservations:any;
-  constructor(private token : TokenStorageService , private router : Router,private InscriptionService :  InscriptionService) { }
+  constructor(private token : TokenStorageService , private router : Router,private InscriptionService :  InscriptionService ) { }
   currentUser : any ;
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
@@ -29,9 +29,22 @@ export class GestionnaireLayoutComponent implements OnInit {
       this.nb_reservations = this.reservations.length;
      
     })
+
   }
   deconnect(){
     this.token.signOut();
     this.router.navigate(['']);
    }
+   storeData(a: any) {
+    sessionStorage.setItem('date', a.date);
+    sessionStorage.setItem('terrainId', a.terrain.id_terrain);
+    this.router.navigate(['/gestionnaire/reservations']).then(() => {
+      window.location.reload();
+    });
+  }
+  reservation() {
+    sessionStorage.removeItem('date');
+    sessionStorage.removeItem('terrainId');
+    this.router.navigate(['/gestionnaire/reservations']);
+  }
 }

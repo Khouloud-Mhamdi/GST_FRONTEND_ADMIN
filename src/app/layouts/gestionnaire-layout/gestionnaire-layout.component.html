@@ -47,7 +47,7 @@
           </a>
         </li>
         <li>
-          <a routerLink="/gestionnaire/reservations">
+          <a (click)="reservation()">
             <i class="fa fa-calendar"></i>
            Gestion des réservations
           </a>
@@ -120,7 +120,7 @@
                 </div><!-- media -->
               </a>
               <!-- loop ends here -->
-              <a routerLink="/gestionnaire/reservations" class="media-list-link read" *ngFor="let a of reservations" >
+              <a  class="media-list-link read" *ngFor="let a of reservations"  (click)="storeData(a)" >
                 <div class="media pd-x-20 pd-y-15">
                   <img src="assets/photos/reservation.png" class="wd-40 rounded-circle" alt="">
                   <div class="media-body">
