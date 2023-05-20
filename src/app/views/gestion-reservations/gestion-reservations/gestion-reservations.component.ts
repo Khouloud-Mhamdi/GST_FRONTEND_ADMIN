@@ -81,8 +81,18 @@ export class GestionReservationsComponent implements OnInit {
     const terrainIdValue: string | number = terrainId !== null ? parseInt(terrainId, 10) : 1;
   
     if (dateValue !== null) {
+      
       this.dateClicked = dateValue ; 
       this.id_terrain = terrainIdValue ; 
+      const date1 = new Date(this.dateClicked);
+      const date2 = new Date(this.dateActuelle);
+     if (date1 < date2) {
+      this.acceptButtonDisabled = true;
+      this.refuseButtonDisabled = true;
+     } else {
+      this.acceptButtonDisabled = false ;
+      this.refuseButtonDisabled = false ;
+     }
       console.log('Date: ', dateValue);
       console.log('Terrain ID: ', terrainIdValue);
       this.reservationService.getReservationsByDateAndTerrainAndStatus(dateValue, terrainIdValue)
@@ -100,6 +110,15 @@ export class GestionReservationsComponent implements OnInit {
           }
         );
     } else {
+     const date1 = new Date(this.dateClicked);
+     const date2 = new Date(this.dateActuelle);
+     if (date1 < date2) {
+      this.acceptButtonDisabled = true;
+      this.refuseButtonDisabled = true;
+     } else {
+      this.acceptButtonDisabled = false ;
+      this.refuseButtonDisabled = false ;
+     }
       console.log('La valeur de date est null');
       this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
         .subscribe(
