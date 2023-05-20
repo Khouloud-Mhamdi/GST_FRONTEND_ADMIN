@@ -164,8 +164,8 @@
          
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success mr-2" (click)="accepterReservation()">Accepter</button>
-          <button type="button" class="btn btn-danger" (click)="refuserReservation()">Refuser</button>
+          <button type="button" class="btn btn-success mr-2" (click)="accepterReservation()" [disabled]="acceptButtonDisabled" >Accepter</button>
+          <button type="button" class="btn btn-danger" (click)="refuserReservation()" [disabled]="refuseButtonDisabled">Refuser</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
         </div>        
       </div>

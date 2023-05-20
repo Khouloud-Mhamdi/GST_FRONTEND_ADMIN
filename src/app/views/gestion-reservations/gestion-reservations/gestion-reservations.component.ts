@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import { CalendarOptions } from '@fullcalendar/core';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-gestion-reservations',
   templateUrl: './gestion-reservations.component.html',
@@ -12,9 +13,13 @@ import { Title } from '@angular/platform-browser';
 })
 export class GestionReservationsComponent implements OnInit {
 
-  constructor(private titleService: Title ,private reservationService : ReservationService) {
+  constructor(private titleService: Title ,private reservationService : ReservationService , private router : Router) {
+  
     this.id_terrain = 1 ; 
+    this.router.onSameUrlNavigation = 'reload';
    }
+   acceptButtonDisabled = false ; 
+   refuseButtonDisabled = false ; 
    testDate : any  = ''; 
    events : any  = {}; 
    reservationsEnAttente: any ;
@@ -53,34 +58,86 @@ export class GestionReservationsComponent implements OnInit {
   dateClicked : any ; 
   id_terrain : any   ; 
   reservations: any  ; 
-  
+  dateFromNotification = "" ; 
+  idTerrainFromNotification = ""; 
+
+
   ngOnInit(): void {
-    this.titleService.setTitle("GST-Gestion des réservations")
-    this.getReservationsEnAttente() ; 
-    this.getReservationAcceptee() ; 
-    console.log ("liste events !!! " , this.events ) ; 
-    console.log ("l'id du terrain : " , this.id_terrain) ; 
-    this.dateActuelle = this.calendarOptions.initialDate;  
-    this.dateClicked = format(this.dateActuelle, 'yyyy-MM-dd'); // Formater la date initiale
+   
+    this.titleService.setTitle("GST-Gestion des réservations");
+    this.getReservationsEnAttente();
+    this.getReservationAcceptee();
+    console.log("liste events !!! ", this.events);
+    console.log("l'id du terrain : ", this.id_terrain);
+    this.dateActuelle = this.calendarOptions.initialDate;
+    this.dateClicked = format(this.dateActuelle, 'yyyy-MM-dd');
+    this.dateActuelle = format(this.dateActuelle, 'yyyy-MM-dd'); // Formater la date initiale
     console.log('La date actuelle :', this.dateClicked);
   
-    this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
-      .subscribe(
-        data => {
-          this.reservations = data ; 
-          console.log('Horaires récupérés avec succès:', this.reservations);
-          if (this.reservations.length === 0) {
-            console.log('Le tableau de réservations est vide.');
-            this.verif = true ; 
-          }
-        },
-        error => {
-          console.log('Une erreur est survenue lors de la récupération des horaires:', error);
-        }
-      );
+    // Récupération de la date et de l'id_terrain depuis la session storage
+    const dateN = sessionStorage.getItem('date');
+    const terrainId = sessionStorage.getItem('terrainId');
+    const dateValue: string | null = dateN !== null ? dateN : null;
+    const terrainIdValue: string | number = terrainId !== null ? parseInt(terrainId, 10) : 1;
   
-     
+    if (dateValue !== null) {
+      
+      this.dateClicked = dateValue ; 
+      this.id_terrain = terrainIdValue ; 
+      const date1 = new Date(this.dateClicked);
+      const date2 = new Date(this.dateActuelle);
+     if (date1 < date2) {
+      this.acceptButtonDisabled = true;
+      this.refuseButtonDisabled = true;
+     } else {
+      this.acceptButtonDisabled = false ;
+      this.refuseButtonDisabled = false ;
+     }
+      console.log('Date: ', dateValue);
+      console.log('Terrain ID: ', terrainIdValue);
+      this.reservationService.getReservationsByDateAndTerrainAndStatus(dateValue, terrainIdValue)
+        .subscribe(
+          data => {
+            this.reservations = data;
+            console.log('Horaires récupérés avec succès:', this.reservations);
+            if (this.reservations.length === 0) {
+              console.log('Le tableau de réservations est vide.');
+              this.verif = true;
+            }
+          },
+          error => {
+            console.log('Une erreur est survenue lors de la récupération des horaires:', error);
+          }
+        );
+    } else {
+     const date1 = new Date(this.dateClicked);
+     const date2 = new Date(this.dateActuelle);
+     if (date1 < date2) {
+      this.acceptButtonDisabled = true;
+      this.refuseButtonDisabled = true;
+     } else {
+      this.acceptButtonDisabled = false ;
+      this.refuseButtonDisabled = false ;
+     }
+      console.log('La valeur de date est null');
+      this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
+        .subscribe(
+          data => {
+            this.reservations = data;
+            console.log('Horaires récupérés avec succès:', this.reservations);
+            if (this.reservations.length === 0) {
+              console.log('Le tableau de réservations est vide.');
+              this.verif = true;
+            }
+          },
+          error => {
+            console.log('Une erreur est survenue lors de la récupération des horaires:', error);
+          }
+        );
+    }
+   
   }
+  
   
   getReservationsEnAttente() {
     this.reservationService.getReservationsEnAttenteByTerrain(this.id_terrain).subscribe(
@@ -175,9 +232,17 @@ export class GestionReservationsComponent implements OnInit {
    handleDateSelect(selectInfo:any ) {
     
     this.verif = false ; 
-    
-     //console.log(selectInfo.startStr);
+        //console.log(selectInfo.startStr);
      this.dateClicked = selectInfo.startStr ; 
+     const date1 = new Date(this.dateClicked);
+     const date2 = new Date(this.dateActuelle);
+     if (date1 < date2) {
+      this.acceptButtonDisabled = true;
+      this.refuseButtonDisabled = true;
+     } else {
+      this.acceptButtonDisabled = false ;
+      this.refuseButtonDisabled = false ;
+     }
      this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
     .subscribe(
       data => {

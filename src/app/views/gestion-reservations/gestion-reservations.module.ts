@@ -6,6 +6,7 @@ import { GestionReservationsComponent } from './gestion-reservations/gestion-res
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FullCalendarModule
-
+    FullCalendarModule , 
   ]
 })
 export class GestionReservationsModule { }
