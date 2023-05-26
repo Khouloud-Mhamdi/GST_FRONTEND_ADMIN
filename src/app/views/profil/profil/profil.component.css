@@ -67,3 +67,18 @@
   padding: 10px 20px;
   cursor: pointer;
 }
+
+label
+{font-size:18px;
+  color: #002a52;}
+  #datatable1 {
+    width: 100%;
+
+  }
+  .modal-content {
+    width: 600px; /* ou toute autre taille que vous souhaitez */
+    margin: auto;
+  }
+  .red{
+    color: red;
+  }

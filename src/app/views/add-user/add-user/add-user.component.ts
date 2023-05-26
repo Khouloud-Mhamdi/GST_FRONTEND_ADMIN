@@ -79,7 +79,7 @@ export class AddUserComponent implements OnInit {
 
         console.log(data);
         this.ajout=true;
-        this.addUserForm.reset() ; 
+        this.addUserForm.reset() ;
         setTimeout(() => {
           this.ajout = false;
         }, 3000); // 3000 ms = 3 secondes

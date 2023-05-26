@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  
+
 
   constructor(private http: HttpClient) { }
   userURL: string = "http://localhost:8080/api/auth";
@@ -23,6 +23,8 @@ export class AuthService {
     const url = `${this.userURL}/UpdateCurrentUser`;
     return this.http.put<any>(url, user);
   }
+  changerMotDePasse(Id:number ,NewPassword:any) :Observable<boolean>
+  {return this.http.get<boolean> (this.userURL + "/ChangerPassword/"+ Id + "/" +NewPassword)}
 
   forgetPassword (email :any) :Observable<boolean>{
     return this.http.get<boolean> (this.URL +"forgot-password/" +email);
@@ -40,5 +42,8 @@ export class AuthService {
   }
   ExistEmail (email :any) :Observable<boolean>{
     return this.http.get<boolean> (this.userURL +"/ExistEmail/" +email);
+  }
+  ModifierPassword(loginRequest: any): Observable<boolean> {
+    return this.http.post<boolean>(this.userURL+"/ModifierPassword", loginRequest);
   }
 }

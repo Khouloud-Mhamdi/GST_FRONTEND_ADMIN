@@ -56,7 +56,7 @@
                 addUserForm.controls['firstName'].touched || addUserForm.controls['firstName'].dirty
               )">
                    <div *ngIf ="addUserForm.controls['firstName'].errors?.['required']" class="red"> Ce champ est obligatoire  </div>
-                   <div  *ngIf ="addUserForm.controls['firstName'].errors?.['minlength']" class="red"> Au mois 3 caractéres  </div>
+                   <div  *ngIf ="addUserForm.controls['firstName'].errors?.['minlength']" class="red"> Au moins 3 caractéres  </div>
 
               </div>
                 </div>
