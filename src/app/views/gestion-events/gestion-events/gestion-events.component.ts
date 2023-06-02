@@ -26,7 +26,8 @@ export class GestionEventsComponent implements OnInit {
     titre : '' ,
     description : '' ,
     lieu : '' ,
-    date : ''
+    date : '', 
+    heure : '', 
   }
   nb_events : any ;
   nb_resultats: number | null = null;
@@ -122,7 +123,7 @@ export class GestionEventsComponent implements OnInit {
    this.showConfirmationDialog = false;
  }
 
- getDetails(id : number , titre : any , date : any ,  description : any   , lieu : any  )
+ getDetails(id : number , titre : any , date : any ,  description : any   , lieu : any , heure : any  )
   {
 
         this.dataEvent.titre = titre ;
@@ -130,6 +131,7 @@ export class GestionEventsComponent implements OnInit {
         this.dataEvent.description = description;
         this.dataEvent.date = date ;
         this.dataEvent.id= id ;
+        this.dataEvent.heure= heure ;
         console.log (this.dataEvent) ;
 
 

@@ -28,7 +28,9 @@ export class AjoutEventComponent implements OnInit {
       lieu : ['', [Validators.required]],
       date: ['' ,  [Validators.required] ],
       description : ['', [Validators.required]],
+      heure :  ['' ,  [Validators.required] ], 
     }) ; 
+   
   }
   onSelectFile(event : any ) {
     if (event.target.files.length > 0)
@@ -82,6 +84,9 @@ export class AjoutEventComponent implements OnInit {
 
 
     onSubmit(){
+      console.log("la date choisi : " , this.eventService.dataForm.value.date) ;
+      console.log("l'heure selectionnée ", this.eventService.dataForm.value.heure); 
+
       if ((!this.userFile)||(!this.eventService.dataForm.value.date)){
         this.erreur = true ; 
         setTimeout(() => {
@@ -103,6 +108,5 @@ export class AjoutEventComponent implements OnInit {
       this.showConfirmationDialog = true;
     }
   
-   
-
+  
 }

@@ -48,4 +48,10 @@ export class EvenementService {
   RechercherEvenement(query: any) {
     return this.http.get(this.host+"/api/searchEvent/" +query ) ;
   }
+  getHeureSelectionnee(): string {
+    return this.dataForm.value.heure;
+  }
+  getdate() : string {
+    return this.dataForm.value.date
+  }
 }

@@ -63,9 +63,8 @@
               <th class="wd-15p">Titre</th>
               <th class="wd-15p">Lieu</th>
               <th class="wd-20p">Date</th>
-             
-              <th class="wd-40p">Description</th>
-              <th class="wd-40p">Action</th>
+              <th class="wd-20p">Heure debut</th>
+              <th class="wd-15p">Action</th>
 
             </tr>
           </thead>
@@ -75,16 +74,15 @@
               <td>{{item.titre}}</td>
               <td>{{item.lieu}}</td>
               <td>{{item.date}}</td>
-            
-              <td>{{item.description}}</td>
-              <td></td>
+              <td>{{item.heure}}</td>
+             
 
               <td><button type="button"   class="btn btn-danger" (click)="openConfirmationDialog(item.id)">Supprimer</button></td>
-              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getDetails(item.id, item.titre , item.date , item.description , item.lieu)">
+              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getDetails(item.id, item.titre , item.date , item.description , item.lieu , item.heure)">
                 Modifier
               </button>
               </td>
-              <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal11" (click)="getDetails(item.id, item.titre , item.date , item.description , item.lieu)">
+              <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal11" (click)="getDetails(item.id, item.titre , item.date , item.description , item.lieu , item.heure)">
                 Consulter
               </button>
               </td>
@@ -145,21 +143,24 @@
             <input type="text" class="form-control" id="exampleFormControlInput1"[(ngModel)]="dataEvent.lieu" placeholder="Entrer un lieu " [ngModelOptions]="{standalone:true}">
           </div>
           <div class="form-group">
+            <label >Date  <span class="tx-danger">*</span> </label>
+             <div class="col-10">
+               <input class="form-control" type="date" value="{{dataEvent.date}}" id="example-date-input"[(ngModel)]="dataEvent.date"  [ngModelOptions]="{standalone:true}">
+             </div>
+           </div>
+           <div  class="form-group">
+             <label for="exampleFormControlInput1">Heure début de l'événement :   <span class="tx-danger">*</span>  </label>
+             <div  class="col-sm-8 mg-t-10 mg-sm-t-0" >
+               <input type="time" class="form-control" [(ngModel)]="dataEvent.heure" placeholder="Entrer une description " [ngModelOptions]="{standalone:true}">
+             </div>
+           </div>
+
+          <div class="form-group">
             <label for="exampleFormControlInput1">Description <span class="tx-danger">*</span> </label>
           <!-- <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="dataEvent.description" placeholder="Entrer une description " [ngModelOptions]="{standalone:true}">-->
             <textarea rows="5" class="form-control"  id="exampleFormControlInput1"  placeholder="Entrez une description "   [(ngModel)]="dataEvent.description" placeholder="Entrer une description " [ngModelOptions]="{standalone:true}"></textarea>
           </div>
-          <div class="form-group">
-            <label class="col-sm-4 form-control-label"> photo <span class="tx-danger"></span></label>
-            <img src="{{this.eventService.host+'/api/Imgevents/'+dataEvent.id}}" height="200" *ngIf="selectImg">
-          </div>
-          <div class="form-group">
-           <!-- <label for="example-date-input" class="col-2 col-form-label">Date <span class="tx-danger">*</span></label>-->
-           <label for="exampleFormControlInput1">Date  <span class="tx-danger">*</span> </label>
-            <div class="col-10">
-              <input class="form-control" type="date" value="{{dataEvent.date}}" id="example-date-input"[(ngModel)]="dataEvent.date"  [ngModelOptions]="{standalone:true}">
-            </div>
-          </div>
+
           <div  class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
             <button type="submit" class="btn btn-primary" (click)="updateData()">Modifier</button>
@@ -179,17 +180,19 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-center">
+      <div class="modal-body">
         <div class="form-group">
 
           <img src="{{this.eventService.host+'/api/Imgevents/'+dataEvent.id}}" style="width: 350px; height: 300px; " *ngIf="selectImg">
         </div>
-        <div style="border: 8px solid #00b894; ">
-        <h4 class="mb-3" style="color: #002a52; ">Titre : <strong>{{dataEvent.titre}}</strong></h4>
-        <h4 class="mb-3" style="color: #002a52; "> Date :<strong>{{dataEvent.date}}</strong> </h4>
-        <h4 class="mb-3" style="color: #002a52; "> Lieu : <strong>{{dataEvent.lieu}}</strong></h4>
+        <div style="border: 6px solid #00b894; ">
+          <br>
+        <h4 class="mb-3" style="color: #002a52; "><strong>Titre :</strong> {{dataEvent.titre}}</h4>
+        <h4 class="mb-3" style="color: #002a52; "><strong> Date :</strong>{{dataEvent.date}}</h4>
+        <h4 class="mb-3" style="color: #002a52; "> <strong>Lieu :</strong> {{dataEvent.lieu}}</h4>
+        <h4 class="mb-3" style="color: #002a52; "> <strong>Heure début :</strong> {{dataEvent.heure}}</h4>
        <br>
-        <h4 class="mb-3" style="color: #002a52; "> Description :<strong>{{dataEvent.description}}</strong> </h4>
+        <h4 class="mb-3" style="color: #002a52; "> <strong>Description :</strong>{{dataEvent.description}} </h4>
       </div> </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

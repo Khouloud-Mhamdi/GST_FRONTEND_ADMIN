@@ -445,7 +445,8 @@
           <div class="row mg-t-80">
             <div class="col-xl-12">
               <div class="form-layout form-layout-4">
-                <h6 class="tx-gray-800  tx-bold tx-14 mg-b-10"> évènement </h6>
+                <h6 class="tx-gray-800 tx-bold tx-20 mg-b-10" style="color: darkblue;">Événement</h6>
+
                 <p class="mg-b-30 tx-gray-600"></p>
                 <form  [formGroup]="this.eventService.dataForm">
                   <!--titre-->
@@ -481,11 +482,20 @@
                        
                           <label class="col-sm-4 form-control-label">Date <span class="tx-danger">*</span></label>
                              <div  class="col-sm-8 mg-t-10 mg-sm-t-0" >
-                            <input type="datetime-local" class="form-control" id="nom" formControlName="date" placeholder="Entrez la date de l'evenement " formControlName="date">
+                              <input class="form-control" type="date" id="example-date-input" formControlName="date" placeholder="Entrez une date  "  >
                            </div>
-                           
-                        
                       </div>
+
+                      <div class="row mg-t-20">
+                        <label class="col-sm-4 form-control-label" >Heure début de l'événement : <span class="tx-danger">*</span></label>
+                        <div  class="col-sm-8 mg-t-10 mg-sm-t-0" >
+                          <input type="time" class="form-control" formControlName="heure" id="example-date-input">
+                        </div>
+                      </div>
+                     
+
+
+
                       <div class="row mg-t-20">
                           <label class="col-sm-4 form-control-label"> photo :  <span class="tx-danger">*</span></label>
                           <input type="file" accept="image/*" (change)="onSelectFile($event)">
