@@ -12,7 +12,7 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
 export class GestionEventsComponent implements OnInit {
   public evenements :any;
   public evenementsInitiaux :any;
-  // mes variables
+  
   public events : any ;
   public eventsInitiaux  :any;
   deleted = false ;
@@ -38,7 +38,7 @@ export class GestionEventsComponent implements OnInit {
   selectImg = true  ;
   eventID : any ;
   showConfirmationDialog = false ;
-  // mes variables
+  
 
   supprimer=false;
 
@@ -171,14 +171,14 @@ export class GestionEventsComponent implements OnInit {
         this.deleted = true ;
         setTimeout(() => {
           this.deleted= false;
-        }, 3000);
+        }, 10000);
       },
       (error) => {
         console.log(error) ;
         this.erreurDelete = true ;
         setTimeout(() => {
           this.erreurDelete= false;
-        }, 3000);
+        }, 10000);
       }
       );
       this.closeConfirmationDialog() ;
@@ -191,7 +191,7 @@ export class GestionEventsComponent implements OnInit {
     this.modified = true ;
     setTimeout(() => {
       this.modified= false;
-    }, 3000);
+    }, 10000);
     this.getData() ;
     } ,
 
@@ -200,7 +200,7 @@ export class GestionEventsComponent implements OnInit {
       console.log(error) ;
       setTimeout(() => {
         this.modifiederreur= false;
-      }, 3000);
+      }, 10000);
     }
 
     );

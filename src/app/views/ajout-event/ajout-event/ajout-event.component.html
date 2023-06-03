@@ -1,8 +1,8 @@
 
-  
 
-    
-  
+
+
+
     <div class="br-sideright">
       <ul class="nav nav-tabs sidebar-tabs" role="tablist">
         <li class="nav-item">
@@ -403,45 +403,51 @@
       <div class="br-pageheader pd-y-15 pd-l-20">
         <nav class="breadcrumb pd-0 mg-0 tx-12">
           <a class="breadcrumb-item" href="index-2.html">Admin</a>
-          <a class="breadcrumb-item" href="#"> Gestion des évènements </a>
+          <a class="breadcrumb-item" href="#"> Gestion des événements </a>
           <span class="breadcrumb-item active">ajout</span>
         </nav>
       </div><!-- br-pageheader -->
       <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-        <h4 class="tx-gray-800 mg-b-5">Ajouter un nouveau évènement  </h4>
+        <h4 class="tx-gray-800 mg-b-5">Ajouter un nouveau événement  </h4>
         <p class="mg-b-0"></p>
       </div>
 
       <div class="br-pagebody">
         <div class="br-section-wrapper">
-          
+
   <!--alert de succée -->
   <div class="alert alert-success" role="alert"  *ngIf="ajoutEvent" >
-    <strong class="d-block d-sm-inline-block-force">  évenement  publié avec succée !  </strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong class="d-block d-sm-inline-block-force">  Événement  publié avec succés !  </strong>
   </div>
   <!--alert d'erreur  -->
   <div class="alert alert-danger" role="alert"  *ngIf="erreur" >
-    <strong class="d-block d-sm-inline-block-force"> Veuillez verifier vos champs !  </strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong class="d-block d-sm-inline-block-force"> Veuillez vérifier vos champs !  </strong>
   </div>
-   
+
      <!--alerte de confirmation -->
    <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="alert alert-info confirmation-dialog" role="alert" *ngIf="showConfirmationDialog">
           <h4 class="alert-heading">Confirmation</h4>
-          <p>Voulez vous vraiment publier cet évenement ?  </p>
+          <p>Voulez vous vraiment publier cet événement ?  </p>
           <hr>
           <div class="button-container">
             <button class="btn btn-primary confirm-button" (click)=" onSubmit()">Publier </button>
             <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialog()">Annuler</button>
-          
+
           </div>
         </div>
       </div>
     </div>
   </div>
-         
+
           <div class="row mg-t-80">
             <div class="col-xl-12">
               <div class="form-layout form-layout-4">
@@ -458,11 +464,11 @@
                             this.eventService.dataForm.controls['titre'].touched || this.eventService.dataForm.controls['titres'].dirty
                           )">
                                <div *ngIf ="this.eventService.dataForm.controls['titre'].errors?.['required']" class="red"> Ce champ est obligatoire   </div>
-                              
+
                           </div>
                         </div>
                       </div>
-                     
+
                       <!--lieu -->
                       <div class="row mg-t-20">
                         <label class="col-sm-4 form-control-label">Lieu :  <span class="tx-danger">*</span></label>
@@ -472,14 +478,14 @@
                             this.eventService.dataForm.controls['lieu'].touched || this.eventService.dataForm.controls['lieu'].dirty
                           )">
                                <div *ngIf ="this.eventService.dataForm.controls['lieu'].errors?.['required']" class="red"> Ce champ est obligatoire   </div>
-      
+
                           </div>
                         </div>
                       </div>
-                      
+
                       <!--date-->
                       <div class="row mg-t-20">
-                       
+
                           <label class="col-sm-4 form-control-label">Date <span class="tx-danger">*</span></label>
                              <div  class="col-sm-8 mg-t-10 mg-sm-t-0" >
                               <input class="form-control" type="date" id="example-date-input" formControlName="date" placeholder="Entrez une date  "  >
@@ -492,7 +498,7 @@
                           <input type="time" class="form-control" formControlName="heure" id="example-date-input">
                         </div>
                       </div>
-                     
+
 
 
 
@@ -509,7 +515,7 @@
                             this.eventService.dataForm.controls['description'].touched || this.eventService.dataForm.controls['description'].dirty
                           )">
                                <div *ngIf ="this.eventService.dataForm.controls['description'].errors?.['required']" class="red"> Ce champ est obligatoire   </div>
-      
+
                           </div>
                         </div>
                       </div>
@@ -520,26 +526,26 @@
                 </form>
               </div><!-- form-layout -->
             </div><!-- col-6 -->
-           
+
           </div><!-- row -->
 
 
-         
 
-         
 
-         
-          
-        
-         
 
-          
 
-         
 
-        
-          
-         
+
+
+
+
+
+
+
+
+
+
+
         </div><!-- br-section-wrapper -->
       </div><!-- br-pagebody -->
       <footer class="br-footer">
@@ -554,7 +560,7 @@
         </div>
       </footer>
     </div><!-- br-mainpanel -->
-  
+
 
     <div id="modaldemo" class="modal fade effect-scale">
       <div class="modal-dialog modal-lg" role="document">
@@ -600,4 +606,3 @@
       </div><!-- modal-dialog -->
     </div><!-- modal -->
 
-   

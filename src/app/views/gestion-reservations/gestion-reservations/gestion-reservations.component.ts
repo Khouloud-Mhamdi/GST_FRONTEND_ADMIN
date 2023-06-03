@@ -197,7 +197,7 @@ export class GestionReservationsComponent implements OnInit {
         this.calendarOptions.events = events;
       },
       error => {
-        console.log('erreur lors de la récupération de la liste des réservations acceptée ', error);
+        console.log('Erreur lors de la récupération de la liste des réservations acceptées ', error);
       }
     );
   }
@@ -311,7 +311,7 @@ export class GestionReservationsComponent implements OnInit {
             this.accept = true ; 
             setTimeout(() => {
               this.accept = false;
-            }, 3000); // 3000 ms = 3 secondes
+            }, 10000); 
              
             this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
             .subscribe(
@@ -340,7 +340,7 @@ export class GestionReservationsComponent implements OnInit {
             this.refus = true ; 
             setTimeout(() => {
               this.refus= false;
-            }, 3000); // 3000 ms = 3 secondes
+            }, 10000); 
             this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
       .subscribe(
         data => {

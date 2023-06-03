@@ -28,14 +28,23 @@
   </div>
   <!--alert de succée -->
   <div class="alert alert-success" role="alert"  *ngIf="ajout" >
-    <strong class="d-block d-sm-inline-block-force"> un nouveau utilisateur est ajouté avec succés </strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong class="d-block d-sm-inline-block-force"> Un nouveau utilisateur est ajouté avec succés </strong>
   </div>
    <!--alert alert d'erreur -->
 
    <div class="alert alert-danger" role="alert"  *ngIf="valid&&!erreur" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
     <strong class="d-block d-sm-inline-block-force"> Veuillez vérifier vos champs !  </strong>
   </div>
   <div class="alert alert-danger" role="alert"  *ngIf="erreur" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
     <strong class="d-block d-sm-inline-block-force"> Cette adresse mail existe déjà</strong>
   </div>
       <div class="br-pagebody">

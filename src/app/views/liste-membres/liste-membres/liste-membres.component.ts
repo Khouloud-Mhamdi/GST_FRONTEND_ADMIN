@@ -143,7 +143,7 @@ export class ListeMembresComponent implements OnInit {
       this.supprimer=true;
       setTimeout(() => {
         this.supprimer = false;
-      }, 3000); // 3000 ms = 3 secondes
+      }, 10000); // 3000 ms = 3 secondes
 
       this.ListeDesUtilisateurs();
 

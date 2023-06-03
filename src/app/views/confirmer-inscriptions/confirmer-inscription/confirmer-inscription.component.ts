@@ -143,7 +143,7 @@ export class ConfirmerInscriptionComponent implements OnInit {
 this.supprimer=true;
       setTimeout(() => {
         this.supprimer = false;
-      }, 3000);
+      }, 10000);
       this.ListeDesUtilisateurs();
 
       this.closeConfirmationDialog();
@@ -159,7 +159,7 @@ this.supprimer=true;
       this.valider=true;
       setTimeout(() => {
         this.valider = false;
-      }, 3000);
+      }, 10000);
 this.ListeDesUtilisateurs();
     this.closeConfirmationDialogValidation();
     });
