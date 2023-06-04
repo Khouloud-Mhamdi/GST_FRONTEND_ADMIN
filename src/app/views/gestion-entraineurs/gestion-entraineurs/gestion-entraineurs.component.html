@@ -127,10 +127,16 @@
           </button>
           <!--alert de succée dans le cas de modification  -->
             <div class="alert alert-success" role="alert"  *ngIf="modified" >
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
              <strong class="d-block d-sm-inline-block-force"> Cet entraineur est modifié avec succès   </strong>
             </div>
             <!--alert d'eereur dans le cas de modification  -->
             <div class="alert alert-danger" role="alert"  *ngIf="modifiederreur" >
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
               <strong class="d-block d-sm-inline-block-force"> Veuillez verifier vos champs !  </strong>
              </div>
         </div>

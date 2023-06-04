@@ -33,11 +33,17 @@
     <h4 class="tx-gray-800 mg-b-5">Liste des événements </h4>
      <!--alert de succée -->
      <div class="alert alert-success" role="alert"  *ngIf="deleted" >
-    <strong class="d-block d-sm-inline-block-force"> Cet événement est supprimé avec succée  </strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    <strong class="d-block d-sm-inline-block-force"> Cet événement est supprimé avec succès  </strong>
      </div>
     <!--alert d'erreur  -->
     <div class="alert alert-danger" role="alert"  *ngIf="erreurDelete" >
-    <strong class="d-block d-sm-inline-block-force">  Un probleme s'est produit lors de la suppression !  </strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    <strong class="d-block d-sm-inline-block-force">  Un problème s'est produit lors de la suppression !  </strong>
     </div>
 
   </div>

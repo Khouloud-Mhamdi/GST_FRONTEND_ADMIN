@@ -57,8 +57,13 @@ export class AddUserComponent implements OnInit {
       console.log(this.valid);
       setTimeout(() => {
         this.valid = false;
+<<<<<<< HEAD
       }, 3000);
     
+=======
+      }, 10000);
+
+>>>>>>> fc1709d71f98c357d158d0b699c32182040ea435
   }
     else{
       this.authService.ExistEmail(this.addUserForm.value.email).subscribe(
@@ -68,7 +73,7 @@ export class AddUserComponent implements OnInit {
 
             setTimeout(() => {
               this.erreur = false;
-            }, 4000);}
+            }, 10000);}
           }
 
       )
@@ -82,7 +87,7 @@ export class AddUserComponent implements OnInit {
         this.addUserForm.reset() ;
         setTimeout(() => {
           this.ajout = false;
-        }, 3000); // 3000 ms = 3 secondes
+        }, 10000); // 3000 ms = 3 secondes
       },
       (err) => {
         console.log("here error from BE", err);
@@ -91,7 +96,7 @@ export class AddUserComponent implements OnInit {
         this.valid=true;
         setTimeout(() => {
           this.valid = false;
-        }, 3000); // 3000 ms = 3 secondes
+        }, 10000); // 3000 ms = 3 secondes
       }
 
     );}
@@ -113,9 +118,7 @@ export class AddUserComponent implements OnInit {
  controleSaisieTelephone(): boolean {
     const telephoneInput = document.getElementById("telephone") as HTMLInputElement;
 
-    if (!/^[\d\s]{8}$/.test(this.addUserForm.value.telephone))
-
-    {
+    if (!/^[\d\s]{8,}$/.test(this.addUserForm.value.telephone)) {
       telephoneInput.classList.add("invalid");
       return false;
     } else {
@@ -129,7 +132,7 @@ export class AddUserComponent implements OnInit {
   controleSaisieNom(): boolean {
 
     const nomInput = document.getElementById("firstname") as HTMLInputElement;
-    console.log(nomInput);
+
     const regex =/^[a-zA-Z\s]{3,}$/ ;
     if (!regex.test(this.addUserForm.value.firstName)) {
       nomInput.classList.add("invalid");

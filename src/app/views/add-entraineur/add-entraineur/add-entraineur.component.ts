@@ -24,8 +24,8 @@ export class AddEntraineurComponent implements OnInit {
 
   emailExistence :any;
   objDiscipline = {
-    id : 0 , 
-    discipline : '' , 
+    id : 0 ,
+    discipline : '' ,
   }
   // variables :
 
@@ -37,7 +37,7 @@ export class AddEntraineurComponent implements OnInit {
     adresse : '' ,
     telephone : '' ,
     naissance : '' ,
-    dateEmbauche: '' , 
+    dateEmbauche: '' ,
   }
 
 
@@ -57,12 +57,12 @@ export class AddEntraineurComponent implements OnInit {
       telephone : ["", [Validators.required]],
       naissance : ["", [Validators.required]] ,
       dateEmbauche: ["", [Validators.required]],
-     
+
 
      }
      );
      this.getAllclubs();
-     this.objDiscipline = this.token.getUser().discipline ; 
+     this.objDiscipline = this.token.getUser().discipline ;
 
     console.log("data here : " , this.clubs ) ;
   }
@@ -82,7 +82,7 @@ export class AddEntraineurComponent implements OnInit {
       console.log(this.valid);
       setTimeout(() => {
         this.valid = false;
-      }, 3000);
+      }, 10000);
    console.log ("hello 1 ");
   }
     else{
@@ -95,12 +95,11 @@ export class AddEntraineurComponent implements OnInit {
            console.log("debut else " , this.pass) ;
             setTimeout(() => {
               this.erreur = false;
-            }, 4000);}
+            }, 10000);}
           }
 
       )
-    console.log ("hello 2 ");
-    console.log ("la valeur de pass" , this.pass) ;
+
     if (this.pass === true ) {
     console.log ("dans if " , this.pass) ;
     console.log("this is a selected date" ,this.EntraineurForm.value);
@@ -111,19 +110,17 @@ export class AddEntraineurComponent implements OnInit {
     this.entraineur.adresse = this.EntraineurForm.value.adresse ;
     this.entraineur.telephone = this.EntraineurForm.value.telephone ;
     this.entraineur.naissance = this.EntraineurForm.value.naissance ;
-    this.entraineur.dateEmbauche = this.EntraineurForm.value.dateEmbauche ; 
-    console.log ("this is entraineur " , this.entraineur) ;
-    console.log("this is form  " , this.EntraineurForm.value) ; 
-    this.objDiscipline = this.token.getUser().discipline ; 
-   console.log ("id discipline du moderateur connécté : ", this.objDiscipline.id) ; 
-   console.log ("le nom du discipline du moderateur connécté : ", this.objDiscipline.discipline) ; 
+    this.entraineur.dateEmbauche = this.EntraineurForm.value.dateEmbauche ;
+
+    this.objDiscipline = this.token.getUser().discipline ;
+
     this.entraineurService.addentraineur(this.entraineur , this.objDiscipline.id ).subscribe(
       (data) => {
         this.ajout=true;
         this.showConfirmationDialog = false;
         setTimeout(() => {
           this.ajout = false;
-        }, 3000); // 3000 ms = 3 secondes
+        }, 10000); // 3000 ms = 3 secondes
         console.log(data);
         this.EntraineurForm.reset() ;
 
@@ -134,7 +131,7 @@ export class AddEntraineurComponent implements OnInit {
         this.valid=true;
         setTimeout(() => {
           this.valid = false;
-        }, 3000); // 3000 ms = 3 secondes
+        }, 10000); // 3000 ms = 3 secondes
 
 
       }

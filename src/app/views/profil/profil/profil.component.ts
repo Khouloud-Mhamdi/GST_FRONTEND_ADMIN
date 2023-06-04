@@ -60,7 +60,7 @@ export class ProfilComponent implements OnInit {
       this.showConfirmationDialog = false;
       setTimeout(() => {
         this.valid = false;
-      }, 3000);
+      }, 10000);
     } else {
       // Check if email exists
       if (this.user.email !== this.currentUser.email) {
@@ -74,7 +74,7 @@ export class ProfilComponent implements OnInit {
 
               this.erreur = false;
 
-            }, 4000);
+            }, 10000);
           } else {
             // Update user
             this.showConfirmationDialog = false;
@@ -87,14 +87,14 @@ export class ProfilComponent implements OnInit {
                 this.update = true;
                 setTimeout(() => {
                   this.update = false;
-                }, 3000); // 3000 ms = 3 secondes
+                }, 10000); // 3000 ms = 3 secondes
               },
               (err) => {
                 console.log('probleme !!! ', err);
                 this.erreur = true;
                 setTimeout(() => {
                   this.erreur = false;
-                }, 3000); // 3000 ms = 3 secondes
+                }, 10000); // 3000 ms = 3 secondes
               }
             );
 
@@ -118,14 +118,14 @@ export class ProfilComponent implements OnInit {
             this.update = true;
             setTimeout(() => {
               this.update = false;
-            }, 3000); // 3000 ms = 3 secondes
+            }, 10000); // 3000 ms = 3 secondes
           },
           (err) => {
             console.log('probleme !!! ', err);
             this.erreur = true;
             setTimeout(() => {
               this.erreur = false;
-            }, 3000); // 3000 ms = 3 secondes
+            }, 10000); // 3000 ms = 3 secondes
           }
         );
 
@@ -213,7 +213,7 @@ UpdatePasswordUser()
  {this.faute = true;
             setTimeout(() => {
               this.faute= false;
-            }, 5000);
+            }, 10000);
  }
   else
   {
@@ -229,7 +229,7 @@ UpdatePasswordUser()
                 this.updatedPassword=true;
                 setTimeout(() => {
                   this.updatedPassword = false;
-                }, 5000);
+                }, 10000);
 
                 } else {
 
@@ -237,7 +237,7 @@ UpdatePasswordUser()
                   console.log(this.changerPassword);
                     setTimeout(() => {
                       this.changerPassword = false;
-                    }, 5000);
+                    }, 10000);
                 }
        },
           )
@@ -249,7 +249,7 @@ UpdatePasswordUser()
 
                     setTimeout(() => {
                       this.changerPassword = false;
-                    }, 5000);
+                    }, 10000);
       }
     );
   }

@@ -3,13 +3,13 @@
 <div class="br-mainpanel">
     <div class="br-pageheader pd-y-15 pd-l-20">
       <nav class="breadcrumb pd-0 mg-0 tx-12">
-        <a class="breadcrumb-item" href="#">Gestion de roles </a>
+        <a class="breadcrumb-item" href="#">Gestion des entraineurs </a>
         <span class="breadcrumb-item active">Ajouter Entraineur </span>
       </nav>
     </div><!-- br-pageheader -->
     <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
       <h4 class="tx-gray-800 mg-b-5">Ajouter un nouveau Entraineur de {{objDiscipline.discipline}}</h4>
-    
+
     </div>
    <!--alerte de confirmation -->
  <div class="container">
@@ -29,14 +29,23 @@
 </div>
 <!--alert de succée -->
 <div class="alert alert-success" role="alert"  *ngIf="ajout" >
-  <strong class="d-block d-sm-inline-block-force"> un nouveau Entraineur est ajouté avec succés </strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong class="d-block d-sm-inline-block-force"> Un nouveau Entraineur est ajouté avec succés </strong>
 </div>
  <!--alert alert d'erreur -->
 
  <div class="alert alert-danger" role="alert"  *ngIf="valid&&!erreur" >
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
   <strong class="d-block d-sm-inline-block-force"> Veuillez vérifier vos champs !  </strong>
 </div>
 <div class="alert alert-danger" role="alert"  *ngIf="erreur" >
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
   <strong class="d-block d-sm-inline-block-force"> Cette adresse mail existe déjà</strong>
 </div>
     <div class="br-pagebody">
@@ -113,7 +122,7 @@
                 <label class="form-control-label"> Télephone : </label>
                 <input class="form-control" type="text" name="address" id="telephone" placeholder="Entrez un numéro de telephone  " formControlName="telephone">
               </div>
-            </div> 
+            </div>
              <!-- date de naissance  -->
              <div class="col-lg-4">
                 <label for="nom">Date de naissance: <span class="tx-danger">*</span></label>
@@ -124,8 +133,8 @@
                   <label for="nom">Date d'embauche :  <span class="tx-danger">*</span></label>
                       <input class="form-control" type="date" id="example-date-input" formControlName="dateEmbauche" placeholder="Entrez une date d'embauche "  required >
                    </div>
-            
-           
+
+
           </div><!-- row -->
 
           <div class="form-layout-footer">

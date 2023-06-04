@@ -150,7 +150,7 @@ export class GestionEntraineursComponent implements OnInit {
       this.supprimer=true;
       setTimeout(() => {
         this.supprimer = false;
-      }, 3000); // 3000 ms = 3 secondes
+      }, 10000); // 3000 ms = 3 secondes
       this.ListeDesUtilisateurs();
       this.closeConfirmationDialog();
 
@@ -160,7 +160,7 @@ export class GestionEntraineursComponent implements OnInit {
         this.supprimer = true ; 
         setTimeout(() => {
           this.supprimer = false;
-        }, 3000); // 3000 ms = 3 secondes
+        }, 10000); // 3000 ms = 3 secondes
         this.ListeDesUtilisateurs();
         this.closeConfirmationDialog() ; 
       }
@@ -225,7 +225,7 @@ export class GestionEntraineursComponent implements OnInit {
          this.modified = true ; 
          setTimeout(() => {
           this.modified= false;
-        }, 3000);
+        }, 10000);
         this.ListeDesUtilisateurs();
         } , 
         (err) => {
@@ -233,7 +233,7 @@ export class GestionEntraineursComponent implements OnInit {
           console.log(err) ; 
           setTimeout(() => {
             this.modifiederreur= false;
-          }, 3000);
+          }, 10000);
         }
       )
   }
