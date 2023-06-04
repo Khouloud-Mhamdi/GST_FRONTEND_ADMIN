@@ -82,7 +82,7 @@ export class AddEntraineurComponent implements OnInit {
       console.log(this.valid);
       setTimeout(() => {
         this.valid = false;
-      }, 10000);
+      }, 5000);
    console.log ("hello 1 ");
   }
     else{
@@ -95,7 +95,7 @@ export class AddEntraineurComponent implements OnInit {
            console.log("debut else " , this.pass) ;
             setTimeout(() => {
               this.erreur = false;
-            }, 10000);}
+            }, 5000);}
           }
 
       )
@@ -131,7 +131,7 @@ export class AddEntraineurComponent implements OnInit {
         this.valid=true;
         setTimeout(() => {
           this.valid = false;
-        }, 10000); // 3000 ms = 3 secondes
+        }, 5000); // 3000 ms = 3 secondes
 
 
       }

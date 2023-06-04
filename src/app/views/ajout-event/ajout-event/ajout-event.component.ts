@@ -14,23 +14,23 @@ export class AjoutEventComponent implements OnInit {
   public imagePath : any ;
   imgURL: any;
   public message !: string;
-  showConfirmationDialog = false ; 
-  ajoutEvent =  false ; 
-  erreur = false ; 
+  showConfirmationDialog = false ;
+  ajoutEvent =  false ;
+  erreur = false ;
 
-  
+
   constructor( private titleService: Title , private router : Router  , public  eventService : EvenementService , public formBuilder : FormBuilder) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("GSTAdmin-Ajouter évènement")
+    this.titleService.setTitle("GSTAdmin-Ajouter événement")
     this.eventService.dataForm = this.formBuilder.group ({
       titre : ['', [Validators.required]],
       lieu : ['', [Validators.required]],
       date: ['' ,  [Validators.required] ],
       description : ['', [Validators.required]],
-      heure :  ['' ,  [Validators.required] ], 
-    }) ; 
-   
+      heure :  ['' ,  [Validators.required] ],
+    }) ;
+
   }
   onSelectFile(event : any ) {
     if (event.target.files.length > 0)
@@ -38,75 +38,77 @@ export class AjoutEventComponent implements OnInit {
       const file = event.target.files[0];
       this.userFile = file;
      // this.f['profile'].setValue(file);
- 
+
     var mimeType = event.target.files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Only images are supported.";
       return;
     }
- 
+
     var reader = new FileReader();
-    
+
     this.imagePath = file;
-    reader.readAsDataURL(file); 
-    reader.onload = (_event) => { 
-      this.imgURL = reader.result; 
+    reader.readAsDataURL(file);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
     }
   }
-     
-      
+
+
     }
-   
+
     addData() {
       const formData = new  FormData();
-      const event = this.eventService.dataForm.value ; 
+      const event = this.eventService.dataForm.value ;
       formData.append('event',JSON.stringify(event));
       formData.append('file',this.userFile);
-      this.eventService.createData(formData).subscribe( 
+      this.eventService.createData(formData).subscribe(
       (data) => {
-      console.log("succée mayssa ! ") ; 
-        this.ajoutEvent = true ; 
+
+        this.ajoutEvent = true ;
         setTimeout(() => {
           this.ajoutEvent = false;
-        }, 3000);
-        this.eventService.dataForm.reset() ; 
-        this.ngOnInit() ; 
-      }, 
+        }, 10000);
+        this.eventService.dataForm.reset() ;
+        this.ngOnInit() ;
+      },
       (err) => {
-        console.log('probleme !!! ', err);
+
         this.erreur = true;
         setTimeout(() => {
           this.erreur = false;
-        }, 3000); // 3000 ms = 3 secondes
+        }, 5000);
       }
-      ); 
+      );
     }
 
 
     onSubmit(){
       console.log("la date choisi : " , this.eventService.dataForm.value.date) ;
-      console.log("l'heure selectionnée ", this.eventService.dataForm.value.heure); 
+      console.log("l'heure selectionnée ", this.eventService.dataForm.value.heure);
 
       if ((!this.userFile)||(!this.eventService.dataForm.value.date)){
-        this.erreur = true ; 
+        this.erreur = true ;
         setTimeout(() => {
           this.erreur = false;
-        }, 3000); // 3000 ms = 3 secondes
+        }, 5000);
       }
       else {
-        this.addData() ; 
+        this.addData() ;
         if (this.ajoutEvent == true ) {
-          this.eventService.dataForm.reset() ; 
+          window.scrollTo(0, 0);
+
+          this.eventService.dataForm.reset() ;
         }
       }
-     this.closeConfirmationDialog() ; 
+     this.closeConfirmationDialog() ;
     }
     closeConfirmationDialog(){
-       this.showConfirmationDialog = false ; 
+       this.showConfirmationDialog = false ;
     }
     openConfirmationDialog(){
       this.showConfirmationDialog = true;
     }
-  
-  
+
+
 }

@@ -12,16 +12,16 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
   styleUrls: ['./gestion-entraineurs.component.css']
 })
 export class GestionEntraineursComponent implements OnInit {
-  disForm !:  FormGroup;  
-  public clubs : any ; 
+  disForm !:  FormGroup;
+  public clubs : any ;
   public entraineurs :any;
   public entraineursInitiaux :any;
-  public modified = false ; 
-  public modifiederreur = false ; 
-  
+  public modified = false ;
+  public modifiederreur = false ;
 
-  NomDiscipline : any ; 
-  IdDiscipline : any ; 
+
+  NomDiscipline : any ;
+  IdDiscipline : any ;
 
   query :any;
   supprimer=false;
@@ -35,43 +35,43 @@ export class GestionEntraineursComponent implements OnInit {
   pages: number[] = []; // Tableau des numéros de page.
   displayedUsers: any;
   dataEntraineur = {
-    id : 0 , 
-    nom : '' , 
-    prenom : '' , 
-    naissance : '' , 
-    email : '' , 
-    telephone : '' , 
+    id : 0 ,
+    nom : '' ,
+    prenom : '' ,
+    naissance : '' ,
+    email : '' ,
+    telephone : '' ,
     adresse : '' ,
-    dateEmbauche : ''  , 
-    
+    dateEmbauche : ''  ,
+
   }
   infoEntraineur = {
-  
-    nom : '' , 
-    prenom : '' , 
-    naissance : '' , 
-    email : '' , 
-    telephone : '' , 
-    adresse : '' , 
-    discipline : '' , 
-    dateEmbauche : '', 
+
+    nom : '' ,
+    prenom : '' ,
+    naissance : '' ,
+    email : '' ,
+    telephone : '' ,
+    adresse : '' ,
+    discipline : '' ,
+    dateEmbauche : '',
   }
   objDiscipline = {
-    id : 0 , 
-    discipline : '' , 
+    id : 0 ,
+    discipline : '' ,
   }
   constructor(private titleService: Title ,private UserService :  UtilisateurService , private entraineurService : EntraineurService , public disciplineService : DisciplineService  , private formBuilder : FormBuilder , private token : TokenStorageService) { }
-  
+
   ngOnInit(): void {
   this.titleService.setTitle("GSTAdmin-Liste des entraineurs")
     this.disForm= this.formBuilder.group({
-      
+
       id_discipline : ["", [Validators.required]]
      }
      );
-    this.objDiscipline = this.token.getUser().discipline ; 
+    this.objDiscipline = this.token.getUser().discipline ;
     this.ListeDesUtilisateurs();
-    this.getAllclubs () ; 
+    this.getAllclubs () ;
   }
   getAllclubs()
   {
@@ -79,15 +79,15 @@ export class GestionEntraineursComponent implements OnInit {
     this.clubs = data ;
     })
   }
- 
+
   ListeDesUtilisateurs () : void {
     this.entraineurService.listerEntraineurs(this.objDiscipline.discipline).subscribe((data)=>{
       this.entraineurs = data;
-      console.log("here data : " , this.entraineurs) ; 
+      console.log("here data : " , this.entraineurs) ;
       this.nb_entraineurs = this.entraineurs.length;
       this.entraineursInitiaux=data;
       this.Pagination();
-   
+
     })
   }
 
@@ -157,87 +157,87 @@ export class GestionEntraineursComponent implements OnInit {
     })
     this.entraineurService.deleteEntraineurById(this.userID).subscribe(
       (data)=>{
-        this.supprimer = true ; 
+        this.supprimer = true ;
         setTimeout(() => {
           this.supprimer = false;
         }, 10000); // 3000 ms = 3 secondes
         this.ListeDesUtilisateurs();
-        this.closeConfirmationDialog() ; 
+        this.closeConfirmationDialog() ;
       }
-     
+
     )
   }
 
 
    search(query: any){
-  
-    console.log(this.query) ; 
+
+    console.log(this.query) ;
     this.entraineurService.RechercherEntraineur(this.query , this.objDiscipline.discipline).subscribe((data)=>{
       this.entraineurs = data;
       this.nb_resultats= this.entraineurs.length;
       this.currentPage = 1;
       this.Pagination();
     })
-    
+
     }
 
  // getDetails(a.nom , a.prenom , a.naissance , a.email , a.telephone , a.adresse , a.discipline.discipline)
    getDetailsForUpdate (id : number , nom : any , prenom : any , naissance : any , email : any , telephone : any , adresse : any , nomDis : any , idDis : any , dateEmbauche : any  ) {
-  this.dataEntraineur.id = id ; 
-  this.dataEntraineur.nom = nom ; 
-  this.dataEntraineur.prenom = prenom ; 
-  this.dataEntraineur.naissance = naissance ; 
-  this.dataEntraineur.email = email ; 
-  this.dataEntraineur.telephone = telephone ; 
-  this.dataEntraineur.adresse = adresse ; 
-  this.dataEntraineur.dateEmbauche = dateEmbauche ; 
-  this.NomDiscipline = nomDis ; 
-  this.IdDiscipline = idDis ; 
-  
+  this.dataEntraineur.id = id ;
+  this.dataEntraineur.nom = nom ;
+  this.dataEntraineur.prenom = prenom ;
+  this.dataEntraineur.naissance = naissance ;
+  this.dataEntraineur.email = email ;
+  this.dataEntraineur.telephone = telephone ;
+  this.dataEntraineur.adresse = adresse ;
+  this.dataEntraineur.dateEmbauche = dateEmbauche ;
+  this.NomDiscipline = nomDis ;
+  this.IdDiscipline = idDis ;
+
    }
    getDetails(id : number , nom : any , prenom : any , naissance : any , email : any , telephone : any , adresse : any , discipline : any , dateEmbauche : any )
    {
-      this.infoEntraineur.nom = nom ; 
-      this.infoEntraineur.prenom = prenom ; 
-      this.infoEntraineur.naissance = naissance ; 
-      this.infoEntraineur.email = email ; 
-      this.infoEntraineur.telephone = telephone ; 
-      this.infoEntraineur.adresse = adresse ; 
-      this.infoEntraineur.discipline = discipline ; 
-      this.infoEntraineur.dateEmbauche = dateEmbauche ; 
+      this.infoEntraineur.nom = nom ;
+      this.infoEntraineur.prenom = prenom ;
+      this.infoEntraineur.naissance = naissance ;
+      this.infoEntraineur.email = email ;
+      this.infoEntraineur.telephone = telephone ;
+      this.infoEntraineur.adresse = adresse ;
+      this.infoEntraineur.discipline = discipline ;
+      this.infoEntraineur.dateEmbauche = dateEmbauche ;
 
    }
-   
+
    updateEntraineur() {
     if((!this.dataEntraineur.naissance) || (!this.dataEntraineur.dateEmbauche) || (!this.controleSaisieNom()) || (!this.controleSaisiePrénom()) ||  (!this.controleSaisieEmail()) )
     {
-      this.modifiederreur = true ; 
+      this.modifiederreur = true ;
       setTimeout(() => {
         this.modifiederreur= false;
-      }, 10000);
+      }, 5000);
     }
   else {
-    this.modifiederreur = false ; 
-    console.log(this.dataEntraineur.naissance) ; 
+    this.modifiederreur = false ;
+    console.log(this.dataEntraineur.naissance) ;
     console.log(this.dataEntraineur.dateEmbauche) ;
       this.entraineurService.updateEntraineur(this.dataEntraineur ).subscribe(
         (data)=>{
-         this.modified = true ; 
+         this.modified = true ;
          setTimeout(() => {
           this.modified= false;
         }, 10000);
         this.ListeDesUtilisateurs();
-        } , 
+        } ,
         (err) => {
-          this.modifiederreur = true ; 
-          console.log(err) ; 
+          this.modifiederreur = true ;
+          console.log(err) ;
           setTimeout(() => {
             this.modifiederreur= false;
-          }, 10000);
+          }, 5000);
         }
       )
   }
-    
+
        }
 
 
@@ -248,7 +248,7 @@ export class GestionEntraineursComponent implements OnInit {
         const regex =/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ ;
         if (!regex.test(this.dataEntraineur.email)) {
           nomInput.classList.add("invalid");
-    
+
           return false;
         } else {
           nomInput.classList.remove("invalid");
@@ -262,7 +262,7 @@ export class GestionEntraineursComponent implements OnInit {
         const regex =/^[a-zA-Z\s]{3,}$/ ;
         if (!regex.test(this.dataEntraineur.nom)) {
           nomInput.classList.add("invalid");
-    
+
           return false;
         } else {
           nomInput.classList.remove("invalid");
@@ -270,13 +270,13 @@ export class GestionEntraineursComponent implements OnInit {
         }
       }
       controleSaisiePrénom(): boolean {
-    
+
         const nomInput = document.getElementById("lastname") as HTMLInputElement;
         console.log(nomInput);
         const regex =/^[a-zA-Z\s]{3,}$/ ;
         if (!regex.test(this.dataEntraineur.prenom)) {
           nomInput.classList.add("invalid");
-    
+
           return false;
         } else {
           nomInput.classList.remove("invalid");

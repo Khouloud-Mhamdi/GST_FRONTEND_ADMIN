@@ -57,7 +57,7 @@ export class AddUserComponent implements OnInit {
       console.log(this.valid);
       setTimeout(() => {
         this.valid = false;
-      }, 10000);
+      }, 5000);
 
   }
     else{
@@ -68,7 +68,7 @@ export class AddUserComponent implements OnInit {
 
             setTimeout(() => {
               this.erreur = false;
-            }, 10000);}
+            }, 5000);}
           }
 
       )
@@ -91,7 +91,7 @@ export class AddUserComponent implements OnInit {
         this.valid=true;
         setTimeout(() => {
           this.valid = false;
-        }, 10000); // 3000 ms = 3 secondes
+        }, 5000); // 3000 ms = 3 secondes
       }
 
     );}
@@ -121,9 +121,9 @@ export class AddUserComponent implements OnInit {
       return true;
     }
   }
-  
-  
-  
+
+
+
   controleSaisieNom(): boolean {
 
     const nomInput = document.getElementById("firstname") as HTMLInputElement;

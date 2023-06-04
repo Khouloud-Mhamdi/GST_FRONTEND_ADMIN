@@ -12,7 +12,7 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
 export class GestionEventsComponent implements OnInit {
   public evenements :any;
   public evenementsInitiaux :any;
-  
+
   public events : any ;
   public eventsInitiaux  :any;
   deleted = false ;
@@ -26,8 +26,8 @@ export class GestionEventsComponent implements OnInit {
     titre : '' ,
     description : '' ,
     lieu : '' ,
-    date : '', 
-    heure : '', 
+    date : '',
+    heure : '',
   }
   nb_events : any ;
   nb_resultats: number | null = null;
@@ -38,7 +38,7 @@ export class GestionEventsComponent implements OnInit {
   selectImg = true  ;
   eventID : any ;
   showConfirmationDialog = false ;
-  
+
 
   supprimer=false;
 
@@ -64,7 +64,7 @@ export class GestionEventsComponent implements OnInit {
   }
   getData () : void {
     this.eventService.getAll().subscribe((data)=>{
-      console.log(data) ; 
+      console.log(data) ;
     this.eventService.listData = data ;
      this.evenements = data;
      this.nb_evenements = this.evenements.length;
@@ -179,7 +179,7 @@ export class GestionEventsComponent implements OnInit {
         this.erreurDelete = true ;
         setTimeout(() => {
           this.erreurDelete= false;
-        }, 10000);
+        }, 5000);
       }
       );
       this.closeConfirmationDialog() ;
@@ -188,7 +188,7 @@ export class GestionEventsComponent implements OnInit {
 
  updateData () {
   this.eventService.updatEvent(this.dataEvent).subscribe( (data) => {
-    console.log("succée mayssa ! ") ;
+
     this.modified = true ;
     setTimeout(() => {
       this.modified= false;
@@ -201,7 +201,7 @@ export class GestionEventsComponent implements OnInit {
       console.log(error) ;
       setTimeout(() => {
         this.modifiederreur= false;
-      }, 10000);
+      }, 5000);
     }
 
     );

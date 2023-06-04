@@ -14,56 +14,56 @@ import { Router } from '@angular/router';
 export class GestionReservationsComponent implements OnInit {
 
   constructor(private titleService: Title ,private reservationService : ReservationService , private router : Router) {
-  
-    this.id_terrain = 1 ; 
+
+    this.id_terrain = 1 ;
     this.router.onSameUrlNavigation = 'reload';
    }
-   acceptButtonDisabled = false ; 
-   refuseButtonDisabled = false ; 
-   testDate : any  = ''; 
-   events : any  = {}; 
+   acceptButtonDisabled = false ;
+   refuseButtonDisabled = false ;
+   testDate : any  = '';
+   events : any  = {};
    reservationsEnAttente: any ;
-   reservationAcceptee : any ; 
+   reservationAcceptee : any ;
    oneEvent  = {
-    title : '' , 
-    start : '' , 
-    color : '' , 
-   }; 
+    title : '' ,
+    start : '' ,
+    color : '' ,
+   };
    objetConsult = {
-    hdebut : '' , 
-    hfin : '' , 
-    status : '' , 
-    date : '' , 
-    firstName : '' , 
-    lastName : '' , 
-    numTerrain : 0 , 
-    email : '' , 
+    hdebut : '' ,
+    hfin : '' ,
+    status : '' ,
+    date : '' ,
+    firstName : '' ,
+    lastName : '' ,
+    numTerrain : 0 ,
+    email : '' ,
    }
-  
+
    objetRepondre =  {
       id_resevation : 0 ,
-      hdebut : '' , 
-      hfin : '' , 
-      status : '' , 
-      date : '' , 
-      firstName : '' , 
-      lastName : '' , 
-      email : '' , 
+      hdebut : '' ,
+      hfin : '' ,
+      status : '' ,
+      date : '' ,
+      firstName : '' ,
+      lastName : '' ,
+      email : '' ,
       numTerrain : 0
    }
-   verif = false ; 
-   refus = false ; 
-   accept = false ; 
-   dateActuelle : any ; 
-  dateClicked : any ; 
-  id_terrain : any   ; 
-  reservations: any  ; 
-  dateFromNotification = "" ; 
-  idTerrainFromNotification = ""; 
+   verif = false ;
+   refus = false ;
+   accept = false ;
+   dateActuelle : any ;
+  dateClicked : any ;
+  id_terrain : any   ;
+  reservations: any  ;
+  dateFromNotification = "" ;
+  idTerrainFromNotification = "";
 
 
   ngOnInit(): void {
-   
+
     this.titleService.setTitle("GST-Gestion des réservations");
     this.getReservationsEnAttente();
     this.getReservationAcceptee();
@@ -73,17 +73,17 @@ export class GestionReservationsComponent implements OnInit {
     this.dateClicked = format(this.dateActuelle, 'yyyy-MM-dd');
     this.dateActuelle = format(this.dateActuelle, 'yyyy-MM-dd'); // Formater la date initiale
     console.log('La date actuelle :', this.dateClicked);
-  
+
     // Récupération de la date et de l'id_terrain depuis la session storage
     const dateN = sessionStorage.getItem('date');
     const terrainId = sessionStorage.getItem('terrainId');
     const dateValue: string | null = dateN !== null ? dateN : null;
     const terrainIdValue: string | number = terrainId !== null ? parseInt(terrainId, 10) : 1;
-  
+
     if (dateValue !== null) {
-      
-      this.dateClicked = dateValue ; 
-      this.id_terrain = terrainIdValue ; 
+
+      this.dateClicked = dateValue ;
+      this.id_terrain = terrainIdValue ;
       const date1 = new Date(this.dateClicked);
       const date2 = new Date(this.dateActuelle);
      if (date1 < date2) {
@@ -101,7 +101,7 @@ export class GestionReservationsComponent implements OnInit {
             this.reservations = data;
             console.log('Horaires récupérés avec succès:', this.reservations);
             if (this.reservations.length === 0) {
-              console.log('Le tableau de réservations est vide.');
+              console.log('Le tableau des réservations est vide.');
               this.verif = true;
             }
           },
@@ -135,21 +135,21 @@ export class GestionReservationsComponent implements OnInit {
           }
         );
     }
-   
+
   }
-  
-  
+
+
   getReservationsEnAttente() {
     this.reservationService.getReservationsEnAttenteByTerrain(this.id_terrain).subscribe(
       data => {
         this.reservationsEnAttente = data;
         console.log("data de reservation en attente : ", data);
         console.log("la liste des reservations en attente : ", this.reservationsEnAttente);
-  
+
         // Traitement des réservations en attente
         const events = [];
         const dates = [];
-  
+
         for (let resEnAttente of this.reservationsEnAttente) {
           if (dates.indexOf(resEnAttente.date) === -1) {
             dates.push(resEnAttente.date);
@@ -162,7 +162,7 @@ export class GestionReservationsComponent implements OnInit {
             events.push(event);
           }
         }
-  
+
         this.calendarOptions.events = events;
       },
       error => {
@@ -176,11 +176,11 @@ export class GestionReservationsComponent implements OnInit {
         this.reservationAcceptee = data;
         console.log("data de reservation en attente : ", data);
         console.log("la liste des reservations en attente : ", this.reservationAcceptee);
-  
+
         // Traitement des réservations en attente
         const events = [];
         const dates = [];
-  
+
         for (let resAcceptee of this.reservationAcceptee) {
           if (dates.indexOf(resAcceptee.date) === -1) {
             dates.push(resAcceptee.date);
@@ -193,7 +193,7 @@ export class GestionReservationsComponent implements OnInit {
             events.push(event);
           }
         }
-  
+
         this.calendarOptions.events = events;
       },
       error => {
@@ -201,9 +201,9 @@ export class GestionReservationsComponent implements OnInit {
       }
     );
   }
-  
 
-  
+
+
 
   toggleWeekends() {
     this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
@@ -211,16 +211,16 @@ export class GestionReservationsComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin ],
     initialView: 'dayGridMonth',
-    weekends: false , // initial value 
-    initialDate: new Date() , 
+    weekends: false , // initial value
+    initialDate: new Date() ,
     events: this.events ,
     eventClick : this.handleDateClick.bind(this),// your event array
-    dateClick: this.handleDateClick.bind(this) , 
+    dateClick: this.handleDateClick.bind(this) ,
     selectable: true,
     select: this.handleDateSelect.bind(this)
 
   };
- 
+
   handleDateClick(arg : any ) {
     console.log(arg) ;
     console.log(arg.event.start) ;
@@ -228,12 +228,12 @@ export class GestionReservationsComponent implements OnInit {
     const dateStr = format(arg.event.start, 'yyyy-MM-dd');
     console.log(dateStr);
    }
-   
+
    handleDateSelect(selectInfo:any ) {
-    
-    this.verif = false ; 
+
+    this.verif = false ;
         //console.log(selectInfo.startStr);
-     this.dateClicked = selectInfo.startStr ; 
+     this.dateClicked = selectInfo.startStr ;
      const date1 = new Date(this.dateClicked);
      const date2 = new Date(this.dateActuelle);
      if (date1 < date2) {
@@ -246,11 +246,11 @@ export class GestionReservationsComponent implements OnInit {
      this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
     .subscribe(
       data => {
-        this.reservations = data ; 
+        this.reservations = data ;
         console.log('Horaires récupérés avec succès:', this.reservations);
         if (this.reservations.length === 0) {
           console.log('Le tableau de réservations est vide.');
-          this.verif = true ; 
+          this.verif = true ;
         }
       },
       error => {
@@ -259,48 +259,48 @@ export class GestionReservationsComponent implements OnInit {
     );
 
       }
-      
+
      onTerrainSelect() {
-      this.verif = false ; 
+      this.verif = false ;
       console.log(this.id_terrain); // Affiche la valeur sélectionnée dans la console
       this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
       .subscribe(
         data => {
-          this.reservations = data ; 
+          this.reservations = data ;
           console.log('Horaires récupérés avec succès:', this.reservations);
         },
         error => {
           console.log('Une erreur est survenue lors de la récupération des horaires:', error);
         }
       );
-      this.events = {} ; 
-      this.getReservationsEnAttente() ; 
-      this.getReservationAcceptee() ; 
+      this.events = {} ;
+      this.getReservationsEnAttente() ;
+      this.getReservationAcceptee() ;
     }
-   
+
      consulterReservation(hdebut : any , hfin : any , status : any , date : any , nomUser : any , prenomUser : any , numTerrain : any , email : any ) {
-        this.objetConsult.hdebut = hdebut ; 
-        this.objetConsult.hfin = hfin ; 
-        this.objetConsult.status = status ; 
-        this.objetConsult.date = date ; 
-        this.objetConsult.firstName = nomUser ; 
-        this.objetConsult.lastName = prenomUser ; 
-        this.objetConsult.numTerrain = numTerrain ; 
-        this.objetConsult.email = email ; 
+        this.objetConsult.hdebut = hdebut ;
+        this.objetConsult.hfin = hfin ;
+        this.objetConsult.status = status ;
+        this.objetConsult.date = date ;
+        this.objetConsult.firstName = nomUser ;
+        this.objetConsult.lastName = prenomUser ;
+        this.objetConsult.numTerrain = numTerrain ;
+        this.objetConsult.email = email ;
      }
      //(click)="repondreReservation(reservation.id , reservation.hdebut , reservation.hfin , reservation.status , reservation.date , reservation.user.nom , reservation.user.prenom , reservation.user.prenom , reservation.user.email , reservation.terrain.num_terrain )"
      repondreReservation(idRes : any , hdebut : any , hfin : any , status : any , date : any , nomUser : any , prenomUser : any , emailUser : any , numTerrain : any  )
 
      {
-        this.objetRepondre.id_resevation = idRes ; 
-        this.objetRepondre.hdebut = hdebut ; 
-        this.objetRepondre.hfin = hfin ; 
-        this.objetRepondre.status = status ; 
-        this.objetRepondre.date = date ; 
-        this.objetRepondre.firstName = nomUser ; 
-        this.objetRepondre.lastName = prenomUser ; 
-        this.objetRepondre.email = emailUser ; 
-        this.objetRepondre.numTerrain = numTerrain ; 
+        this.objetRepondre.id_resevation = idRes ;
+        this.objetRepondre.hdebut = hdebut ;
+        this.objetRepondre.hfin = hfin ;
+        this.objetRepondre.status = status ;
+        this.objetRepondre.date = date ;
+        this.objetRepondre.firstName = nomUser ;
+        this.objetRepondre.lastName = prenomUser ;
+        this.objetRepondre.email = emailUser ;
+        this.objetRepondre.numTerrain = numTerrain ;
 
      }
      accepterReservation () {
@@ -308,15 +308,15 @@ export class GestionReservationsComponent implements OnInit {
         exist => {
           if (exist) {
             console.log('La réservation a été accptée avec succès.');
-            this.accept = true ; 
+            this.accept = true ;
             setTimeout(() => {
               this.accept = false;
-            }, 10000); 
-             
+            }, 10000);
+
             this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
             .subscribe(
               data => {
-                this.reservations = data ; 
+                this.reservations = data ;
                 console.log('Horaires récupérés avec succès:', this.reservations);
               },
               error => {
@@ -337,14 +337,14 @@ export class GestionReservationsComponent implements OnInit {
         exist => {
           if (exist) {
             console.log('La réservation a été refusée avec succès.');
-            this.refus = true ; 
+            this.refus = true ;
             setTimeout(() => {
               this.refus= false;
-            }, 10000); 
+            }, 10000);
             this.reservationService.getReservationsByDateAndTerrainAndStatus(this.dateClicked, this.id_terrain)
       .subscribe(
         data => {
-          this.reservations = data ; 
+          this.reservations = data ;
           console.log('Horaires récupérés avec succès:', this.reservations);
         },
         error => {
@@ -361,4 +361,4 @@ export class GestionReservationsComponent implements OnInit {
       );
      }
 
-}    
+}

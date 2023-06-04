@@ -60,7 +60,7 @@ export class ProfilComponent implements OnInit {
       this.showConfirmationDialog = false;
       setTimeout(() => {
         this.valid = false;
-      }, 10000);
+      }, 6000);
     } else {
       // Check if email exists
       if (this.user.email !== this.currentUser.email) {
@@ -74,7 +74,7 @@ export class ProfilComponent implements OnInit {
 
               this.erreur = false;
 
-            }, 10000);
+            }, 6000);
           } else {
             // Update user
             this.showConfirmationDialog = false;
@@ -94,7 +94,7 @@ export class ProfilComponent implements OnInit {
                 this.erreur = true;
                 setTimeout(() => {
                   this.erreur = false;
-                }, 10000); // 3000 ms = 3 secondes
+                }, 5000); // 3000 ms = 3 secondes
               }
             );
 
@@ -118,14 +118,14 @@ export class ProfilComponent implements OnInit {
             this.update = true;
             setTimeout(() => {
               this.update = false;
-            }, 10000); // 3000 ms = 3 secondes
+            }, 10000);
           },
           (err) => {
             console.log('probleme !!! ', err);
             this.erreur = true;
             setTimeout(() => {
               this.erreur = false;
-            }, 10000); // 3000 ms = 3 secondes
+            }, 5000);
           }
         );
 
@@ -196,11 +196,6 @@ export class ProfilComponent implements OnInit {
    openConfirmationDialog(){
     this.showConfirmationDialog = true;
    }
-   changePassword()
-   {
-
-
-}
 
 UpdatePasswordUser()
 {
@@ -213,7 +208,7 @@ UpdatePasswordUser()
  {this.faute = true;
             setTimeout(() => {
               this.faute= false;
-            }, 10000);
+            }, 5000);
  }
   else
   {
@@ -249,7 +244,7 @@ UpdatePasswordUser()
 
                     setTimeout(() => {
                       this.changerPassword = false;
-                    }, 10000);
+                    }, 5000);
       }
     );
   }
