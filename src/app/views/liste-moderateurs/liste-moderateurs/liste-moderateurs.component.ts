@@ -24,7 +24,9 @@ export class ListeModerateursComponent implements OnInit {
   currentPage: number = 1; // Page actuelle.
   pages: number[] = []; // Tableau des numéros de page.
   displayedUsers: any;
-  constructor(private titleService: Title ,private UserService :  UtilisateurService) { }
+  constructor(private titleService: Title ,private UserService :  UtilisateurService) {
+    this.role = "tous" ; 
+   }
 
   ngOnInit(): void {
     this.titleService.setTitle("GSTAdmin-Liste des utilisateurs")
