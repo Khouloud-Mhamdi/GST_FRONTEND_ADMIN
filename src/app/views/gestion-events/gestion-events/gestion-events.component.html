@@ -8,7 +8,7 @@
     <div class="col-md-12">
       <div class="alert alert-danger confirmation-dialog" role="alert" *ngIf="showConfirmationDialog">
         <h4 class="alert-heading">Confirmation de suppression</h4>
-        <p>Voulez-vous vraiment supprimer cet évenement ?</p>
+        <p>Voulez-vous vraiment supprimer cet événement ?</p>
         <hr>
         <div class="button-container">
           <button class="btn btn-secondary cancel-button" (click)="closeConfirmationDialog()">Annuler</button>
@@ -25,15 +25,15 @@
   <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
 
-      <span class="breadcrumb-item" >Gestion des évènements </span>
-      <span class="breadcrumb-item active">Liste des évènements </span>
+      <span class="breadcrumb-item" >Gestion des événements </span>
+      <span class="breadcrumb-item active">Liste des événements </span>
     </nav>
   </div><!-- br-pageheader -->
   <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-    <h4 class="tx-gray-800 mg-b-5">Liste des évènements </h4>
+    <h4 class="tx-gray-800 mg-b-5">Liste des événements </h4>
      <!--alert de succée -->
      <div class="alert alert-success" role="alert"  *ngIf="deleted" >
-    <strong class="d-block d-sm-inline-block-force"> Cet évenement est supprimé avec succée  </strong>
+    <strong class="d-block d-sm-inline-block-force"> Cet événement est supprimé avec succée  </strong>
      </div>
     <!--alert d'erreur  -->
     <div class="alert alert-danger" role="alert"  *ngIf="erreurDelete" >
@@ -45,7 +45,7 @@
   <div class="br-pagebody">
     <div class="br-section-wrapper">
 
-      <button type="button" class="button-86" routerLink="/admin/addEvent/">Ajouter évènement </button>
+      <button type="button" class="button-86" routerLink="/admin/addEvent/">Ajouter événement </button>
       <p class="mg-b-25 mg-lg-b-50"></p>
 
 
@@ -73,7 +73,7 @@
               <td>{{item.id}}</td>
               <td>{{item.titre}}</td>
               <td>{{item.lieu}}</td>
-              <td>{{item.date}}</td>
+              <td>{{item.date | date:'dd-MM-yyyy'}}</td>
               <td>{{item.heure}}</td>
              
 
@@ -119,13 +119,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Evènement </h5>
+        <h5 class="modal-title" id="exampleModalLabel">Événement </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
         <!--alert de succée dans le cas de modification  -->
           <div class="alert alert-success" role="alert"  *ngIf="modified" >
-           <strong class="d-block d-sm-inline-block-force"> Cet évenement est modifié   </strong>
+           <strong class="d-block d-sm-inline-block-force"> Cet événement est modifié   </strong>
           </div>
           <!--alert d'eereur dans le cas de modification  -->
           <div class="alert alert-danger" role="alert"  *ngIf="modifiederreur" >
@@ -142,12 +142,19 @@
             <label for="exampleFormControlInput1">Lieu <span class="tx-danger">*</span> </label>
             <input type="text" class="form-control" id="exampleFormControlInput1"[(ngModel)]="dataEvent.lieu" placeholder="Entrer un lieu " [ngModelOptions]="{standalone:true}">
           </div>
-          <div class="form-group">
+         <!--<div class="form-group">
             <label >Date  <span class="tx-danger">*</span> </label>
              <div class="col-10">
                <input class="form-control" type="date" value="{{dataEvent.date}}" id="example-date-input"[(ngModel)]="dataEvent.date"  [ngModelOptions]="{standalone:true}">
              </div>
-           </div>
+           </div>-->
+           <div class="form-group">
+                       
+            <label class="col-sm-4 form-control-label">Date <span class="tx-danger">*</span></label>
+               <div  class="col-sm-8 mg-t-10 mg-sm-t-0" >
+                <input class="form-control" type="date" value="{{dataEvent.date}}" id="example-date-input"[(ngModel)]="dataEvent.date"  [ngModelOptions]="{standalone:true}" >
+             </div>
+            </div>
            <div  class="form-group">
              <label for="exampleFormControlInput1">Heure début de l'événement :   <span class="tx-danger">*</span>  </label>
              <div  class="col-sm-8 mg-t-10 mg-sm-t-0" >

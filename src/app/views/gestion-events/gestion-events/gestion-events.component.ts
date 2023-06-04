@@ -64,6 +64,7 @@ export class GestionEventsComponent implements OnInit {
   }
   getData () : void {
     this.eventService.getAll().subscribe((data)=>{
+      console.log(data) ; 
     this.eventService.listData = data ;
      this.evenements = data;
      this.nb_evenements = this.evenements.length;

@@ -52,13 +52,13 @@ export class AddUserComponent implements OnInit {
   }
 
   addUser(){
-    if((!this.controleSaisieNom())||(!this.controleSaisiePrénom())||(!this.controleSaisieTelephone())||(!this.controleSaisieEmail()))
+    if((!this.controleSaisieNom())||(!this.controleSaisiePrénom())||(!this.controleSaisieTelephone())||(!this.controleSaisieEmail()) || (!this.addUserForm.value.role))
     {this.valid=true;
       console.log(this.valid);
       setTimeout(() => {
         this.valid = false;
       }, 3000);
-
+    
   }
     else{
       this.authService.ExistEmail(this.addUserForm.value.email).subscribe(
@@ -110,10 +110,12 @@ export class AddUserComponent implements OnInit {
   }
 
 
-  controleSaisieTelephone(): boolean {
+ controleSaisieTelephone(): boolean {
     const telephoneInput = document.getElementById("telephone") as HTMLInputElement;
 
-    if (!/^\d{8}$/.test(this.addUserForm.value.telephone)) {
+    if (!/^[\d\s]{8}$/.test(this.addUserForm.value.telephone))
+
+    {
       telephoneInput.classList.add("invalid");
       return false;
     } else {
@@ -121,6 +123,9 @@ export class AddUserComponent implements OnInit {
       return true;
     }
   }
+  
+  
+  
   controleSaisieNom(): boolean {
 
     const nomInput = document.getElementById("firstname") as HTMLInputElement;

@@ -142,32 +142,32 @@
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput1">Nom  <span class="tx-danger">*</span></label>
-              <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]=" dataEntraineur.nom" placeholder="Entrer un nom  " [ngModelOptions]="{standalone:true}">
+              <input type="text" class="form-control" id="firstname" [(ngModel)]=" dataEntraineur.nom" placeholder="Entrer un nom  " [ngModelOptions]="{standalone:true}">
             </div>
             <div class="form-group">
-              <label for="exampleFormControlInput1">Prenom <span class="tx-danger">*</span> </label>
-              <input type="text" class="form-control" id="exampleFormControlInput1"[(ngModel)]=" dataEntraineur.prenom" placeholder=" Entrer un prenom " [ngModelOptions]="{standalone:true}">
+              <label for="exampleFormControlInput1">Prénom <span class="tx-danger">*</span> </label>
+              <input type="text" class="form-control" id="lastname"[(ngModel)]=" dataEntraineur.prenom" placeholder=" Entrer un prenom " [ngModelOptions]="{standalone:true}">
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput1">Email<span class="tx-danger">*</span> </label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" [(ngModel)]=" dataEntraineur.email" placeholder="Entrer un email " [ngModelOptions]="{standalone:true}">
+              <input type="email" class="form-control" id="email" [(ngModel)]=" dataEntraineur.email" placeholder="Entrer un email " [ngModelOptions]="{standalone:true}">
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput1">Adresse<span class="tx-danger">*</span> </label>
               <input type="text" class="form-control" id="exampleFormControlInput1"[(ngModel)]=" dataEntraineur.adresse" placeholder="Entrer une adresse " [ngModelOptions]="{standalone:true}">
             </div>
             <div class="form-group">
-              <label for="exampleFormControlInput1">Telephone<span class="tx-danger">*</span> </label>
+              <label for="exampleFormControlInput1">Télephone<span class="tx-danger">*</span> </label>
               <input type="text" class="form-control" id="exampleFormControlInput1"[(ngModel)]=" dataEntraineur.telephone" placeholder="Entrer un numero de telephone " [ngModelOptions]="{standalone:true}">
             </div>
             <div class="form-group">
-              <label for="example-date-input" class="col-2 col-form-label">Date <span class="tx-danger">*</span></label>
+              <label for="example-date-input" class="col-2 col-form-label">Date de naissance <span class="tx-danger">*</span></label>
               <div class="col-10">
                 <input class="form-control" type="date" value="{{ dataEntraineur.naissance}}" id="example-date-input"[(ngModel)]=" dataEntraineur.naissance"  [ngModelOptions]="{standalone:true}">
               </div>
             </div>
             <div class="form-group">
-              <label for="example-date-input" class="col-2 col-form-label">Date <span class="tx-danger">*</span></label>
+              <label for="example-date-input" class="col-3 col-form-label">Date d'embauche  <span class="tx-danger">*</span></label>
               <div class="col-10">
                 <input class="form-control" type="date" value="{{ dataEntraineur.dateEmbauche}}" id="example-date-input"[(ngModel)]=" dataEntraineur.dateEmbauche"  [ngModelOptions]="{standalone:true}">
               </div>

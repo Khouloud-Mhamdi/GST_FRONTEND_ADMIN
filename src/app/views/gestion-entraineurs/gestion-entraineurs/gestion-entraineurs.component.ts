@@ -209,6 +209,17 @@ export class GestionEntraineursComponent implements OnInit {
    }
    
    updateEntraineur() {
+    if((!this.dataEntraineur.naissance) || (!this.dataEntraineur.dateEmbauche) || (!this.controleSaisieNom()) || (!this.controleSaisiePrénom()) ||  (!this.controleSaisieEmail()) )
+    {
+      this.modifiederreur = true ; 
+      setTimeout(() => {
+        this.modifiederreur= false;
+      }, 10000);
+    }
+  else {
+    this.modifiederreur = false ; 
+    console.log(this.dataEntraineur.naissance) ; 
+    console.log(this.dataEntraineur.dateEmbauche) ;
       this.entraineurService.updateEntraineur(this.dataEntraineur ).subscribe(
         (data)=>{
          this.modified = true ; 
@@ -225,5 +236,51 @@ export class GestionEntraineursComponent implements OnInit {
           }, 3000);
         }
       )
+  }
+    
        }
+
+
+       controleSaisieEmail(): boolean {
+
+        const nomInput = document.getElementById("email") as HTMLInputElement;
+        console.log(nomInput);
+        const regex =/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ ;
+        if (!regex.test(this.dataEntraineur.email)) {
+          nomInput.classList.add("invalid");
+    
+          return false;
+        } else {
+          nomInput.classList.remove("invalid");
+          return true;
+        }
+      }
+      controleSaisieNom(): boolean {
+
+        const nomInput = document.getElementById("firstname") as HTMLInputElement;
+        console.log(nomInput);
+        const regex =/^[a-zA-Z\s]{3,}$/ ;
+        if (!regex.test(this.dataEntraineur.nom)) {
+          nomInput.classList.add("invalid");
+    
+          return false;
+        } else {
+          nomInput.classList.remove("invalid");
+          return true;
+        }
+      }
+      controleSaisiePrénom(): boolean {
+    
+        const nomInput = document.getElementById("lastname") as HTMLInputElement;
+        console.log(nomInput);
+        const regex =/^[a-zA-Z\s]{3,}$/ ;
+        if (!regex.test(this.dataEntraineur.prenom)) {
+          nomInput.classList.add("invalid");
+    
+          return false;
+        } else {
+          nomInput.classList.remove("invalid");
+          return true;
+        }
+      }
 }

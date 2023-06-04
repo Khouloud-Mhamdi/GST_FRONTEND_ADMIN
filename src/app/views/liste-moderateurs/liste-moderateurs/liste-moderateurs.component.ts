@@ -94,7 +94,7 @@ export class ListeModerateursComponent implements OnInit {
         this.supprimer = false;
       }, 3000); // 3000 ms = 3 secondes
 
-     // this.ListeDesUtilisateurs();
+      this.ListeDesUtilisateurs();
       this.closeConfirmationDialog();
 
     })

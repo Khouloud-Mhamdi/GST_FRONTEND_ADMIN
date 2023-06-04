@@ -25,6 +25,7 @@ export class GestionnaireLayoutComponent implements OnInit {
     })
     this.InscriptionService.ListeDesReservations().subscribe((data)=>{
       this.reservations = data;
+      console.log("liste des reservation ? " , this.reservation)
      
       this.nb_reservations = this.reservations.length;
      
