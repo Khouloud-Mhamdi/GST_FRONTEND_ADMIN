@@ -57,13 +57,8 @@ export class AddUserComponent implements OnInit {
       console.log(this.valid);
       setTimeout(() => {
         this.valid = false;
-<<<<<<< HEAD
-      }, 3000);
-    
-=======
       }, 10000);
 
->>>>>>> fc1709d71f98c357d158d0b699c32182040ea435
   }
     else{
       this.authService.ExistEmail(this.addUserForm.value.email).subscribe(
