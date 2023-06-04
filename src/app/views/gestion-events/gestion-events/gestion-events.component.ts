@@ -187,24 +187,35 @@ export class GestionEventsComponent implements OnInit {
 }
 
  updateData () {
-  this.eventService.updatEvent(this.dataEvent).subscribe( (data) => {
-
-    this.modified = true ;
-    setTimeout(() => {
-      this.modified= false;
-    }, 10000);
-    this.getData() ;
-    } ,
-
-    (error) => {
-      this.modifiederreur = true ;
-      console.log(error) ;
+  this.modifiederreur = false ; 
+  if(!this.dataEvent.date) {
+    this.modifiederreur = true ;
+     
       setTimeout(() => {
         this.modifiederreur= false;
       }, 5000);
-    }
+  }
 
-    );
+  else {
+    this.eventService.updatEvent(this.dataEvent).subscribe( (data) => {
+
+      this.modified = true ;
+      setTimeout(() => {
+        this.modified= false;
+      }, 10000);
+      this.getData() ;
+      } ,
+  
+      (error) => {
+        this.modifiederreur = true ;
+        console.log(error) ;
+        setTimeout(() => {
+          this.modifiederreur= false;
+        }, 5000);
+      }
+  
+      );
+  }
 }
   search(query: any){
    console.log(this.query);

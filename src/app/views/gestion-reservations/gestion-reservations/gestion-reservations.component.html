@@ -150,7 +150,12 @@
             <img src="assets/photos/reservation.png" style="display: block; margin: 0 auto; max-height: 150px;">
 
           </div>
-          <h3>Réservation {{objetRepondre.status}}  </h3>
+          <h3>
+            Réservation <span>{{objetRepondre.status}}</span> 
+           
+            <span *ngIf="acceptButtonDisabled">  archivée</span>
+          </h3>
+           
           <hr>
           <h4>Date : {{objetRepondre.date}}</h4>
           <h4>Horaire :  {{objetRepondre.hdebut}}-{{objetRepondre.hfin}}</h4>
@@ -164,8 +169,8 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success mr-2" (click)="accepterReservation()" [disabled]="acceptButtonDisabled" >Accepter</button>
-          <button type="button" class="btn btn-danger" (click)="refuserReservation()" [disabled]="refuseButtonDisabled">Refuser</button>
+          <button type="button" class="btn btn-success mr-2" (click)="accepterReservation()" *ngIf="!acceptButtonDisabled"  >Accepter</button>
+          <button type="button" class="btn btn-danger" (click)="refuserReservation()" *ngIf="!acceptButtonDisabled">Refuser</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
         </div>
       </div>
